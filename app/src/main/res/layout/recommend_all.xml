@@ -1,0 +1,61 @@
+<?xml version="1.0" encoding="utf-8"?>
+<RelativeLayout xmlns:android="http://schemas.android.com/apk/res/android"
+
+                android:layout_width="match_parent"
+                android:layout_height="wrap_content">
+    <TextView
+        android:id="@+id/tv_recommend_all"
+        android:layout_width="200dp"
+        android:layout_height="wrap_content"
+        android:layout_marginLeft="15dp"
+        android:layout_marginTop="15dp"
+        android:maxLines="2"
+        android:text="dsdasdasd"
+        android:textSize="20sp"/>
+    <TextView
+       android:layout_margin="20dp"
+        android:id="@+id/tv_recommend_all_head"
+        android:layout_width="wrap_content"
+        android:layout_height="wrap_content"
+        android:layout_below="@+id/tv_recommend_all"
+        android:text="头条"/>
+    <TextView
+
+        android:layout_marginTop="20dp"
+        android:text="dsdsad"
+        android:layout_below="@+id/tv_recommend_all"
+        android:layout_toLeftOf="@+id/text_history"
+        android:id="@+id/tv_ta"
+        android:layout_width="wrap_content"
+        android:layout_height="wrap_content"/>
+    <TextView
+        android:layout_margin="20dp"
+        android:layout_below="@+id/tv_recommend_all"
+        android:text="100评论"
+        android:layout_toRightOf="@+id/tv_recommend_all_head"
+        android:id="@+id/text_history"
+        android:layout_width="wrap_content"
+        android:layout_height="wrap_content"/>
+    <RelativeLayout
+
+        android:id="@+id/recommend_all_ll"
+        android:layout_width="wrap_content"
+        android:layout_height="wrap_content"
+        android:layout_alignParentRight="true">
+        <ImageView
+            android:id="@+id/ima_recommend_all"
+            android:layout_width="120dp"
+            android:layout_height="70dp"
+            android:background="@mipmap/ic_launcher"/>
+        <TextView
+            android:id="@+id/tv_recommend_all_time"
+            android:layout_width="wrap_content"
+            android:layout_height="wrap_content"
+            android:layout_below="@+id/ima_recommend_all"
+            android:layout_centerHorizontal="true"
+            android:text="sss"/>
+
+    </RelativeLayout>
+
+
+</RelativeLayout>

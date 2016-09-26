@@ -1,0 +1,93 @@
+<?xml version="1.0" encoding="utf-8"?>
+<LinearLayout xmlns:android="http://schemas.android.com/apk/res/android"
+              android:layout_width="match_parent"
+              android:layout_height="match_parent"
+              android:orientation="vertical">
+    <RelativeLayout
+        android:layout_width="match_parent"
+        android:layout_height="wrap_content"
+        android:layout_margin="15dp">
+        <TextView
+            android:id="@+id/text_view"
+            android:layout_width="wrap_content"
+            android:layout_height="wrap_content"
+            android:text="精选推荐"
+            android:textColor="@android:color/black"
+            android:textSize="17sp"/>
+        <TextView
+            android:id="@+id/caonima"
+            android:layout_width="wrap_content"
+            android:layout_height="wrap_content"
+            android:layout_alignParentRight="true"
+            android:layout_marginRight="50dp"
+            android:text="全部"
+            android:textSize="17sp"/>
+        <ImageView
+            android:layout_width="17dp"
+            android:layout_height="17dp"
+            android:layout_alignParentRight="true"
+            android:background="@mipmap/right_arrow_noout"/>
+    </RelativeLayout>
+    <RelativeLayout
+        android:layout_width="match_parent"
+        android:layout_height="wrap_content">
+        <Button
+            android:layout_marginLeft="15dp"
+            android:textSize="10sp"
+            android:id="@+id/btn_century_model"
+            android:layout_width="90dp"
+            android:layout_height="35dp"
+            android:text="媳妇当车模"/>
+        <Button
+            android:layout_toRightOf="@+id/btn_century_model"
+            android:layout_marginLeft="15dp"
+            android:textSize="10sp"
+            android:id="@+id/btn_beautiful_people"
+            android:layout_width="90dp"
+            android:layout_height="35dp"
+            android:text="美人'记'"/>
+
+        <Button
+            android:layout_toRightOf="@+id/btn_beautiful_people"
+            android:layout_marginLeft="15dp"
+            android:textSize="10sp"
+            android:id="@+id/btn_head"
+            android:layout_width="90dp"
+            android:layout_height="35dp"
+            android:text="媳妇当车模"/>
+
+
+    </RelativeLayout>
+    <RelativeLayout
+        android:layout_marginTop="10dp"
+        android:layout_width="match_parent"
+        android:layout_height="wrap_content">
+        <Button
+            android:layout_marginLeft="15dp"
+            android:textSize="10sp"
+            android:id="@+id/btn_friend"
+            android:layout_width="90dp"
+            android:layout_height="35dp"
+            android:text="摩友天地"/>
+        <Button
+            android:layout_toRightOf="@+id/btn_friend"
+            android:layout_marginLeft="15dp"
+            android:textSize="10sp"
+            android:id="@+id/btn_ss"
+            android:layout_width="90dp"
+            android:layout_height="35dp"
+            android:text="精挑细选'"/>
+
+        <Button
+            android:layout_toRightOf="@+id/btn_ss"
+            android:layout_marginLeft="15dp"
+            android:textSize="10sp"
+            android:id="@+id/btn_sister"
+            android:layout_width="90dp"
+            android:layout_height="35dp"
+            android:text="妹子选车"/>
+
+
+    </RelativeLayout>
+
+</LinearLayout>
