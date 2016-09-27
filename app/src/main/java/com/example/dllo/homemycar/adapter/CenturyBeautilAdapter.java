@@ -1,4 +1,4 @@
-package com.example.dllo.homemycar; /*
+package com.example.dllo.homemycar.adapter; /*
         quu..__
          $$$b  `---.__
           "$$b        `--.                          ___.---uuudP
@@ -39,44 +39,77 @@ package com.example.dllo.homemycar; /*
          
         */
 
-import android.app.Application;
 import android.content.Context;
-import android.support.v4.app.Fragment;
+import android.view.LayoutInflater;
+import android.view.View;
+import android.view.ViewGroup;
+import android.widget.BaseAdapter;
+import android.widget.ImageView;
+import android.widget.TextView;
 
-import java.util.ArrayList;
-import java.util.List;
+import com.example.dllo.homemycar.R;
+import com.example.dllo.homemycar.entity.CenturySisterEntity;
+import com.squareup.picasso.Picasso;
 
 /**
- * Created by dllo on 16/8/2.
+ * Created by dllo on 16/9/27.
  */
-public class MyApp extends Application {
-    public static Context context;
-    protected static boolean user;
-    protected static List<Fragment> sFragments;
+public class CenturyBeautilAdapter extends BaseAdapter{
+    private Context context;
+    private CenturySisterEntity entity;
+
+    public void setEntity(CenturySisterEntity entity) {
+        this.entity = entity;
+    }
+
+    public CenturyBeautilAdapter(Context context) {
+
+        this.context = context;
+    }
 
     @Override
-    public void onCreate() {
-        super.onCreate();
-        context = this;
-        sFragments = new ArrayList<>();
-    }
-    public static Context getContext(){
-        return context;
-    }
-    public static void setBoolean(Boolean falg){
-        user = falg;
+    public int getCount() {
+        return entity==null?0:entity.getResult().getList().size();
     }
 
-    public static boolean getFlag(){
-        return user;
+    @Override
+    public Object getItem(int i) {
+        return entity.getResult().getList().get(i);
     }
 
-    public static void  addFragment(Fragment fragment){
-
-        sFragments.add(fragment);
+    @Override
+    public long getItemId(int i) {
+        return i;
     }
 
-    public static List<Fragment> getFragmetn(){
-        return sFragments;
+    @Override
+    public View getView(int i, View view, ViewGroup viewGroup) {
+        CenturyModelViewHolder holder = null;
+        if (view==null) {
+            view = LayoutInflater.from(context).inflate(R.layout.item_century_model_ac,viewGroup,false);
+            holder = new CenturyModelViewHolder(view);
+            view.setTag(holder);
+
+        }else {
+            holder = (CenturyModelViewHolder) view.getTag();
+        }
+        holder.tvTitle.setText(entity.getResult().getList().get(i).getTitle());
+        holder.tvQuarter.setText(entity.getResult().getList().get(i).getBbsname());
+//        holder.tvTie.setText(entity.getResult().getList().get(i).getBbsid());
+        Picasso.with(context).load(entity.getResult().getList().get(i).getSmallpic()).into(holder.ima);
+        return view;
+    }
+    class CenturyModelViewHolder{
+        private TextView tvTitle,tvQuarter,tvTie;
+        private ImageView ima;
+        public CenturyModelViewHolder(View view) {
+            tvTitle = (TextView) view.findViewById(R.id.item_century_model_title);
+            tvQuarter = (TextView) view.findViewById(R.id.item_century_model_quarter);
+            tvTie = (TextView) view.findViewById(R.id.item_century_model_ties);
+            ima = (ImageView) view.findViewById(R.id.item_century_model_ima);
+
+
+
+        }
     }
 }

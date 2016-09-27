@@ -1,4 +1,4 @@
-package com.example.dllo.homemycar.custom; /*
+package com.example.dllo.homemycar.entity; /*
         quu..__
          $$$b  `---.__
           "$$b        `--.                          ___.---uuudP
@@ -42,18 +42,9 @@ package com.example.dllo.homemycar.custom; /*
 import java.util.List;
 
 /**
- * Created by dllo on 16/9/23.
+ * Created by dllo on 16/9/26.
  */
-public class Entity {
-    private String sortLetters;
-
-    public String getSortLetters() {
-        return sortLetters;
-    }
-
-    public void setSortLetters(String sortLetters) {
-        this.sortLetters = sortLetters;
-    }
+public class FindCarEntity {
 
     /**
      * returncode : 0

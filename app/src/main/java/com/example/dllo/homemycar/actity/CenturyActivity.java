@@ -41,12 +41,15 @@ package com.example.dllo.homemycar.actity; /*
 
 import android.app.Activity;
 import android.content.ClipData.Item;
+import android.content.Intent;
 import android.os.Bundle;
 import android.support.annotation.Nullable;
 import android.support.v4.app.FragmentActivity;
 import android.support.v7.app.AppCompatActivity;
 import android.view.LayoutInflater;
 import android.view.View;
+import android.widget.AdapterView;
+import android.widget.AdapterView.OnItemClickListener;
 import android.widget.ListView;
 
 import com.example.dllo.homemycar.R;
@@ -72,6 +75,13 @@ public class CenturyActivity extends FragmentActivity {
         strings = new ArrayList<>();
         CenturyActivityAdapter adapter = new CenturyActivityAdapter(this);
         listView.setAdapter(adapter);
+        listView.setOnItemClickListener(new OnItemClickListener() {
+            @Override
+            public void onItemClick(AdapterView<?> adapterView, View view, int i, long l) {
+                Intent intent = new Intent(CenturyActivity.this,AllActivity.class);
+                startActivity(intent);
+            }
+        });
 
         for (int i = 0; i < tv.length; i++) {
             CenturyBean bean = new CenturyBean();

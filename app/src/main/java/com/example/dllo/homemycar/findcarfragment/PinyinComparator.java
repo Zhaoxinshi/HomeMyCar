@@ -1,4 +1,4 @@
-package com.example.dllo.homemycar.custom;
+package com.example.dllo.homemycar.findcarfragment;
 
 import java.util.Comparator;
 
@@ -7,10 +7,10 @@ import java.util.Comparator;
  * @author 
  *
  */
-public class PinyinComparator implements Comparator<Entity> {
+public class PinyinComparator implements Comparator<SortModel> {
 
 
-	public int compare(Entity o1, Entity o2) {
+	public int compare(SortModel o1, SortModel o2) {
 		if (o1.getSortLetters().equals("@")
 				|| o2.getSortLetters().equals("#")) {
 			return -1;

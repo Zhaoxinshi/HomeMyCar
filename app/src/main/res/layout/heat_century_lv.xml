@@ -54,7 +54,7 @@
             android:id="@+id/btn_head"
             android:layout_width="90dp"
             android:layout_height="35dp"
-            android:text="媳妇当车模"/>
+            android:text="高端阵地"/>
 
 
     </RelativeLayout>

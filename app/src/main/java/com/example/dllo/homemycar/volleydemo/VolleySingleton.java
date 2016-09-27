@@ -46,7 +46,7 @@ import com.android.volley.RequestQueue;
 import com.android.volley.Response;
 import com.android.volley.toolbox.StringRequest;
 import com.android.volley.toolbox.Volley;
-import com.example.dllo.homemycar.MyApp;
+import com.example.dllo.homemycar.custom.MyApp;
 
 /**
  * Created by dllo on 16/8/9.

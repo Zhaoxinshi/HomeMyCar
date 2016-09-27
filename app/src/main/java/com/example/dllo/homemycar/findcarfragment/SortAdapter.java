@@ -1,4 +1,4 @@
-package com.example.dllo.homemycar.custom;
+package com.example.dllo.homemycar.findcarfragment;
 
 import android.content.Context;
 import android.view.LayoutInflater;
@@ -14,15 +14,15 @@ import java.util.List;
 
 public class SortAdapter extends BaseAdapter implements SectionIndexer {
 
-	private List<Entity> list = null;
+	private List<SortModel> list = null;
 
 	private Context mContext;
 
-	public SortAdapter(Context mContext, List<Entity> list){
+	public SortAdapter(Context mContext, List<SortModel> list){
 		this.mContext = mContext;
 		this.list = list;
 	}
-	public void updateListView(List<Entity> list){
+	public void updateListView(List<SortModel> list){
 		this.list = list;
 		notifyDataSetChanged();
 	}
@@ -50,9 +50,9 @@ public class SortAdapter extends BaseAdapter implements SectionIndexer {
 	public View getView(int position, View convertView, ViewGroup parent) {
 
 		ViewHolder viewHolder = null;
-		final Entity mContent = list.get(position);
+		final SortModel mContent = list.get(position);
 		if (convertView== null) {
-			convertView = LayoutInflater.from(mContext).inflate(R.layout.item_sort, null);
+			convertView = LayoutInflater.from(mContext).inflate(R.layout.items, null);
 			viewHolder= new ViewHolder(convertView);
 			convertView.setTag(viewHolder);
 		}else {
@@ -67,7 +67,7 @@ public class SortAdapter extends BaseAdapter implements SectionIndexer {
 		}else {
 			viewHolder.tvLetter.setVisibility(View.GONE);
 		}
-		viewHolder.tvTitle.setText(this.list.get(position).getResult().getBrandlist().get(position).getList().get(position).getName());
+		viewHolder.tvTitle.setText(this.list.get(position).getName());
 		return convertView;
 	}
 

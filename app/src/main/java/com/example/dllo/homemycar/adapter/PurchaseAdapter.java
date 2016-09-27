@@ -54,12 +54,14 @@ import com.android.volley.toolbox.ImageLoader;
 import com.android.volley.toolbox.ImageLoader.ImageContainer;
 import com.android.volley.toolbox.ImageLoader.ImageListener;
 import com.android.volley.toolbox.Volley;
+
 import com.example.dllo.homemycar.R;
 import com.example.dllo.homemycar.entity.PurchaseEntity;
 import com.example.dllo.homemycar.imageloader.DoubleCache;
 import com.example.dllo.homemycar.imageloader.MemoryCache;
 import com.example.dllo.homemycar.imageloader.SingleQueue;
 import com.example.dllo.homemycar.volleydemo.VolleySingleton;
+
 import com.squareup.picasso.Picasso;
 
 /**

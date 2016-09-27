@@ -4,13 +4,13 @@
     <uses-permission android:name="android.permission.INTERNET"/>
 
     <application
-        android:name=".MyApp"
+        android:name=".custom.MyApp"
         android:allowBackup="true"
         android:icon="@mipmap/ic_launcher"
         android:label="@string/app_name"
         android:supportsRtl="true"
         android:theme="@style/AppTheme">
-        <activity android:name=".MainActivity">
+        <activity android:name=".actity.MainActivity">
             <intent-filter>
                 <action android:name="android.intent.action.MAIN"/>
 
@@ -18,6 +18,14 @@
             </intent-filter>
         </activity>
         <activity android:name=".actity.CenturyActivity"/>
+        <activity android:name=".actity.AllActivity"/>
+        <activity android:name=".actity.CollectActivity"/>
+        <activity android:name=".actity.PreferentialActivity"/>
+        <activity android:name=".actity.HistoryActivity"/>
+        <activity android:name=".actity.DraftActivity"/>
+        <activity android:name=".actity.SetUpActivity"/>
+        <activity android:name=".actity.HotActivity"/>
+        <activity android:name=".formfragment.CenturySsActivity"/>
     </application>
 
 </manifest>
