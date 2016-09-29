@@ -1,4 +1,4 @@
-package com.example.dllo.homemycar.adapter; /*
+package com.example.dllo.homemycar.fragment; /*
         quu..__
          $$$b  `---.__
           "$$b        `--.                          ___.---uuudP
@@ -39,57 +39,61 @@ package com.example.dllo.homemycar.adapter; /*
          
         */
 
-import android.content.Context;
-import android.support.v7.widget.RecyclerView.Adapter;
-import android.support.v7.widget.RecyclerView.ViewHolder;
-import android.view.LayoutInflater;
-import android.view.View;
-import android.view.ViewGroup;
-import android.widget.ImageView;
+import android.content.Intent;
+import android.os.Bundle;
+import android.support.annotation.Nullable;
+import android.support.v4.app.FragmentActivity;
+import android.util.Log;
+import android.widget.ListView;
 
+import com.android.volley.Response;
+import com.android.volley.VolleyError;
 import com.example.dllo.homemycar.R;
-import com.example.dllo.homemycar.entity.FindAllEntity;
-import com.squareup.picasso.Picasso;
+import com.example.dllo.homemycar.adapter.RecommendAllAdapter;
+import com.example.dllo.homemycar.entity.RecommendEntity;
+import com.example.dllo.homemycar.volleydemo.VolleySingleton;
 
 /**
- * Created by dllo on 16/9/23.
+ * Created by dllo on 16/9/29.
  */
-public class RvServiceAdapter extends Adapter<RvServiceAdapter.ViewHolderService> {
-    private Context context;
-    private FindAllEntity entity;
-
-    public void setEntity(FindAllEntity entity) {
-        this.entity = entity;
-    }
-
-    public RvServiceAdapter(Context context) {
-        this.context = context;
-    }
+public class RecommendActivity extends FragmentActivity {
+    private ListView listView;
+    private RecommendAllAdapter allAdapter;
 
     @Override
-    public ViewHolderService onCreateViewHolder(ViewGroup parent, int viewType) {
-        View view = LayoutInflater.from(context).inflate(R.layout.service_find_item, parent, false);
-        ViewHolderService holderService = new ViewHolderService(view);
-        return holderService;
+    protected void onCreate(@Nullable Bundle savedInstanceState) {
+        super.onCreate(savedInstanceState);
+        setContentView(R.layout.recommend_ac);
+        initView();
+        initData();
     }
 
-    @Override
-    public void onBindViewHolder(ViewHolderService holder, int position) {
-        Picasso.with(context).load(entity.getResult().getCardlist().get(3).getData().get(position).getImageurl()).into(holder.imageView);
+    private void initData() {
+        Intent intent = getIntent();
+        String url = intent.getStringExtra("urls");
+        Log.d("推荐所有", url);
+        allAdapter = new RecommendAllAdapter(this);
+        VolleySingleton.addRequest(url, RecommendEntity.class, new Response.Listener<RecommendEntity>() {
+            @Override
+            public void onResponse(RecommendEntity response) {
+                allAdapter.setEntity(response);
+                listView.setAdapter(allAdapter);
+
+
+
+            }
+        }, new Response.ErrorListener() {
+            @Override
+            public void onErrorResponse(VolleyError error) {
+                error.getMessage();
+            }
+        });
+
 
     }
 
-    @Override
-    public int getItemCount() {
-        return entity == null ? 0 : entity.getResult().getCardlist().get(3).getData().size();
-    }
+    private void initView() {
+        listView = (ListView) findViewById(R.id.recommend_lv_all_ac);
 
-    public class ViewHolderService extends ViewHolder {
-        private ImageView imageView;
-
-        public ViewHolderService(View itemView) {
-            super(itemView);
-            imageView = (ImageView) itemView.findViewById(R.id.ima_service_item);
-        }
     }
 }

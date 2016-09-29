@@ -1,0 +1,43 @@
+<?xml version="1.0" encoding="utf-8"?>
+<RelativeLayout xmlns:android="http://schemas.android.com/apk/res/android"
+    android:orientation="vertical" android:layout_width="match_parent"
+    android:layout_height="match_parent">
+    <ImageView
+        android:id="@+id/s"
+        android:layout_marginLeft="5dp"
+        android:layout_marginTop="10dp"
+        android:background="@mipmap/back"
+        android:layout_width="50dp"
+        android:layout_height="50dp" />
+    <TextView
+        android:layout_marginTop="15dp"
+        android:textSize="25sp"
+        android:text="更多"
+        android:layout_centerHorizontal="true"
+        android:layout_width="wrap_content"
+        android:layout_height="wrap_content" />
+    <LinearLayout
+        android:id="@+id/rl"
+        android:layout_marginTop="10dp"
+        android:layout_below="@+id/s"
+        android:layout_width="match_parent"
+        android:background="@android:color/darker_gray"
+        android:layout_height="wrap_content">
+        <TextView
+            android:layout_margin="6dp"
+            android:background="@android:color/darker_gray"
+            android:textColor="@android:color/black"
+            android:text="长按可拖动排序"
+            android:layout_width="wrap_content"
+            android:layout_height="wrap_content" />
+
+    </LinearLayout>
+    <android.support.v7.widget.RecyclerView
+        android:id="@+id/more_ry"
+        android:layout_below="@+id/rl"
+        android:layout_width="match_parent"
+        android:layout_height="match_parent"/>
+
+
+
+</RelativeLayout>

@@ -6,6 +6,7 @@
     <ImageView
         android:id="@+id/ima_service_item"
         android:layout_width="200dp"
-        android:layout_height="80dp"/>
+        android:scaleType="fitXY"
+        android:layout_height="100dp"/>
 
 </LinearLayout>

@@ -101,7 +101,7 @@
                         android:textSize="20sp"/>
 
                 </LinearLayout>
-                <SeekBar
+                <Switch
                     android:layout_width="wrap_content"
                     android:layout_height="wrap_content"
                     android:layout_alignParentRight="true"
@@ -132,9 +132,8 @@
                         android:textSize="20sp"/>
 
                 </LinearLayout>
-                <SeekBar
+                <Switch
                     android:layout_width="wrap_content"
-
                     android:layout_height="wrap_content"
                     android:layout_alignParentRight="true"
                     android:layout_centerVertical="true"
@@ -173,9 +172,8 @@
                         android:textSize="15sp"/>
 
                 </LinearLayout>
-                <SeekBar
+                <Switch
                     android:layout_width="wrap_content"
-
                     android:layout_height="wrap_content"
                     android:layout_alignParentRight="true"
                     android:layout_centerVertical="true"

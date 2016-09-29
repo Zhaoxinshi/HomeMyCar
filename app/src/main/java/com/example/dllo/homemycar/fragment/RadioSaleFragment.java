@@ -45,27 +45,30 @@ import android.os.Message;
 import android.support.v4.view.ViewPager;
 import android.support.v7.widget.GridLayoutManager;
 import android.support.v7.widget.RecyclerView;
-import android.util.Log;
+import android.view.View;
 import android.widget.ImageView;
+import android.widget.LinearLayout;
+import android.widget.RelativeLayout;
 import android.widget.Toast;
 
 import com.android.volley.Response;
 import com.android.volley.VolleyError;
 import com.example.dllo.homemycar.R;
+import com.example.dllo.homemycar.adapter.LimitedBuyAdapter;
 import com.example.dllo.homemycar.adapter.RvServiceAdapter;
 import com.example.dllo.homemycar.custom.GridViews;
 import com.example.dllo.homemycar.custom.HorizontialListView;
 
 import com.example.dllo.homemycar.adapter.HeadForMeRecommendAdapter;
 import com.example.dllo.homemycar.adapter.LikeRecyclerViewAdapter;
-import com.example.dllo.homemycar.adapter.PurchaseAdapter;
 import com.example.dllo.homemycar.adapter.RadioSaleAdapter;
 import com.example.dllo.homemycar.adapter.RadioSaleRecyclerAdapter;
 import com.example.dllo.homemycar.adapter.RadioSaleViewPagerAdapter;
 import com.example.dllo.homemycar.base.BaseFragment;
+import com.example.dllo.homemycar.custom.LimitedBuyTextView;
 import com.example.dllo.homemycar.entity.FindAllEntity;
 import com.example.dllo.homemycar.entity.FindEntity;
-import com.example.dllo.homemycar.entity.PurchaseEntity;
+import com.example.dllo.homemycar.entity.LimitedBuyBean;
 import com.example.dllo.homemycar.entity.RadioEntity;
 import com.example.dllo.homemycar.entity.RadioSaleViewPagerEntity;
 import com.example.dllo.homemycar.volleydemo.VolleySingleton;
@@ -90,6 +93,9 @@ public class RadioSaleFragment extends BaseFragment {
     private ImageView imaTop;
     private RecyclerView rvService;
     private ImageView imaQuestion,imaMoney;
+    private LinearLayout lTimer;
+    private RelativeLayout rlTimer;
+    private LimitedBuyAdapter limitedBuyAdapter;
     public static final String LIMITEDBUY_FIND_URL =
             "http://223.99.255.20/mobile.app.autohome.com.cn/discoverj_v5.9.5/mobile/limitedbuylist-a2-pm1-v6.2.0-pid210000-cid210200.json";
 
@@ -116,6 +122,8 @@ public class RadioSaleFragment extends BaseFragment {
         rvService = getView(R.id.rv_service);
         imaQuestion = getView(R.id.question_ima);
         imaMoney = getView(R.id.ima_monery);
+        lTimer = getView(R.id.tv_limited_buy_timer);
+        rlTimer = getView(R.id.fragment_radio_sale_rl);
 
     }
 
@@ -132,7 +140,7 @@ public class RadioSaleFragment extends BaseFragment {
        VolleySingleton.addRequest("http://223.99.255.20/mobile.app.autohome.com.cn/discover_v7.0.0/mobile/getcardlist.ashx?a=2&pm=1&v=7.0.0&uid=&deviceid=021676cd548e5cf2b6149c916a767228fac74da0&pid=0&cid=0&state=1&pageindex=1&pagesize=20&lat=0.000000&lng=0.000000&hid=", FindAllEntity.class, new Response.Listener<FindAllEntity>() {
            @Override
            public void onResponse(FindAllEntity response) {
-               Picasso.with(getContext()).load(response.getResult().getCardlist().get(1).getData().get(0).getImageurl()).into(imaIma);
+//               Picasso.with(getContext()).load(response.getResult().getCardlist().get(1).getData().get(0).getImageurl()).into(imaIma);
 //               Picasso.with(getContext()).load(response.getResult().getCardlist().get(3).getData().get(0).getImageurl()).into(imaTop);
                Picasso.with(getContext()).load(response.getResult().getCardlist().get(5).getData().get(0).getImageurl()).into(imaQuestion);
                Picasso.with(getContext()).load(response.getResult().getCardlist().get(8).getData().get(0).getImageurl()).into(imaMoney);
@@ -203,23 +211,30 @@ public class RadioSaleFragment extends BaseFragment {
     }
 
     private void initLimit() {
-        final PurchaseAdapter adapter = new PurchaseAdapter(getContext());
-        VolleySingleton.addRequest(LIMITEDBUY_FIND_URL, PurchaseEntity.class, new Response.Listener<PurchaseEntity>() {
+        limitedBuyAdapter = new LimitedBuyAdapter(getContext());
+        VolleySingleton.addRequest("http://223.99.255.20/mobile.app.autohome.com.cn/discoverj_v5.9.5/mobile/limitedbuylist-a2-pm1-v6.2.0-pid210000-cid210200.json",LimitedBuyBean.class, new Response.Listener<LimitedBuyBean>() {
+            private LimitedBuyTextView limited;
             @Override
-            public void onResponse(PurchaseEntity response) {
-                Log.d("你的夜", "response:" + response);
-                adapter.setEntity(response);
-                hzListView.setAdapter(adapter);
-
-
+            public void onResponse(LimitedBuyBean response) {
+                if (response.getResult().getLimitedbuy().getLimitedbuyinfo().size() == 0) {
+                    rlTimer.setVisibility(View.INVISIBLE);
+                    rlTimer.setLayoutParams(new LinearLayout.LayoutParams(0, 0));
+                } else {
+                    rlTimer.setVisibility(View.VISIBLE);
+                    limited = new LimitedBuyTextView(mContext, response.getResult().getLimitedbuy().getEndtime());
+                    lTimer.addView(limited.initTime());
+                    limitedBuyAdapter.setLimitedBuyBean(response);
+                    hzListView.setAdapter(limitedBuyAdapter);
+                }
 
             }
         }, new Response.ErrorListener() {
             @Override
             public void onErrorResponse(VolleyError error) {
-                error.getMessage();
+
             }
         });
+
 
     }
 

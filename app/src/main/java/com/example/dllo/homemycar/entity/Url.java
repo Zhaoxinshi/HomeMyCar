@@ -65,6 +65,7 @@ public class Url {
     public static final String MACAO_TRAVELS_URL = "http://app.api.autohome.com.cn/autov4.8.8/club/jingxuantopic-pm1-c225-p1-s30.json";//港澳台游记
     public static final String OVERSEAS_TRAVELS_URL = "http://app.api.autohome.com.cn/autov4.8.8/club/jingxuantopic-pm1-c226-p1-s30.json";//海外游记
     public static final String SEA_PEARL_URL = "http://app.api.autohome.com.cn/autov4.8.8/club/jingxuantopic-pm1-c212-p1-s30.json";//沧海遗珠
+    public static final String NEW_CAR = "http://223.99.255.20/cars.app.autohome.com.cn/cars_v5.7.0/cars/brands-pm2-ts635966571635589297.json";
 
 
 

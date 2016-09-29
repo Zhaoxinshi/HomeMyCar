@@ -40,56 +40,83 @@ package com.example.dllo.homemycar.adapter; /*
         */
 
 import android.content.Context;
-import android.support.v7.widget.RecyclerView.Adapter;
-import android.support.v7.widget.RecyclerView.ViewHolder;
 import android.view.LayoutInflater;
 import android.view.View;
 import android.view.ViewGroup;
+import android.widget.BaseAdapter;
 import android.widget.ImageView;
+import android.widget.TextView;
 
 import com.example.dllo.homemycar.R;
-import com.example.dllo.homemycar.entity.FindAllEntity;
+import com.example.dllo.homemycar.findcarfragment.CarNameBean;
 import com.squareup.picasso.Picasso;
 
+import java.util.List;
+
 /**
- * Created by dllo on 16/9/23.
+ * Created by dllo on 16/9/29.
  */
-public class RvServiceAdapter extends Adapter<RvServiceAdapter.ViewHolderService> {
+public class NewCarAdapter extends BaseAdapter {
     private Context context;
-    private FindAllEntity entity;
+    private List<CarNameBean> list;
+    private ViewHolder viewHolder;
 
-    public void setEntity(FindAllEntity entity) {
-        this.entity = entity;
-    }
 
-    public RvServiceAdapter(Context context) {
+    public NewCarAdapter(Context context, List<CarNameBean> list) {
         this.context = context;
+        this.list = list;
+    }
+
+
+    @Override
+    public int getCount() {
+        return list == null ? 0 : list.size();
     }
 
     @Override
-    public ViewHolderService onCreateViewHolder(ViewGroup parent, int viewType) {
-        View view = LayoutInflater.from(context).inflate(R.layout.service_find_item, parent, false);
-        ViewHolderService holderService = new ViewHolderService(view);
-        return holderService;
+    public Object getItem(int position) {
+        return list.get(position);
     }
 
     @Override
-    public void onBindViewHolder(ViewHolderService holder, int position) {
-        Picasso.with(context).load(entity.getResult().getCardlist().get(3).getData().get(position).getImageurl()).into(holder.imageView);
-
+    public long getItemId(int position) {
+        return position;
     }
 
     @Override
-    public int getItemCount() {
-        return entity == null ? 0 : entity.getResult().getCardlist().get(3).getData().size();
+    public boolean isEnabled(int position) {
+        // TODO Auto-generated method stub
+        if (list.get(position).getName().length() == 1)// 如果是字母索引
+            return false;// 表示不能点击
+        return super.isEnabled(position);
     }
 
-    public class ViewHolderService extends ViewHolder {
-        private ImageView imageView;
-
-        public ViewHolderService(View itemView) {
-            super(itemView);
-            imageView = (ImageView) itemView.findViewById(R.id.ima_service_item);
+    @Override
+    public View getView(int position, View convertView, ViewGroup parent) {
+        String item = list.get(position).getName();
+        viewHolder = new ViewHolder();
+        if (item.length() == 1) {
+            convertView = LayoutInflater.from(context).inflate(R.layout.item_new_car_letter, null);
+            viewHolder.tvLetter = (TextView) convertView.findViewById(R.id.item_tv_letter);
+        } else {
+            convertView = LayoutInflater.from(context).inflate(R.layout.item_new_car_all, null);
+            viewHolder.tvTitle = (TextView) convertView.findViewById(R.id.item_all_car_tv_title);
+            viewHolder.itemIv = (ImageView) convertView.findViewById(R.id.item_all_car_ima);
         }
+        if (item.length() == 1) {
+            viewHolder.tvLetter.setText(list.get(position).getName());
+        } else {
+            viewHolder.tvTitle.setText(list.get(position).getName());
+            Picasso.with(context).load(list.get(position).getImageUrl())
+                    .into(viewHolder.itemIv);
+        }
+        return convertView;
     }
+
+    private class ViewHolder {
+        private TextView tvLetter;
+        private TextView tvTitle;
+        private ImageView itemIv;
+    }
+
 }

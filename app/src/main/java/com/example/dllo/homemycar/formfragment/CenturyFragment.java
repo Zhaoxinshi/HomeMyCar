@@ -131,6 +131,7 @@ public class CenturyFragment extends BaseFragment implements OnClickListener {
                     @Override
                     public void onResponse(CenturyEntity response) {
                         adapter.setEntity(response);
+                        Log.d("内容", "response:" + response);
 //                        listView.setAdapter(adapter);
 //                        adapter.setEntity(response);
                         // listView.setRefreshing(false);

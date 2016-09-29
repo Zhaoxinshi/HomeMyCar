@@ -39,182 +39,214 @@ package com.example.dllo.homemycar.findcarfragment; /*
          
         */
 
-import android.os.Bundle;
-import android.support.annotation.Nullable;
-import android.support.v4.app.Fragment;
-import android.text.Editable;
-import android.text.TextUtils;
-import android.text.TextWatcher;
-import android.view.LayoutInflater;
+import android.graphics.Color;
+import android.view.MotionEvent;
 import android.view.View;
 import android.view.ViewGroup;
-import android.view.Window;
-import android.widget.AdapterView;
+import android.view.ViewTreeObserver;
+import android.widget.LinearLayout;
 import android.widget.ListView;
 import android.widget.TextView;
 import android.widget.Toast;
 
 
+import com.android.volley.Response;
+import com.android.volley.VolleyError;
 import com.example.dllo.homemycar.R;
+import com.example.dllo.homemycar.adapter.NewCarAdapter;
+import com.example.dllo.homemycar.base.BaseFragment;
+import com.example.dllo.homemycar.entity.Url;
+import com.example.dllo.homemycar.volleydemo.VolleySingleton;
 
 import java.util.ArrayList;
-import java.util.Collections;
+import java.util.Arrays;
+import java.util.HashMap;
 import java.util.List;
+import java.util.TreeSet;
 
 /**
  * Created by dllo on 16/9/23.
  */
-public class NewCarFragment extends Fragment {
-    private ListView sortListView;
-    private SideBar sideBar;//
-    private TextView dialog;//显示字母
-    private SortAdapter adapter;
-    private ClearEditText mClearEditText;
+public class NewCarFragment extends BaseFragment {
+    private HashMap<String, Integer> selector;// 存放含有索引字母的位置
+    private LinearLayout layoutIndex;
+    private ListView lv;
+    private TextView tvShow;
+    private NewCarAdapter adapter;
+    private String[] indexStr = {"A", "B", "C", "D", "F", "G", "H",
+            "J", "K", "L", "M", "N", "O", "P", "Q", "R", "S", "T", "W", "X", "Y", "Z"};
+    private List<CarNameBean> nameList = null;
+    private List<CarNameBean> newNameList = new ArrayList<CarNameBean>();
+    private int height;// 字体高度
+    private boolean flag = false;
 
-    /**
-     * 汉字转换成拼音的类
-     */
-    private CharacterParser characterParser;
-    private List<SortModel> SourceDateList;
-    private PinyinComparator pinyinComparator;
-
-    /**
-     * 根据拼音来排列ListView里面的数据类
-     */
-
-    @Nullable
     @Override
-    public View onCreateView(LayoutInflater inflater, @Nullable ViewGroup container, @Nullable Bundle savedInstanceState) {
-        return inflater.inflate(R.layout.new_car_fragments,null);
+    protected int setlayout() {
+        return R.layout.new_car_fragments;
     }
 
     @Override
-    public void onViewCreated(View view, @Nullable Bundle savedInstanceState) {
-        super.onViewCreated(view, savedInstanceState);
+    protected void initView() {
+        layoutIndex = getView(R.id.ll_new_car);
+        layoutIndex.setBackgroundColor(Color.parseColor("#00ffffff"));
+        lv = getView(R.id.lv_new_car);
+        tvShow = getView(R.id.tv_new_car);
+        tvShow.setVisibility(View.GONE);
+        nameList = new ArrayList<>();
 
-        //实例化汉字转拼音类
-        characterParser = CharacterParser.getInstance();
+        initSendInterent();
 
-        pinyinComparator = new PinyinComparator();
 
-        sideBar = (SideBar) view.findViewById(R.id.sidrbar);
-        dialog = (TextView) view.findViewById(R.id.dialog);
-        sideBar.setTextView(dialog);
+    }
 
-        //设置右侧触摸监听
-        sideBar.setOnTouchingLetterChangedListener(new SideBar.OnTouchingLetterChangedListener() {
-
+    @Override
+    protected void initData() {
+        ViewTreeObserver observer = layoutIndex.getViewTreeObserver();
+        observer.addOnPreDrawListener(new ViewTreeObserver.OnPreDrawListener() {
             @Override
-            public void onTouchingLetterChanged(String s) {
-                //该字母首次出现的位置
-                int position = adapter.getPositionForSection(s.charAt(0));
-                if(position != -1){
-                    sortListView.setSelection(position);
+            public boolean onPreDraw() {
+                /**************************/
+                if (!flag) {
+                    height = layoutIndex.getMeasuredHeight() / indexStr.length;
+                    getIndexView();
+                    flag = true;
                 }
-
-            }
-        });
-
-        sortListView = (ListView) view.findViewById(R.id.country_lvcountry);
-        sortListView.setOnItemClickListener(new AdapterView.OnItemClickListener() {
-
-            @Override
-            public void onItemClick(AdapterView<?> parent, View view,
-                                    int position, long id) {
-                //这里要利用adapter.getItem(position)来获取当前position所对应的对象
-                Toast.makeText(getContext(), ((SortModel)adapter.getItem(position)).getName(), Toast.LENGTH_SHORT).show();
-            }
-        });
-
-        //h获取数据
-        SourceDateList = filledData(getResources().getStringArray(R.array.date));
-
-        // 根据a-z进行排序源数据
-        Collections.sort(SourceDateList, pinyinComparator);
-        adapter = new SortAdapter(getContext(), SourceDateList);
-        sortListView.setAdapter(adapter);
-
-
-        mClearEditText = (ClearEditText) view.findViewById(R.id.filter_edit);
-
-        //根据输入框输入值的改变来过滤搜索
-        mClearEditText.addTextChangedListener(new TextWatcher() {
-
-            @Override
-            public void onTextChanged(CharSequence s, int start, int before, int count) {
-                //当输入框里面的值为空，更新为原来的列表，否则为过滤数据列表
-                filterData(s.toString());
-            }
-
-            @Override
-            public void beforeTextChanged(CharSequence s, int start, int count,
-                                          int after) {
-
-            }
-
-            @Override
-            public void afterTextChanged(Editable s) {
+                return true;
             }
         });
 
     }
-
-    @Override
-    public void onActivityCreated(@Nullable Bundle savedInstanceState) {
-        super.onActivityCreated(savedInstanceState);
-    }
-
-    /**
-     * 为ListView填充数据
-     * @param date
-     * @return
-     */
-    private List<SortModel> filledData(String [] date){
-        List<SortModel> mSortList = new ArrayList<>();
-
-        for(int i=0; i<date.length; i++){
-            SortModel sortModel = new SortModel();
-            sortModel.setName(date[i]);
-            //汉字转换成拼音
-            String pinyin = characterParser.getSelling(date[i]);
-            String sortString = pinyin.substring(0, 1).toUpperCase();
-
-            // 正则表达式，判断首字母是否是英文字母
-            if(sortString.matches("[A-Z]")){
-                sortModel.setSortLetters(sortString.toUpperCase());
-            }else{
-                sortModel.setSortLetters("#");
-            }
-
-            mSortList.add(sortModel);
-        }
-        return mSortList;
-
-    }
-
-    /**
-     * 根据输入框中的值来过滤数据并更新ListView
-     * @param filterStr
-     */
-    private void filterData(String filterStr){
-        List<SortModel> filterDateList = new ArrayList<SortModel>();
-
-        if(TextUtils.isEmpty(filterStr)){
-            filterDateList = SourceDateList;
-        }else{
-            filterDateList.clear();
-            for(SortModel sortModel : SourceDateList){
-                String name = sortModel.getName();
-                if(name.indexOf(filterStr.toString()) != -1 || characterParser.getSelling(name).startsWith(filterStr.toString())){
-                    filterDateList.add(sortModel);
+    private void initSendInterent() {
+        VolleySingleton.addRequest(Url.NEW_CAR,NewCarBean.class, new Response.Listener<NewCarBean>() {
+            private CarNameBean nameBean;
+            @Override
+            public void onResponse(NewCarBean response) {
+                for (int i = 0; i < response.getResult().getBrandlist().size(); i++) {
+                    for (int j = 0; j < response.getResult().getBrandlist().get(i).getList().size(); j++) {
+                        nameBean = new CarNameBean(response.getResult().getBrandlist().get(i).getList().get(j).getName());
+                        nameBean.setImageUrl(response.getResult().getBrandlist().get(i).getList().get(j).getImgurl());
+                        nameList.add(nameBean);
+                    }
                 }
+                String[] allNames = sortIndex(nameList);
+                sortList(allNames);
+                selector = new HashMap<String, Integer>();
+                // 循环字母表，找出newPersons中对应字母的位置
+                for (int j = 0; j < indexStr.length; j++) {
+                    for (int i = 0; i < newNameList.size(); i++) {
+                        if (newNameList.get(i).getName().equals(indexStr[j])) {
+                            selector.put(indexStr[j], i);
+                        }
+                    }
+
+                }
+                adapter = new NewCarAdapter(getContext(), newNameList);
+                lv.setAdapter(adapter);
+            }
+
+
+        }, new Response.ErrorListener() {
+            @Override
+            public void onErrorResponse(VolleyError error) {
+
+            }
+        });
+    }
+    private void sortList(String[] allNames) {
+        for (int i = 0; i < allNames.length; i++) {
+            if (allNames[i].length() != 1) {
+                for (int j = 0; j < nameList.size(); j++) {
+                    if (allNames[i].equals(nameList.get(j).getPinYinName())) {
+                        CarNameBean p = new CarNameBean(nameList.get(j).getName(), nameList
+                                .get(j).getPinYinName());
+                        p.setImageUrl(nameList.get(j).getImageUrl());
+                        newNameList.add(p);
+                    }
+                }
+            } else {
+                newNameList.add(new CarNameBean(allNames[i]));
             }
         }
-
-        // 根据a-z进行排序
-        Collections.sort(filterDateList, pinyinComparator);
-        adapter.updateListView(filterDateList);
     }
+    private String[] sortIndex(List<CarNameBean> nameList) {
+        TreeSet<String> set = new TreeSet<String>();
+        // 获取初始化数据源中的首字母，添加到set中
+        for (CarNameBean bean : nameList) {
+            set.add(StringHelper.getPinYinHeadChar(bean.getName()).substring(
+                    0, 1));
+        }
+        // 新数组的长度为原数据加上set的大小
+        String[] names = new String[nameList.size() + set.size()];
+        int i = 0;
+        for (String string : set) {
+            names[i] = string;
+            i++;
+        }
+        String[] pinYinNames = new String[nameList.size()];
+        for (int j = 0; j < nameList.size(); j++) {
+            nameList.get(j).setPinYinName(
+                    StringHelper
+                            .getPingYin(nameList.get(j).getName().toString()));
+            pinYinNames[j] = StringHelper.getPingYin(nameList.get(j).getName()
+                    .toString());
+        }
+        // 将原数据拷贝到新数据中
+        System.arraycopy(pinYinNames, 0, names, set.size(), pinYinNames.length);
+        // 自动按照首字母排序
+        Arrays.sort(names, String.CASE_INSENSITIVE_ORDER);
+        return names;
 
+    }
+    public void getIndexView() {
+        LinearLayout.LayoutParams params = new LinearLayout.LayoutParams(
+                ViewGroup.LayoutParams.WRAP_CONTENT, height);
+        for (int i = 0; i < indexStr.length; i++) {
+            final TextView tv = new TextView(getContext());
+            tv.setLayoutParams(params);
+            tv.setText(indexStr[i]);
+            tv.setPadding(10, 0, 10, 0);
+            layoutIndex.addView(tv);
+            layoutIndex.setOnTouchListener(new View.OnTouchListener() {
+
+                @Override
+                public boolean onTouch(View v, MotionEvent event)
+
+                {
+                    float y = event.getY();
+                    int index = (int) (y / height);
+                    if (index > -1 && index < indexStr.length) {// 防止越界
+                        String key = indexStr[index];
+                        if (selector.containsKey(key)) {
+                            int pos = selector.get(key);
+                            if (lv.getHeaderViewsCount() > 0) {// 防止ListView有标题栏，本例中没有。
+                                lv.setSelectionFromTop(
+                                        pos + lv.getHeaderViewsCount(), 0);
+                            } else {
+                                lv.setSelectionFromTop(pos, 0);// 滑动到第一项
+                            }
+                            tvShow.setVisibility(View.VISIBLE);
+                            tvShow.setText(indexStr[index]);
+                        }
+                    }
+                    switch (event.getAction()) {
+                        case MotionEvent.ACTION_DOWN:
+                            layoutIndex.setBackgroundColor(Color
+                                    .parseColor("#00ffffff"));
+                            break;
+
+                        case MotionEvent.ACTION_MOVE:
+
+                            break;
+                        case MotionEvent.ACTION_UP:
+                            layoutIndex.setBackgroundColor(Color
+                                    .parseColor("#00ffffff"));
+                            tvShow.setVisibility(View.GONE);
+                            break;
+                    }
+                    return true;
+                }
+            });
+        }
+    }
 
 }

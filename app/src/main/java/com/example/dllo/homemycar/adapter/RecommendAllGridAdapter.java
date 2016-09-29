@@ -129,7 +129,7 @@ public class RecommendAllGridAdapter extends BaseAdapter {
                 holder.tvTa.setBackgroundResource(0);
             }
             if (bean.getMediatype() == 2) {
-                holder.tvTa.setText("花边");
+                holder.tvTa.setText("说客");
                 holder.tvTa.setBackgroundResource(0);
                 holder.tvHistory.setText(bean.getReplycount() + "评论");
                 Picasso.with(context).load(bean.getSmallpic()).into(holder.imageView);
