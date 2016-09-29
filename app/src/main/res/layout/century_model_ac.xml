@@ -21,7 +21,7 @@
             android:layout_height="wrap_content" />
 
     </RelativeLayout>
-    <ListView
+    <com.handmark.pulltorefresh.library.PullToRefreshListView
         android:id="@+id/century_model_lv"
         android:layout_width="match_parent"
         android:layout_height="match_parent"/>

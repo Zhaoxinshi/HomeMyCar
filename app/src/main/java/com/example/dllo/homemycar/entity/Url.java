@@ -1,53 +1,34 @@
-package com.example.dllo.homemycar.entity; /*
-        quu..__
-         $$$b  `---.__
-          "$$b        `--.                          ___.---uuudP
-           `$$b           `.__.------.__     __.---'      $$$$"              .
-             "$b          -'            `-.-'            $$$"              .'|
-               ".                                       d$"             _.'  |
-                 `.   /                              ..."             .'     |
-                   `./                           ..::-'            _.'       |
-                    /                         .:::-'            .-'         .'
-                   :                          ::''\          _.'            |
-                  .' .-.             .-.           `.      .'               |
-                  : /'$$|           .@"$\           `.   .'              _.-'
-                 .'|$u$$|          |$$,$$|           |  <            _.-'
-                 | `:$$:'          :$$$$$:           `.  `.       .-'
-                 :                  `"--'             |    `-.     \
-                :                |                |#'     `..'`..'          `                 \                                   xXX|     /    ./
-                  \                                xXXX'|    /   ./
-                  /`-.                                  `.  /   /
-                 :    `-  ...........,                   | /  .'
-                 |         ``:::::::'       .            |<    `.
-                 |             ```          |           x| \ `.:``.
-                 |                         .'    /'   xXX|  `:`M`M':.
-                 |    |                    ;    /:' xXXX'|  -'MMMMM:'
-                 `.  .'                   :    /:'       |-'MMMM.-'
-                  |  |                   .'   /'        .'MMM.-'
-                  `'`'                   :  ,'          |MMM<
-                    |                     `'            |tbap\
-                     \                                  :MM.-'
-                      \                 |              .''
-                       \.               `.            /
-                        /     .:::::::.. :           /
-                       |     .:::::::::::`.         /
-                       |   .:::------------\       /
-                      /   .''               >::'  /
-                      `',:                 :    .'
-                                           `:.:'
+package com.example.dllo.homemycar.entity;
 
-         
-        */
+import java.util.ArrayList;
 
 /**
- * Created by dllo on 16/9/26.
+ * Created by dllo on 16/9/23.
  */
 public class Url {
-    public static final String WIFE_MODEL_URL = "http://app.api.autohome.com.cn/autov4.8.8/club/jingxuantopic-pm1-c104-p1-s30.json";//媳妇当车模
-    public static final String NOTORIOUS_URL = "http://app.api.autohome.com.cn/autov4.8.8/club/jingxuantopic-pm1-c110-p1-s30.json";//美人”记”
-    public static final String HOF_URL = "http://app.api.autohome.com.cn/autov4.8.8/club/jingxuantopic-pm1-c172-p1-s30.json";//论坛名人堂
-    public static final String LECTURER_URL = "http://app.api.autohome.com.cn/autov4.8.8/club/jingxuantopic-pm1-c230-p1-s30.json";//论坛讲师
-    public static final String CAR_HOME_URL = "http://app.api.autohome.com.cn/autov4.8.8/club/jingxuantopic-pm1-c233-p1-s30.json";//汽车之家十年
+
+    //发现页的URL
+    public static final String DISCOVERY_PAGE = "http://223.99.255.20/mobile.app.autohome.com.cn/discover_v7.0.0/mobile/getcardlist.ashx?a=2&pm=1&v=7.0.0&uid=&deviceid=021676cd548e5cf2b6149c916a767228fac74da0&pid=0&cid=0&state=1&pageindex=1&pagesize=20&lat=0.000000&lng=0.000000&hid=";
+
+    //第二页
+    public static final String FORUM_PAGE= "http://223.99.255.20/clubnc.app.autohome.com.cn/club_v7.0.5/club/jingxuantopic.ashx?platud=2&categoryid=0&pageindex=1&pagesize=30&devicetype=android.1501_M02&deviceid=860954030358581&userid=0&operation=1&netstate=0&gps=38.889726%2C121.550943";
+    public static final String FORUM_PAGE_Q = "http://forum.app.autohome.com.cn/forum_v7.0.0/forum/club/topiccontent-a2-pm2-v7.1.0-t";
+    public static final String FORUM_PAGE_H = "-o0-p1-s20-c1-nt0-fs0-sp0-al0-cw360.json ";
+
+    //第二页八个按钮
+    public static final String FINCAR_ONE_PAGE_FIRST= "http://cars.app.autohome.com.cn/cars_v7.0.0/cars/getmarks-a2-pm2.json";
+
+    //媳妇当车模
+    public static final String WIFE_MODEL_URL = "http://app.api.autohome.com.cn/autov4.8.8/club/jingxuantopic-pm1-c104-p1-s30.json";
+    //美人”记”
+    public static final String NOTORIOUS_URL = "http://app.api.autohome.com.cn/autov4.8.8/club/jingxuantopic-pm1-c110-p1-s30.json";
+    //论坛名人堂
+    public static final String HOF_URL = "http://app.api.autohome.com.cn/autov4.8.8/club/jingxuantopic-pm1-c172-p1-s30.json";
+    //论坛讲师
+    public static final String LECTURER_URL = "http://app.api.autohome.com.cn/autov4.8.8/club/jingxuantopic-pm1-c230-p1-s30.json";
+    //汽车之家十年
+    public static final String CAR_HOME_URL = "http://app.api.autohome.com.cn/autov4.8.8/club/jingxuantopic-pm1-c233-p1-s30.json";
+
     public static final String AUSLESE_URL = "http://app.api.autohome.com.cn/autov4.8.8/club/jingxuantopic-pm1-c121-p1-s30.json";//精挑细选
     public static final String DISCOURSE_URL = "http://app.api.autohome.com.cn/autov4.8.8/club/jingxuantopic-pm1-c106-p1-s30.json";//现身说法
     public static final String HIGH_POINT_URL = "http://app.api.autohome.com.cn/autov4.8.8/club/jingxuantopic-pm1-c118-p1-s30.json";//高端阵地
@@ -84,4 +65,77 @@ public class Url {
     public static final String MACAO_TRAVELS_URL = "http://app.api.autohome.com.cn/autov4.8.8/club/jingxuantopic-pm1-c225-p1-s30.json";//港澳台游记
     public static final String OVERSEAS_TRAVELS_URL = "http://app.api.autohome.com.cn/autov4.8.8/club/jingxuantopic-pm1-c226-p1-s30.json";//海外游记
     public static final String SEA_PEARL_URL = "http://app.api.autohome.com.cn/autov4.8.8/club/jingxuantopic-pm1-c212-p1-s30.json";//沧海遗珠
+
+
+
+    public static final ArrayList<Bean> ARRLIST_ALL(){
+
+        ArrayList<Bean> arrayList = new ArrayList<>();
+
+        arrayList.add(new Bean("媳妇当车模", Url.WIFE_MODEL_URL));
+        arrayList.add(new Bean("美人”记”", Url.NOTORIOUS_URL));
+        arrayList.add(new Bean("论坛红人馆", Url.HOF_URL));
+        arrayList.add(new Bean("论坛讲师", Url.LECTURER_URL));
+        arrayList.add(new Bean("精挑细选", Url.AUSLESE_URL));
+        arrayList.add(new Bean("现身说法", Url.DISCOURSE_URL));
+        arrayList.add(new Bean("高端阵地", Url.HIGH_POINT_URL));
+        arrayList.add(new Bean("电动车", Url.ELECTRIC_VEHICLE_URL));
+        arrayList.add(new Bean("汇买车", Url.BUY_CAR_URL));
+        arrayList.add(new Bean("行车点评", Url.DRIVING_CRITIQUE_URL));
+        arrayList.add(new Bean("超级试驾员", Url.DRIVING_MEMBER_URL));
+        arrayList.add(new Bean("海外购物", Url.OVERSEAS_BUYERSL_URL));
+        arrayList.add(new Bean("经典老车", Url.CLASSIC_CAR_URL));
+        arrayList.add(new Bean("妹子选车", Url.SISTER_CAR_URL));
+        arrayList.add(new Bean("优惠购车", Url.PREFERENTIAL_CAR_URL));
+        arrayList.add(new Bean("原创大片", Url.ORIGINAL_LARGE_URL));
+        arrayList.add(new Bean("顶配风采", Url.TOP_ELEGANT_URL));
+        arrayList.add(new Bean("改装有理", Url.MODIFIED_RATIONAL_URL));
+        arrayList.add(new Bean("养车有道", Url.WAY_MOTORING_URL));
+        arrayList.add(new Bean("首发阵营", Url.FIRST_CAMP_URL));
+        arrayList.add(new Bean("新车直播", Url.NEW_LIVE_URL));
+        arrayList.add(new Bean("历史选题", Url.HISTORICAL_TOPIC_URL));
+        arrayList.add(new Bean("精彩视频", Url.GREAT_VIDEO_URL));
+        arrayList.add(new Bean("摩友天地", Url.FRIEND_HEAVEN_EARTH_URL));
+        arrayList.add(new Bean("蜜月之旅", Url.HONEYMOON_URL));
+        arrayList.add(new Bean("甜蜜婚礼", Url.SWEET_WEDDING_URL));
+        arrayList.add(new Bean("摄影课堂", Url.PHOTOGRAPHY_CLASS_URL));
+        arrayList.add(new Bean("车友聚会", Url.CAR_PARTY_URL));
+        arrayList.add(new Bean("单车部落", Url.BIKE_TRIBE_URL));
+        arrayList.add(new Bean("杂谈俱乐部", Url.GOSSIP_CLUB_URL));
+        arrayList.add(new Bean("华北游记", Url.NORCO_TRAVELS_URL));
+        arrayList.add(new Bean("西南游记", Url.SOUTHWEST_TRAVELS_URL));
+        arrayList.add(new Bean("东北游记", Url.NORTHEAST_TRAVELS_URL));
+        arrayList.add(new Bean("西北游记", Url.NORTHWEST_TRAVELS_URL));
+        arrayList.add(new Bean("华中游记", Url.SKY_TRAVELS_URL));
+        arrayList.add(new Bean("华南游记", Url.SOUTH_TRAVELS_URL));
+        arrayList.add(new Bean("华东游记", Url.HYZ_TRAVELS_URL));
+        arrayList.add(new Bean("港澳台游记", Url.MACAO_TRAVELS_URL));
+        arrayList.add(new Bean("海外游记", Url.OVERSEAS_TRAVELS_URL));
+        arrayList.add(new Bean("沧海遗珠", Url.SEA_PEARL_URL));
+        return arrayList;
+
+
+    }
+
+   public static class Bean{
+
+       public String title;
+
+       public String url;
+
+       public Bean( String title,String url) {
+           this.url = url;
+           this.title = title;
+       }
+
+       public String getTitle() {
+           return title;
+       }
+
+       public String getUrl() {
+           return url;
+       }
+   }
+
+
 }

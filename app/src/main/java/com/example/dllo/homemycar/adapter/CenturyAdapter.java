@@ -61,6 +61,7 @@ public class CenturyAdapter extends BaseAdapter {
 
     public void setEntity(CenturyEntity entity) {
         this.entity = entity;
+        notifyDataSetChanged();
     }
 
     public CenturyAdapter(Context context) {

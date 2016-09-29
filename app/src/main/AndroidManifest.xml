@@ -26,6 +26,8 @@
         <activity android:name=".actity.SetUpActivity"/>
         <activity android:name=".actity.HotActivity"/>
         <activity android:name=".formfragment.CenturySsActivity"/>
+        <activity android:name=".actity.ItemCenturyActivity"/>
+        <activity android:name=".formfragment.WebCenturyActivity"/>
     </application>
 
 </manifest>

@@ -1,0 +1,50 @@
+<?xml version="1.0" encoding="utf-8"?>
+<RelativeLayout xmlns:android="http://schemas.android.com/apk/res/android"
+    android:layout_width="match_parent"
+    android:layout_height="match_parent"
+    android:orientation="vertical">
+    <RelativeLayout
+        android:id="@+id/item_century_model_rl"
+        android:layout_width="match_parent"
+        android:layout_height="wrap_content">
+        <TextView
+            android:id="@+id/item_century_title"
+            android:layout_width="wrap_content"
+            android:layout_height="wrap_content"
+            android:maxLength="13"
+            android:layout_marginLeft="10dp"
+            android:layout_marginRight="15dp"
+            android:layout_marginTop="10dp"
+            android:maxLines="2"
+            android:text="9月26日喜迎广7⃣️三菱产欧烂的'打败'回家"
+            android:textSize="20sp" />
+        <ImageView
+            android:id="@+id/item_century_ima"
+            android:layout_marginTop="10dp"
+            android:layout_marginRight="10dp"
+            android:layout_toRightOf="@+id/item_century_title"
+            android:background="@mipmap/ic_launcher"
+            android:layout_width="160dp"
+            android:layout_height="60dp" />
+
+    </RelativeLayout>
+    <TextView
+        android:layout_marginLeft="10dp"
+        android:id="@+id/item_century_quarter"
+        android:layout_marginTop="10dp"
+        android:layout_below="@+id/item_century_model_rl"
+        android:textColor="@android:color/darker_gray"
+        android:text="媳妇当车模756季"
+        android:layout_width="wrap_content"
+        android:layout_height="wrap_content" />
+    <TextView
+        android:id="@+id/item_century_ties"
+        android:layout_marginRight="10dp"
+        android:layout_alignParentRight="true"
+        android:layout_marginTop="10dp"
+        android:layout_below="@+id/item_century_model_rl"
+        android:layout_width="wrap_content"
+        android:text="回帖"
+        android:layout_height="wrap_content" />
+
+</RelativeLayout>
