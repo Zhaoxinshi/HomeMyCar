@@ -40,79 +40,61 @@ package com.example.dllo.homemycar.adapter; /*
         */
 
 import android.content.Context;
+import android.support.v7.widget.RecyclerView;
 import android.view.LayoutInflater;
 import android.view.View;
 import android.view.ViewGroup;
-import android.widget.BaseAdapter;
 import android.widget.ImageView;
 import android.widget.TextView;
 
 import com.example.dllo.homemycar.R;
-import com.example.dllo.homemycar.entity.RecommendAllBean;
-import com.example.dllo.homemycar.entity.RecommendEntity;
+import com.example.dllo.homemycar.entity.HeadHotNewCarEntity;
 import com.squareup.picasso.Picasso;
 
 /**
- * Created by dllo on 16/9/29.
+ * Created by dllo on 16/9/30.
  */
-public class RecommendAllAdapter extends BaseAdapter {
-
+public class HeadNewCarHotAdapter extends RecyclerView.Adapter<HeadNewCarHotAdapter.HotViewHolder> {
     private Context context;
-    private RecommendAllBean entity;
+    private HeadHotNewCarEntity entity;
 
-    public void setEntity(RecommendAllBean entity) {
+    public void setEntity(HeadHotNewCarEntity entity) {
         this.entity = entity;
     }
 
-    public RecommendAllAdapter(Context context) {
+    public HeadNewCarHotAdapter(Context context) {
 
         this.context = context;
     }
 
     @Override
-    public int getCount() {
+    public HotViewHolder onCreateViewHolder(ViewGroup parent, int viewType) {
+        HotViewHolder hotViewHolder = null;
+        View view = LayoutInflater.from(context).inflate(R.layout.item_head_new_car_hot,parent,false);
+        hotViewHolder = new HotViewHolder(view);
+        return hotViewHolder;
+    }
+
+    @Override
+    public void onBindViewHolder(HotViewHolder holder, int position) {
+        holder.tv.setText(entity.getResult().getList().get(position).getName());
+
+        Picasso.with(context).load(entity.getResult().getList().get(position).getImg()).into(holder.ima);
+
+    }
+
+    @Override
+    public int getItemCount() {
         return entity == null ? 0 : entity.getResult().getList().size();
-
     }
 
-    @Override
-    public Object getItem(int i) {
-        return entity.getResult().getList().get(i);
-    }
-
-    @Override
-    public long getItemId(int i) {
-        return i;
-    }
-
-    @Override
-    public View getView(int i, View view, ViewGroup viewGroup) {
-        RecommendViewHolders holders = null;
-        if (view == null) {
-            view = LayoutInflater.from(context).inflate(R.layout.item_recommend_s, viewGroup, false);
-            holders = new RecommendViewHolders(view);
-            view.setTag(holders);
-        } else {
-            holders = (RecommendViewHolders) view.getTag();
-
-        }
-        holders.tvTitle.setText(entity.getResult().getList().get(i).getTitle());
-//        holders.tvNUm.setText(entity.getResult().getList().get(i).getReplycount());
-        holders.tvDate.setText(entity.getResult().getList().get(i).getTime());
-        Picasso.with(context).load(entity.getResult().getList().get(i).getSmallpic()).into(holders.ima);
-        return view;
-    }
-
-    class RecommendViewHolders {
-        private TextView tvTitle, tvNUm, tvDate;
+    public class HotViewHolder extends RecyclerView.ViewHolder {
+        private TextView tv;
         private ImageView ima;
-
-        public RecommendViewHolders(View view) {
-            tvTitle = (TextView) view.findViewById(R.id.item_recommend_tv_all_titlea);
-            tvNUm = (TextView) view.findViewById(R.id.item_recommend_all_tv_nums);
-            tvDate = (TextView) view.findViewById(R.id.item_recommend_all_tv_datas);
-            ima = (ImageView) view.findViewById(R.id.item_recommend_all_ima_d);
-
+        public HotViewHolder(View itemView) {
+            super(itemView);
+            tv = (TextView) itemView.findViewById(R.id.item_head_new_car_hot_tb);
+            ima = (ImageView) itemView.findViewById(R.id.item_head_new_car_hot_ima);
         }
     }
 }

@@ -29,7 +29,8 @@
         <activity android:name=".actity.ItemCenturyActivity"/>
         <activity android:name=".formfragment.WebCenturyActivity"/>
         <activity android:name=".actity.MoreActivity"/>
-        <activity android:name=".fragment.RecommendActivity"/>
+        <activity android:name=".actity.RecommendActivity"/>
+        <activity android:name=".fragment.AddActivity"/>
     </application>
 
 </manifest>

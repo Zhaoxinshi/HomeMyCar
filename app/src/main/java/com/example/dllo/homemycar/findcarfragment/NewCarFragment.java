@@ -40,10 +40,14 @@ package com.example.dllo.homemycar.findcarfragment; /*
         */
 
 import android.graphics.Color;
+import android.support.v7.widget.GridLayoutManager;
+import android.support.v7.widget.RecyclerView;
+import android.view.LayoutInflater;
 import android.view.MotionEvent;
 import android.view.View;
 import android.view.ViewGroup;
 import android.view.ViewTreeObserver;
+import android.widget.ImageView;
 import android.widget.LinearLayout;
 import android.widget.ListView;
 import android.widget.TextView;
@@ -53,8 +57,11 @@ import android.widget.Toast;
 import com.android.volley.Response;
 import com.android.volley.VolleyError;
 import com.example.dllo.homemycar.R;
+import com.example.dllo.homemycar.adapter.HeadNewCarHotAdapter;
 import com.example.dllo.homemycar.adapter.NewCarAdapter;
 import com.example.dllo.homemycar.base.BaseFragment;
+import com.example.dllo.homemycar.entity.HeadHotNewCarEntity;
+import com.example.dllo.homemycar.entity.NewCarLabelEntity;
 import com.example.dllo.homemycar.entity.Url;
 import com.example.dllo.homemycar.volleydemo.VolleySingleton;
 
@@ -72,6 +79,7 @@ public class NewCarFragment extends BaseFragment {
     private LinearLayout layoutIndex;
     private ListView lv;
     private TextView tvShow;
+    private RecyclerView ryHot;
     private NewCarAdapter adapter;
     private String[] indexStr = {"A", "B", "C", "D", "F", "G", "H",
             "J", "K", "L", "M", "N", "O", "P", "Q", "R", "S", "T", "W", "X", "Y", "Z"};
@@ -79,6 +87,8 @@ public class NewCarFragment extends BaseFragment {
     private List<CarNameBean> newNameList = new ArrayList<CarNameBean>();
     private int height;// 字体高度
     private boolean flag = false;
+    private HeadNewCarHotAdapter headNewCarHotAdapter;
+    private TextView labelImaFirst,labelImaSecond,labelImaThird,labelImaFour,labelImaFive,labelImaSix;
 
     @Override
     protected int setlayout() {
@@ -101,6 +111,58 @@ public class NewCarFragment extends BaseFragment {
 
     @Override
     protected void initData() {
+//        View label = LayoutInflater.from(getContext()).inflate(R.layout.head_find_car_label,null);
+//        lv.addHeaderView(label);
+//
+//        labelImaFirst = (TextView) label.findViewById(R.id.head_tv_label_one);
+//        labelImaSecond = (TextView) label.findViewById(R.id.head_tv_label_two);
+//        labelImaThird = (TextView) label.findViewById(R.id.head_tv_label_three);
+//        labelImaFour = (TextView) label.findViewById(R.id.head_tv_label_four);
+//        labelImaFive = (TextView) label.findViewById(R.id.head_tv_label_five);
+//        labelImaSix = (TextView) label.findViewById(R.id.head_tv_label_six);
+//        VolleySingleton.addRequest("http://cars.app.autohome.com.cn/cars_v7.0.0/cars/getmarks-a2-pm2.json",NewCarLabelEntity.class, new Response.Listener<NewCarLabelEntity>() {
+//            @Override
+//            public void onResponse(NewCarLabelEntity response) {
+//                labelImaFirst.setText(response.getResult().getMetalist().get(0).getList().get(0).getName());
+//                labelImaSecond.setText(response.getResult().getMetalist().get(0).getList().get(1).getName());
+//                labelImaThird.setText(response.getResult().getMetalist().get(0).getList().get(2).getName());
+//                labelImaFour.setText(response.getResult().getMetalist().get(0).getList().get(3).getName());
+//                labelImaFive.setText(response.getResult().getMetalist().get(0).getList().get(4).getName());
+//                labelImaSix.setText(response.getResult().getMetalist().get(0).getList().get(5).getName());
+//
+//
+//
+//            }
+//        }, new Response.ErrorListener() {
+//            @Override
+//            public void onErrorResponse(VolleyError error) {
+//
+//            }
+//        });
+
+
+        View newCarView = LayoutInflater.from(getContext()).inflate(R.layout.head_new_car_hot,null);
+        lv.addHeaderView(newCarView);
+        ryHot = (RecyclerView) newCarView.findViewById(R.id.head_new_car_hot);
+        ryHot.setLayoutManager(new GridLayoutManager(getContext(),5));
+        headNewCarHotAdapter = new HeadNewCarHotAdapter(getContext());
+        VolleySingleton.addRequest("http://223.99.255.20/cars.app.autohome.com.cn/dealer_v6.0.0/dealer/hotbrands-pm2.json",HeadHotNewCarEntity.class, new Response.Listener<HeadHotNewCarEntity>() {
+            @Override
+            public void onResponse(HeadHotNewCarEntity response) {
+                headNewCarHotAdapter.setEntity(response);
+                ryHot.setAdapter(headNewCarHotAdapter);
+
+
+
+
+            }
+        }, new Response.ErrorListener() {
+            @Override
+            public void onErrorResponse(VolleyError error) {
+                error.getMessage();
+
+            }
+        });
         ViewTreeObserver observer = layoutIndex.getViewTreeObserver();
         observer.addOnPreDrawListener(new ViewTreeObserver.OnPreDrawListener() {
             @Override

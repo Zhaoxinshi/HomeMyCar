@@ -1,4 +1,4 @@
-package com.example.dllo.homemycar.fragment; /*
+package com.example.dllo.homemycar.recommendfragment; /*
         quu..__
          $$$b  `---.__
           "$$b        `--.                          ___.---uuudP
@@ -39,46 +39,53 @@ package com.example.dllo.homemycar.fragment; /*
          
         */
 
-import android.content.Intent;
 import android.os.Bundle;
-import android.support.annotation.Nullable;
-import android.support.v4.app.FragmentActivity;
-import android.util.Log;
 import android.widget.ListView;
 
 import com.android.volley.Response;
 import com.android.volley.VolleyError;
 import com.example.dllo.homemycar.R;
-import com.example.dllo.homemycar.adapter.RecommendAllAdapter;
-import com.example.dllo.homemycar.entity.RecommendEntity;
+import com.example.dllo.homemycar.adapter.RecommendRecSameFragmentAdapter;
+import com.example.dllo.homemycar.base.BaseFragment;
+import com.example.dllo.homemycar.entity.RecSameEntity;
 import com.example.dllo.homemycar.volleydemo.VolleySingleton;
 
 /**
- * Created by dllo on 16/9/29.
+ * Created by dllo on 16/10/8.
  */
-public class RecommendActivity extends FragmentActivity {
+public class RecSameFragment extends BaseFragment {
     private ListView listView;
-    private RecommendAllAdapter allAdapter;
+    private RecommendRecSameFragmentAdapter adapter;
 
-    @Override
-    protected void onCreate(@Nullable Bundle savedInstanceState) {
-        super.onCreate(savedInstanceState);
-        setContentView(R.layout.recommend_ac);
-        initView();
-        initData();
+    public static RecSameFragment getInstance(String urls) {
+        Bundle bundle = new Bundle();
+        bundle.putString("url", urls);
+        RecSameFragment recSameFragment = new RecSameFragment();
+        recSameFragment.setArguments(bundle);
+        return recSameFragment;
     }
 
-    private void initData() {
-        Intent intent = getIntent();
-        String url = intent.getStringExtra("urls");
-        Log.d("推荐所有", url);
-        allAdapter = new RecommendAllAdapter(this);
-        VolleySingleton.addRequest(url, RecommendEntity.class, new Response.Listener<RecommendEntity>() {
-            @Override
-            public void onResponse(RecommendEntity response) {
-                allAdapter.setEntity(response);
-                listView.setAdapter(allAdapter);
+    @Override
+    protected int setlayout() {
+        return R.layout.rec_fragment;
+    }
 
+    @Override
+    protected void initView() {
+        listView = getView(R.id.rec_same_fragment_lv);
+
+    }
+
+    @Override
+    protected void initData() {
+        Bundle b = getArguments();
+        String url = b.getString("url");
+        adapter = new RecommendRecSameFragmentAdapter(getContext());
+        VolleySingleton.addRequest(url, RecSameEntity.class, new Response.Listener<RecSameEntity>() {
+            @Override
+            public void onResponse(RecSameEntity response) {
+                adapter.setEntity(response);
+                listView.setAdapter(adapter);
 
 
             }
@@ -89,11 +96,6 @@ public class RecommendActivity extends FragmentActivity {
             }
         });
 
-
-    }
-
-    private void initView() {
-        listView = (ListView) findViewById(R.id.recommend_lv_all_ac);
 
     }
 }

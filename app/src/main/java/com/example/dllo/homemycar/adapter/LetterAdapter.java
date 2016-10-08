@@ -48,23 +48,21 @@ import android.widget.ImageView;
 import android.widget.TextView;
 
 import com.example.dllo.homemycar.R;
-import com.example.dllo.homemycar.entity.RecommendAllBean;
-import com.example.dllo.homemycar.entity.RecommendEntity;
+import com.example.dllo.homemycar.entity.LetterEntity;
 import com.squareup.picasso.Picasso;
 
 /**
- * Created by dllo on 16/9/29.
+ * Created by dllo on 16/10/8.
  */
-public class RecommendAllAdapter extends BaseAdapter {
-
+public class LetterAdapter extends BaseAdapter {
     private Context context;
-    private RecommendAllBean entity;
+    private LetterEntity entity;
 
-    public void setEntity(RecommendAllBean entity) {
+    public void setEntity(LetterEntity entity) {
         this.entity = entity;
     }
 
-    public RecommendAllAdapter(Context context) {
+    public LetterAdapter(Context context) {
 
         this.context = context;
     }
@@ -72,7 +70,6 @@ public class RecommendAllAdapter extends BaseAdapter {
     @Override
     public int getCount() {
         return entity == null ? 0 : entity.getResult().getList().size();
-
     }
 
     @Override
@@ -87,32 +84,31 @@ public class RecommendAllAdapter extends BaseAdapter {
 
     @Override
     public View getView(int i, View view, ViewGroup viewGroup) {
-        RecommendViewHolders holders = null;
+        LetterViewHolder holder = null;
         if (view == null) {
-            view = LayoutInflater.from(context).inflate(R.layout.item_recommend_s, viewGroup, false);
-            holders = new RecommendViewHolders(view);
-            view.setTag(holders);
+            view = LayoutInflater.from(context).inflate(R.layout.item_letter_fragment, viewGroup, false);
+            holder = new LetterViewHolder(view);
+            view.setTag(holder);
         } else {
-            holders = (RecommendViewHolders) view.getTag();
-
+            holder = (LetterViewHolder) view.getTag();
         }
-        holders.tvTitle.setText(entity.getResult().getList().get(i).getTitle());
-//        holders.tvNUm.setText(entity.getResult().getList().get(i).getReplycount());
-        holders.tvDate.setText(entity.getResult().getList().get(i).getTime());
-        Picasso.with(context).load(entity.getResult().getList().get(i).getSmallpic()).into(holders.ima);
+
+        holder.tvTitle.setText(entity.getResult().getList().get(i).getTitle());
+        holder.tv.setText(entity.getResult().getList().get(i).getReviewcount() + "" + "观众");
+        holder.tvDate.setText(entity.getResult().getList().get(i).getCreatetime());
+        Picasso.with(context).load(entity.getResult().getList().get(i).getImg()).into(holder.ima);
         return view;
     }
 
-    class RecommendViewHolders {
-        private TextView tvTitle, tvNUm, tvDate;
+    class LetterViewHolder {
         private ImageView ima;
+        private TextView tvTitle, tv, tvDate;
 
-        public RecommendViewHolders(View view) {
-            tvTitle = (TextView) view.findViewById(R.id.item_recommend_tv_all_titlea);
-            tvNUm = (TextView) view.findViewById(R.id.item_recommend_all_tv_nums);
-            tvDate = (TextView) view.findViewById(R.id.item_recommend_all_tv_datas);
-            ima = (ImageView) view.findViewById(R.id.item_recommend_all_ima_d);
-
+        public LetterViewHolder(View view) {
+            ima = (ImageView) view.findViewById(R.id.item_letter_ima);
+            tvTitle = (TextView) view.findViewById(R.id.item_letter_tv_title);
+            tv = (TextView) view.findViewById(R.id.item_letter_tv);
+            tvDate = (TextView) view.findViewById(R.id.item_letter_tv_date);
         }
     }
 }

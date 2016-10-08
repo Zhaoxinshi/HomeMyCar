@@ -1,4 +1,4 @@
-package com.example.dllo.homemycar.fragment; /*
+package com.example.dllo.homemycar.recommendfragment; /*
         quu..__
          $$$b  `---.__
           "$$b        `--.                          ___.---uuudP
@@ -70,12 +70,8 @@ import com.squareup.picasso.Picasso;
  * Created by dllo on 16/9/19.
  */
 public class RecommendFragment extends BaseFragment {
-//    private RecyclerView recyclerView;
-//    private RecommendAdapter adapter;
+
     private PullToRefreshScrollView scrollView;
-    //五个固定图片
-    private ImageView imaOne, imaTwo, imaThree, imaFour, imaFive;
-    private TextView tvOne,tvTwo,tvThree,tvFour,tvFive;
     //轮播图所需控件
     private RecommendLunBoAdapter recommendLunBoAdapter;
     private ViewPager viewPager;
@@ -93,18 +89,7 @@ public class RecommendFragment extends BaseFragment {
 
     @Override
     protected void initView() {
-//        recyclerView = getView(R.id.recycler_view_recommend);
 
-        imaOne = getView(R.id.imageone);
-        imaTwo = getView(R.id.imatwo);
-        imaThree = getView(R.id.imathree);
-        imaFour = getView(R.id.imafour);
-        imaFive = getView(R.id.imafive);
-        tvOne = getView(R.id.tv_one);
-        tvTwo = getView(R.id.tv_two);
-        tvThree = getView(R.id.tv_three);
-        tvFour = getView(R.id.tv_four);
-        tvFive = getView(R.id.tv_five);
         scrollView = getView(R.id.recommend_drawer_layout);
 
         viewPager = getView(R.id.library_recommend_view_pager);
@@ -116,26 +101,6 @@ public class RecommendFragment extends BaseFragment {
 
     @Override
     protected void initData() {
-        imaFive.setOnClickListener(new View.OnClickListener() {
-            @Override
-            public void onClick(View view) {
-                Intent intent = new Intent(getContext(),MoreActivity.class);
-                startActivity(intent);
-            }
-        });
-        imaTwo.setOnClickListener(new View.OnClickListener() {
-            @Override
-            public void onClick(View view) {
-                Intent intent = new Intent(getContext(),RecommendActivity.class);
-                intent.putExtra("urls","http://app.api.autohome.com.cn/autov4.8.8/news/shuokelist-pm1-s30-lastid0.json");
-                startActivity(intent);
-            }
-        });
-
-//        LinearLayoutManager manager = new LinearLayoutManager(getContext());
-//        recyclerView.setLayoutManager(manager);
-//        adapter = new RecommendAdapter(getContext());
-//        recyclerView.setAdapter(adapter);
         scrollView.setOnRefreshListener(new PullToRefreshBase.OnRefreshListener2<ScrollView>() {
             @Override
             public void onPullDownToRefresh(PullToRefreshBase<ScrollView> refreshView) {
@@ -213,35 +178,6 @@ public class RecommendFragment extends BaseFragment {
 
             }
         });
-
-//五个固定图片
-        VolleySingleton.addRequest("http://news.app.autohome.com.cn/shouye_v7.0.0/mobile/metadata.ashx?a=2&pm=2&v=7.0.7&types=newstype%7C636002832282225908%2Cvideotype%7C636002832282225908", MoreEntity.class, new Listener<MoreEntity>() {
-            @Override
-            public void onResponse(MoreEntity response) {
-//                imaOne.setImageResource(R.mipmap.youchuang);
-//                imaTwo.setImageResource(R.mipmap.shuoke);
-//                imaThree.setImageResource(R.mipmap.shipin);
-//                imaFour.setImageResource(R.mipmap.kuaizhao);
-//                imaFive.setImageResource(R.mipmap.add);
-                Picasso.with(getContext()).load(response.getResult().getMetalist().get(0).getList().get(0).getIconurl()).into(imaOne);
-                Picasso.with(getContext()).load(response.getResult().getMetalist().get(0).getList().get(1).getIconurl()).into(imaTwo);
-                Picasso.with(getContext()).load(response.getResult().getMetalist().get(0).getList().get(2).getIconurl()).into(imaThree);
-                Picasso.with(getContext()).load(response.getResult().getMetalist().get(0).getList().get(3).getIconurl()).into(imaFour);
-                Picasso.with(getContext()).load(response.getResult().getMetalist().get(0).getList().get(4).getIconurl()).into(imaFive);
-                tvOne.setText(response.getResult().getMetalist().get(0).getList().get(0).getName());
-                tvTwo.setText(response.getResult().getMetalist().get(0).getList().get(1).getName());
-                tvThree.setText(response.getResult().getMetalist().get(0).getList().get(2).getName());
-                tvFour.setText(response.getResult().getMetalist().get(0).getList().get(3).getName());
-                tvFive.setText(response.getResult().getMetalist().get(0).getList().get(4).getName());
-
-            }
-        }, new ErrorListener() {
-            @Override
-            public void onErrorResponse(VolleyError error) {
-
-            }
-        });
-
 
 
 //轮播图

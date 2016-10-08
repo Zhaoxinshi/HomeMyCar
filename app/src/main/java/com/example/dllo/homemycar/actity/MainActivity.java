@@ -12,12 +12,14 @@ import com.example.dllo.homemycar.fragment.FindCarFragment;
 import com.example.dllo.homemycar.fragment.FormFragment;
 import com.example.dllo.homemycar.fragment.MyFragment;
 import com.example.dllo.homemycar.fragment.RadioSaleFragment;
-import com.example.dllo.homemycar.fragment.RecommendFragment;
+import com.example.dllo.homemycar.fragment.RecommendAllFragment;
+import com.example.dllo.homemycar.recommendfragment.RecommendFragment;
 
 
 
 public class MainActivity extends BaseActivity implements OnClickListener {
     private RadioButton radioRecommend, radioForum, radioFindCar, radioSale, radioMy;
+    private RecommendAllFragment recommendAllFragment;
     private RecommendFragment recommendFragment;
     private FormFragment formFragment;
     private FindCarFragment findCarFragment;
@@ -58,8 +60,8 @@ public class MainActivity extends BaseActivity implements OnClickListener {
         FragmentTransaction fragmentTransaction = fragmentManager.beginTransaction();
         switch (view.getId()) {
             case R.id.radio_recommend:
-                recommendFragment = new RecommendFragment();
-                fragmentTransaction.replace(R.id.frame_replace, recommendFragment);
+                recommendAllFragment = new RecommendAllFragment();
+                fragmentTransaction.replace(R.id.frame_replace, recommendAllFragment);
                 break;
             case R.id.radio_forum:
                 formFragment = new FormFragment();

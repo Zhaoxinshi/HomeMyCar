@@ -1,4 +1,4 @@
-package com.example.dllo.homemycar.adapter; /*
+package com.example.dllo.homemycar.recommendfragment; /*
         quu..__
          $$$b  `---.__
           "$$b        `--.                          ___.---uuudP
@@ -39,80 +39,50 @@ package com.example.dllo.homemycar.adapter; /*
          
         */
 
-import android.content.Context;
-import android.view.LayoutInflater;
-import android.view.View;
-import android.view.ViewGroup;
-import android.widget.BaseAdapter;
-import android.widget.ImageView;
-import android.widget.TextView;
+import android.widget.ListView;
 
+import com.android.volley.Response;
+import com.android.volley.VolleyError;
 import com.example.dllo.homemycar.R;
-import com.example.dllo.homemycar.entity.RecommendAllBean;
-import com.example.dllo.homemycar.entity.RecommendEntity;
-import com.squareup.picasso.Picasso;
+import com.example.dllo.homemycar.adapter.VideoAdapter;
+import com.example.dllo.homemycar.base.BaseFragment;
+import com.example.dllo.homemycar.entity.Url;
+import com.example.dllo.homemycar.entity.VideoEntity;
+import com.example.dllo.homemycar.volleydemo.VolleySingleton;
 
 /**
- * Created by dllo on 16/9/29.
+ * Created by dllo on 16/10/8.
  */
-public class RecommendAllAdapter extends BaseAdapter {
+public class VideosFragment extends BaseFragment {
+    private ListView listView;
+    private VideoAdapter adapter;
 
-    private Context context;
-    private RecommendAllBean entity;
-
-    public void setEntity(RecommendAllBean entity) {
-        this.entity = entity;
-    }
-
-    public RecommendAllAdapter(Context context) {
-
-        this.context = context;
+    @Override
+    protected int setlayout() {
+        return R.layout.r_video_fragment;
     }
 
     @Override
-    public int getCount() {
-        return entity == null ? 0 : entity.getResult().getList().size();
+    protected void initView() {
+        listView = getView(R.id.video_fragment_lv);
 
     }
 
     @Override
-    public Object getItem(int i) {
-        return entity.getResult().getList().get(i);
-    }
+    protected void initData() {
+        adapter = new VideoAdapter(getContext());
+        VolleySingleton.addRequest(Url.VIDEO_URL, VideoEntity.class, new Response.Listener<VideoEntity>() {
+            @Override
+            public void onResponse(VideoEntity response) {
+                adapter.setEntity(response);
+                listView.setAdapter(adapter);
+            }
+        }, new Response.ErrorListener() {
+            @Override
+            public void onErrorResponse(VolleyError error) {
+                error.getMessage();
+            }
+        });
 
-    @Override
-    public long getItemId(int i) {
-        return i;
-    }
-
-    @Override
-    public View getView(int i, View view, ViewGroup viewGroup) {
-        RecommendViewHolders holders = null;
-        if (view == null) {
-            view = LayoutInflater.from(context).inflate(R.layout.item_recommend_s, viewGroup, false);
-            holders = new RecommendViewHolders(view);
-            view.setTag(holders);
-        } else {
-            holders = (RecommendViewHolders) view.getTag();
-
-        }
-        holders.tvTitle.setText(entity.getResult().getList().get(i).getTitle());
-//        holders.tvNUm.setText(entity.getResult().getList().get(i).getReplycount());
-        holders.tvDate.setText(entity.getResult().getList().get(i).getTime());
-        Picasso.with(context).load(entity.getResult().getList().get(i).getSmallpic()).into(holders.ima);
-        return view;
-    }
-
-    class RecommendViewHolders {
-        private TextView tvTitle, tvNUm, tvDate;
-        private ImageView ima;
-
-        public RecommendViewHolders(View view) {
-            tvTitle = (TextView) view.findViewById(R.id.item_recommend_tv_all_titlea);
-            tvNUm = (TextView) view.findViewById(R.id.item_recommend_all_tv_nums);
-            tvDate = (TextView) view.findViewById(R.id.item_recommend_all_tv_datas);
-            ima = (ImageView) view.findViewById(R.id.item_recommend_all_ima_d);
-
-        }
     }
 }

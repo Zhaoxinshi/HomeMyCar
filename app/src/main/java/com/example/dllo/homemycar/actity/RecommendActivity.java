@@ -1,4 +1,4 @@
-package com.example.dllo.homemycar.adapter; /*
+package com.example.dllo.homemycar.actity; /*
         quu..__
          $$$b  `---.__
           "$$b        `--.                          ___.---uuudP
@@ -39,80 +39,62 @@ package com.example.dllo.homemycar.adapter; /*
          
         */
 
-import android.content.Context;
-import android.view.LayoutInflater;
-import android.view.View;
-import android.view.ViewGroup;
-import android.widget.BaseAdapter;
-import android.widget.ImageView;
-import android.widget.TextView;
+import android.content.Intent;
+import android.os.Bundle;
+import android.support.annotation.Nullable;
+import android.support.v4.app.FragmentActivity;
+import android.util.Log;
+import android.widget.ListView;
 
+import com.android.volley.Response;
+import com.android.volley.VolleyError;
 import com.example.dllo.homemycar.R;
+import com.example.dllo.homemycar.adapter.RecommendAllAdapter;
 import com.example.dllo.homemycar.entity.RecommendAllBean;
 import com.example.dllo.homemycar.entity.RecommendEntity;
-import com.squareup.picasso.Picasso;
+import com.example.dllo.homemycar.volleydemo.VolleySingleton;
 
 /**
  * Created by dllo on 16/9/29.
  */
-public class RecommendAllAdapter extends BaseAdapter {
-
-    private Context context;
-    private RecommendAllBean entity;
-
-    public void setEntity(RecommendAllBean entity) {
-        this.entity = entity;
-    }
-
-    public RecommendAllAdapter(Context context) {
-
-        this.context = context;
-    }
+public class RecommendActivity extends FragmentActivity {
+    private ListView listView;
+    private RecommendAllAdapter allAdapter;
 
     @Override
-    public int getCount() {
-        return entity == null ? 0 : entity.getResult().getList().size();
+    protected void onCreate(@Nullable Bundle savedInstanceState) {
+        super.onCreate(savedInstanceState);
+        setContentView(R.layout.recommend_ac);
+        initView();
+        initData();
+    }
+
+    private void initData() {
+        Intent intent = getIntent();
+        String url = intent.getStringExtra("urls");
+        Log.d("推荐所有", url);
+        allAdapter = new RecommendAllAdapter(this);
+        VolleySingleton.addRequest(url, RecommendAllBean.class, new Response.Listener<RecommendAllBean>() {
+            @Override
+            public void onResponse(RecommendAllBean response) {
+                allAdapter.setEntity(response);
+                listView.setAdapter(allAdapter);
+
+
+
+            }
+        }, new Response.ErrorListener() {
+            @Override
+            public void onErrorResponse(VolleyError error) {
+                error.getMessage();
+            }
+        });
+
 
     }
 
-    @Override
-    public Object getItem(int i) {
-        return entity.getResult().getList().get(i);
-    }
+    private void initView() {
+        listView = (ListView) findViewById(R.id.recommend_lv_all_ac);
 
-    @Override
-    public long getItemId(int i) {
-        return i;
-    }
-
-    @Override
-    public View getView(int i, View view, ViewGroup viewGroup) {
-        RecommendViewHolders holders = null;
-        if (view == null) {
-            view = LayoutInflater.from(context).inflate(R.layout.item_recommend_s, viewGroup, false);
-            holders = new RecommendViewHolders(view);
-            view.setTag(holders);
-        } else {
-            holders = (RecommendViewHolders) view.getTag();
-
-        }
-        holders.tvTitle.setText(entity.getResult().getList().get(i).getTitle());
-//        holders.tvNUm.setText(entity.getResult().getList().get(i).getReplycount());
-        holders.tvDate.setText(entity.getResult().getList().get(i).getTime());
-        Picasso.with(context).load(entity.getResult().getList().get(i).getSmallpic()).into(holders.ima);
-        return view;
-    }
-
-    class RecommendViewHolders {
-        private TextView tvTitle, tvNUm, tvDate;
-        private ImageView ima;
-
-        public RecommendViewHolders(View view) {
-            tvTitle = (TextView) view.findViewById(R.id.item_recommend_tv_all_titlea);
-            tvNUm = (TextView) view.findViewById(R.id.item_recommend_all_tv_nums);
-            tvDate = (TextView) view.findViewById(R.id.item_recommend_all_tv_datas);
-            ima = (ImageView) view.findViewById(R.id.item_recommend_all_ima_d);
-
-        }
     }
 }

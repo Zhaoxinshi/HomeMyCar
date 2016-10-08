@@ -39,6 +39,7 @@ package com.example.dllo.homemycar.fragment; /*
          
         */
 
+import android.content.Intent;
 import android.os.Handler;
 import android.os.Handler.Callback;
 import android.os.Message;
@@ -49,6 +50,7 @@ import android.view.View;
 import android.widget.ImageView;
 import android.widget.LinearLayout;
 import android.widget.RelativeLayout;
+import android.widget.TextView;
 import android.widget.Toast;
 
 import com.android.volley.Response;
@@ -96,6 +98,7 @@ public class RadioSaleFragment extends BaseFragment {
     private LinearLayout lTimer;
     private RelativeLayout rlTimer;
     private LimitedBuyAdapter limitedBuyAdapter;
+    private TextView tvAdd;
     public static final String LIMITEDBUY_FIND_URL =
             "http://223.99.255.20/mobile.app.autohome.com.cn/discoverj_v5.9.5/mobile/limitedbuylist-a2-pm1-v6.2.0-pid210000-cid210200.json";
 
@@ -124,6 +127,7 @@ public class RadioSaleFragment extends BaseFragment {
         imaMoney = getView(R.id.ima_monery);
         lTimer = getView(R.id.tv_limited_buy_timer);
         rlTimer = getView(R.id.fragment_radio_sale_rl);
+        tvAdd = getView(R.id.radio_sale_tv_add);
 
     }
 
@@ -136,6 +140,12 @@ public class RadioSaleFragment extends BaseFragment {
         initAc();
         initLike();
         initForMe();
+        tvAdd.setOnClickListener(new View.OnClickListener() {
+            @Override
+            public void onClick(View view) {
+                startActivity(new Intent(getContext(),AddActivity.class));
+            }
+        });
 
        VolleySingleton.addRequest("http://223.99.255.20/mobile.app.autohome.com.cn/discover_v7.0.0/mobile/getcardlist.ashx?a=2&pm=1&v=7.0.0&uid=&deviceid=021676cd548e5cf2b6149c916a767228fac74da0&pid=0&cid=0&state=1&pageindex=1&pagesize=20&lat=0.000000&lng=0.000000&hid=", FindAllEntity.class, new Response.Listener<FindAllEntity>() {
            @Override

@@ -1,4 +1,4 @@
-package com.example.dllo.homemycar.adapter; /*
+package com.example.dllo.homemycar.fragment; /*
         quu..__
          $$$b  `---.__
           "$$b        `--.                          ___.---uuudP
@@ -39,80 +39,57 @@ package com.example.dllo.homemycar.adapter; /*
          
         */
 
-import android.content.Context;
-import android.view.LayoutInflater;
+import android.content.Intent;
+import android.graphics.Color;
+import android.support.design.widget.TabLayout;
+import android.support.v4.view.ViewPager;
+import android.support.v4.widget.DrawerLayout;
 import android.view.View;
-import android.view.ViewGroup;
-import android.widget.BaseAdapter;
 import android.widget.ImageView;
-import android.widget.TextView;
 
 import com.example.dllo.homemycar.R;
-import com.example.dllo.homemycar.entity.RecommendAllBean;
-import com.example.dllo.homemycar.entity.RecommendEntity;
-import com.squareup.picasso.Picasso;
+import com.example.dllo.homemycar.actity.MoreActivity;
+import com.example.dllo.homemycar.adapter.RecommendPageAdapter;
+import com.example.dllo.homemycar.base.BaseFragment;
 
 /**
- * Created by dllo on 16/9/29.
+ * Created by dllo on 16/10/8.
  */
-public class RecommendAllAdapter extends BaseAdapter {
+public class RecommendAllFragment extends BaseFragment {
+    private TabLayout tabLayout;
+    private ViewPager viewPager;
+    private RecommendPageAdapter adapter;
+    private ImageView ima;
 
-    private Context context;
-    private RecommendAllBean entity;
-
-    public void setEntity(RecommendAllBean entity) {
-        this.entity = entity;
-    }
-
-    public RecommendAllAdapter(Context context) {
-
-        this.context = context;
+    @Override
+    protected int setlayout() {
+        return R.layout.recommend_all_fragment;
     }
 
     @Override
-    public int getCount() {
-        return entity == null ? 0 : entity.getResult().getList().size();
+    protected void initView() {
+        tabLayout = getView(R.id.recommend_all_fragment_tab_layout);
+        viewPager = getView(R.id.recommend_all_fragment_view_pager);
+        ima = getView(R.id.recommend_all_fragment_ima);
+        ima.setAlpha(90);
 
     }
 
     @Override
-    public Object getItem(int i) {
-        return entity.getResult().getList().get(i);
-    }
+    protected void initData() {
+        adapter = new RecommendPageAdapter(getChildFragmentManager());
+        viewPager.setAdapter(adapter);
+        tabLayout.setupWithViewPager(viewPager);
+        tabLayout.setTabMode(TabLayout.MODE_SCROLLABLE);
+        tabLayout.setTabTextColors(Color.GRAY,Color.BLACK);
+        tabLayout.setSelectedTabIndicatorColor(Color.BLACK);
+        ima.setOnClickListener(new View.OnClickListener() {
+            @Override
+            public void onClick(View view) {
+                startActivity(new Intent(getContext(), MoreActivity.class));
+            }
+        });
 
-    @Override
-    public long getItemId(int i) {
-        return i;
-    }
 
-    @Override
-    public View getView(int i, View view, ViewGroup viewGroup) {
-        RecommendViewHolders holders = null;
-        if (view == null) {
-            view = LayoutInflater.from(context).inflate(R.layout.item_recommend_s, viewGroup, false);
-            holders = new RecommendViewHolders(view);
-            view.setTag(holders);
-        } else {
-            holders = (RecommendViewHolders) view.getTag();
-
-        }
-        holders.tvTitle.setText(entity.getResult().getList().get(i).getTitle());
-//        holders.tvNUm.setText(entity.getResult().getList().get(i).getReplycount());
-        holders.tvDate.setText(entity.getResult().getList().get(i).getTime());
-        Picasso.with(context).load(entity.getResult().getList().get(i).getSmallpic()).into(holders.ima);
-        return view;
-    }
-
-    class RecommendViewHolders {
-        private TextView tvTitle, tvNUm, tvDate;
-        private ImageView ima;
-
-        public RecommendViewHolders(View view) {
-            tvTitle = (TextView) view.findViewById(R.id.item_recommend_tv_all_titlea);
-            tvNUm = (TextView) view.findViewById(R.id.item_recommend_all_tv_nums);
-            tvDate = (TextView) view.findViewById(R.id.item_recommend_all_tv_datas);
-            ima = (ImageView) view.findViewById(R.id.item_recommend_all_ima_d);
-
-        }
     }
 }

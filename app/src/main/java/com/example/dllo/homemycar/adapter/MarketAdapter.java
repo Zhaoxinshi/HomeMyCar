@@ -48,36 +48,33 @@ import android.widget.ImageView;
 import android.widget.TextView;
 
 import com.example.dllo.homemycar.R;
-import com.example.dllo.homemycar.entity.RecommendAllBean;
-import com.example.dllo.homemycar.entity.RecommendEntity;
+import com.example.dllo.homemycar.entity.MarketEntity;
 import com.squareup.picasso.Picasso;
 
 /**
- * Created by dllo on 16/9/29.
+ * Created by dllo on 16/10/8.
  */
-public class RecommendAllAdapter extends BaseAdapter {
-
+public class MarketAdapter extends BaseAdapter {
     private Context context;
-    private RecommendAllBean entity;
+    private MarketEntity entity;
 
-    public void setEntity(RecommendAllBean entity) {
+    public void setEntity(MarketEntity entity) {
         this.entity = entity;
     }
 
-    public RecommendAllAdapter(Context context) {
+    public MarketAdapter(Context context) {
 
         this.context = context;
     }
 
     @Override
     public int getCount() {
-        return entity == null ? 0 : entity.getResult().getList().size();
-
+        return entity == null ? 0 : entity.getResult().getNewslist().size();
     }
 
     @Override
     public Object getItem(int i) {
-        return entity.getResult().getList().get(i);
+        return entity.getResult().getNewslist().get(i);
     }
 
     @Override
@@ -87,32 +84,26 @@ public class RecommendAllAdapter extends BaseAdapter {
 
     @Override
     public View getView(int i, View view, ViewGroup viewGroup) {
-        RecommendViewHolders holders = null;
-        if (view == null) {
-            view = LayoutInflater.from(context).inflate(R.layout.item_recommend_s, viewGroup, false);
-            holders = new RecommendViewHolders(view);
-            view.setTag(holders);
-        } else {
-            holders = (RecommendViewHolders) view.getTag();
-
+        MarketViewHolder holder = null;
+        if (view==null) {
+            view = LayoutInflater.from(context).inflate(R.layout.item_market_fragment,viewGroup,false);
+            holder = new MarketViewHolder(view);
+            view.setTag(holder);
+        }else {
+            holder = (MarketViewHolder) view.getTag();
         }
-        holders.tvTitle.setText(entity.getResult().getList().get(i).getTitle());
-//        holders.tvNUm.setText(entity.getResult().getList().get(i).getReplycount());
-        holders.tvDate.setText(entity.getResult().getList().get(i).getTime());
-        Picasso.with(context).load(entity.getResult().getList().get(i).getSmallpic()).into(holders.ima);
+        holder.tvTitle.setText(entity.getResult().getNewslist().get(i).getTitle());
+        holder.tvDate.setText(entity.getResult().getNewslist().get(i).getTime());
+        Picasso.with(context).load(entity.getResult().getNewslist().get(i).getSmallpic()).into(holder.ima);
         return view;
     }
-
-    class RecommendViewHolders {
-        private TextView tvTitle, tvNUm, tvDate;
+    class MarketViewHolder{
+        private TextView tvTitle,tvDate;
         private ImageView ima;
-
-        public RecommendViewHolders(View view) {
-            tvTitle = (TextView) view.findViewById(R.id.item_recommend_tv_all_titlea);
-            tvNUm = (TextView) view.findViewById(R.id.item_recommend_all_tv_nums);
-            tvDate = (TextView) view.findViewById(R.id.item_recommend_all_tv_datas);
-            ima = (ImageView) view.findViewById(R.id.item_recommend_all_ima_d);
-
+        public MarketViewHolder(View view) {
+            tvTitle = (TextView) view.findViewById(R.id.item_market_fragment_tv_title);
+            tvDate = (TextView) view.findViewById(R.id.item_market_fragment_tv_date);
+            ima = (ImageView) view.findViewById(R.id.item_market_fragment_ima);
         }
     }
 }

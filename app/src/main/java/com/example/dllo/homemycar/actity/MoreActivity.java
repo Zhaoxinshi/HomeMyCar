@@ -46,6 +46,7 @@ import android.support.v7.widget.GridLayoutManager;
 import android.support.v7.widget.RecyclerView;
 import android.support.v7.widget.helper.ItemTouchHelper;
 import android.view.View;
+import android.widget.ImageView;
 import android.widget.Toast;
 
 import com.android.volley.Response;
@@ -62,6 +63,7 @@ public class MoreActivity extends FragmentActivity {
     private RecyclerView recyclerView;
     private MoreActivityAdapter activityAdapter;
     private ItemTouchHelper mHelper;
+    private ImageView imaBack;
 
 
     @Override
@@ -75,10 +77,19 @@ public class MoreActivity extends FragmentActivity {
 
     private void initView() {
         recyclerView = (RecyclerView) findViewById(R.id.more_ry);
+        imaBack = (ImageView) findViewById(R.id.s);
 
     }
 
+
+
     private void initData() {
+        imaBack.setOnClickListener(new View.OnClickListener() {
+            @Override
+            public void onClick(View view) {
+                finish();
+            }
+        });
         activityAdapter = new MoreActivityAdapter(this);
         GridLayoutManager manager = new GridLayoutManager(this, 3);
         recyclerView.setLayoutManager(manager);

@@ -39,80 +39,57 @@ package com.example.dllo.homemycar.adapter; /*
          
         */
 
-import android.content.Context;
-import android.view.LayoutInflater;
-import android.view.View;
-import android.view.ViewGroup;
-import android.widget.BaseAdapter;
-import android.widget.ImageView;
-import android.widget.TextView;
+import android.support.v4.app.Fragment;
+import android.support.v4.app.FragmentManager;
+import android.support.v4.app.FragmentPagerAdapter;
 
-import com.example.dllo.homemycar.R;
-import com.example.dllo.homemycar.entity.RecommendAllBean;
-import com.example.dllo.homemycar.entity.RecommendEntity;
-import com.squareup.picasso.Picasso;
+import com.example.dllo.homemycar.entity.Url;
+import com.example.dllo.homemycar.recommendfragment.RecSameFragment;
+import com.example.dllo.homemycar.recommendfragment.RecommendFragment;
+import com.example.dllo.homemycar.recommendfragment.LetterFragment;
+import com.example.dllo.homemycar.recommendfragment.LobbYistsFragment;
+import com.example.dllo.homemycar.recommendfragment.MarketFragment;
+import com.example.dllo.homemycar.recommendfragment.VideosFragment;
 
 /**
- * Created by dllo on 16/9/29.
+ * Created by dllo on 16/10/8.
  */
-public class RecommendAllAdapter extends BaseAdapter {
-
-    private Context context;
-    private RecommendAllBean entity;
-
-    public void setEntity(RecommendAllBean entity) {
-        this.entity = entity;
+public class RecommendPageAdapter extends FragmentPagerAdapter {
+    String[] strings = new String[]{"推荐", "说客", "视频", "快报", "行情", "新闻", "评测", "导购", "用车",
+            "技术", "文化", "改装"};
+    String[] url = {Url.RECOMMEND_URL,Url.LOBBYISTS_URL,Url.VIDEO_URL,Url.LETTERS_URL,Url.MARKET_URL,Url.NEWS_URL,Url.REVIEW_URL,Url.SHOPPERS_URL,
+    Url.THE_CAR_URL,Url.TECHNOLOGY_URL,Url.CULTURE_URL,Url.MODIFIED_URL};
+    Fragment[] fragments;
+    public RecommendPageAdapter(FragmentManager fm) {
+        super(fm);
+        fragments = new Fragment[strings.length];
     }
 
-    public RecommendAllAdapter(Context context) {
-
-        this.context = context;
+    @Override
+    public Fragment getItem(int position) {
+        if (position==0){
+            fragments[0] = new RecommendFragment();
+        }else if (position==1){
+            fragments[1] = new LobbYistsFragment();
+        }else if (position==2){
+            fragments[2] = new VideosFragment();
+        }else if (position==3){
+            fragments[3] = new LetterFragment();
+        }else if (position==4){
+            fragments[4] = new MarketFragment();
+        }else {
+            fragments[position] = RecSameFragment. getInstance(url[position]);
+        }
+        return fragments[position];
     }
 
     @Override
     public int getCount() {
-        return entity == null ? 0 : entity.getResult().getList().size();
-
+        return strings.length;
     }
 
     @Override
-    public Object getItem(int i) {
-        return entity.getResult().getList().get(i);
-    }
-
-    @Override
-    public long getItemId(int i) {
-        return i;
-    }
-
-    @Override
-    public View getView(int i, View view, ViewGroup viewGroup) {
-        RecommendViewHolders holders = null;
-        if (view == null) {
-            view = LayoutInflater.from(context).inflate(R.layout.item_recommend_s, viewGroup, false);
-            holders = new RecommendViewHolders(view);
-            view.setTag(holders);
-        } else {
-            holders = (RecommendViewHolders) view.getTag();
-
-        }
-        holders.tvTitle.setText(entity.getResult().getList().get(i).getTitle());
-//        holders.tvNUm.setText(entity.getResult().getList().get(i).getReplycount());
-        holders.tvDate.setText(entity.getResult().getList().get(i).getTime());
-        Picasso.with(context).load(entity.getResult().getList().get(i).getSmallpic()).into(holders.ima);
-        return view;
-    }
-
-    class RecommendViewHolders {
-        private TextView tvTitle, tvNUm, tvDate;
-        private ImageView ima;
-
-        public RecommendViewHolders(View view) {
-            tvTitle = (TextView) view.findViewById(R.id.item_recommend_tv_all_titlea);
-            tvNUm = (TextView) view.findViewById(R.id.item_recommend_all_tv_nums);
-            tvDate = (TextView) view.findViewById(R.id.item_recommend_all_tv_datas);
-            ima = (ImageView) view.findViewById(R.id.item_recommend_all_ima_d);
-
-        }
+    public CharSequence getPageTitle(int position) {
+        return strings[position];
     }
 }

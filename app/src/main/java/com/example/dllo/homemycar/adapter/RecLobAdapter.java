@@ -48,23 +48,21 @@ import android.widget.ImageView;
 import android.widget.TextView;
 
 import com.example.dllo.homemycar.R;
-import com.example.dllo.homemycar.entity.RecommendAllBean;
-import com.example.dllo.homemycar.entity.RecommendEntity;
+import com.example.dllo.homemycar.entity.LobbyitsEntity;
 import com.squareup.picasso.Picasso;
 
 /**
- * Created by dllo on 16/9/29.
+ * Created by dllo on 16/10/8.
  */
-public class RecommendAllAdapter extends BaseAdapter {
-
+public class RecLobAdapter extends BaseAdapter {
     private Context context;
-    private RecommendAllBean entity;
+    private LobbyitsEntity entity;
 
-    public void setEntity(RecommendAllBean entity) {
+    public void setEntity(LobbyitsEntity entity) {
         this.entity = entity;
     }
 
-    public RecommendAllAdapter(Context context) {
+    public RecLobAdapter(Context context) {
 
         this.context = context;
     }
@@ -72,7 +70,6 @@ public class RecommendAllAdapter extends BaseAdapter {
     @Override
     public int getCount() {
         return entity == null ? 0 : entity.getResult().getList().size();
-
     }
 
     @Override
@@ -87,31 +84,32 @@ public class RecommendAllAdapter extends BaseAdapter {
 
     @Override
     public View getView(int i, View view, ViewGroup viewGroup) {
-        RecommendViewHolders holders = null;
+        RecLobViewHolder holder = null;
         if (view == null) {
-            view = LayoutInflater.from(context).inflate(R.layout.item_recommend_s, viewGroup, false);
-            holders = new RecommendViewHolders(view);
-            view.setTag(holders);
+            view = LayoutInflater.from(context).inflate(R.layout.item_rec_lob_fragment, viewGroup, false);
+            holder = new RecLobViewHolder(view);
+            view.setTag(holder);
         } else {
-            holders = (RecommendViewHolders) view.getTag();
+            holder = (RecLobViewHolder) view.getTag();
 
-        }
-        holders.tvTitle.setText(entity.getResult().getList().get(i).getTitle());
-//        holders.tvNUm.setText(entity.getResult().getList().get(i).getReplycount());
-        holders.tvDate.setText(entity.getResult().getList().get(i).getTime());
-        Picasso.with(context).load(entity.getResult().getList().get(i).getSmallpic()).into(holders.ima);
+
+
+        }holder.tvTitle.setText(entity.getResult().getList().get(i).getTitle());
+        holder.tv.setText(entity.getResult().getList().get(i).getReplycount() + "" + "评论");
+        holder.tvDate.setText(entity.getResult().getList().get(i).getTime());
+        Picasso.with(context).load(entity.getResult().getList().get(i).getSmallpic()).into(holder.ima);
         return view;
     }
 
-    class RecommendViewHolders {
-        private TextView tvTitle, tvNUm, tvDate;
+    class RecLobViewHolder {
+        private TextView tvTitle, tv, tvDate;
         private ImageView ima;
 
-        public RecommendViewHolders(View view) {
-            tvTitle = (TextView) view.findViewById(R.id.item_recommend_tv_all_titlea);
-            tvNUm = (TextView) view.findViewById(R.id.item_recommend_all_tv_nums);
-            tvDate = (TextView) view.findViewById(R.id.item_recommend_all_tv_datas);
-            ima = (ImageView) view.findViewById(R.id.item_recommend_all_ima_d);
+        public RecLobViewHolder(View view) {
+            tvTitle = (TextView) view.findViewById(R.id.tv_rec_lob_all_title);
+            tv = (TextView) view.findViewById(R.id.item_rec_tv_rec_lob);
+            tvDate = (TextView) view.findViewById(R.id.tv_rec_lob_all_time);
+            ima = (ImageView) view.findViewById(R.id.ima_rec_lob_all);
 
         }
     }
