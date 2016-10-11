@@ -1,4 +1,4 @@
-package com.example.dllo.homemycar.volleydemo; /*
+package com.example.dllo.homemycar.recommendfragment; /*
         quu..__
          $$$b  `---.__
           "$$b        `--.                          ___.---uuudP
@@ -39,65 +39,34 @@ package com.example.dllo.homemycar.volleydemo; /*
          
         */
 
-import android.util.Log;
+import android.content.Intent;
+import android.os.Bundle;
+import android.support.annotation.Nullable;
+import android.support.v4.app.FragmentActivity;
+import android.webkit.WebView;
+import android.webkit.WebViewClient;
 
-import com.android.volley.Cache;
-import com.android.volley.NetworkResponse;
-import com.android.volley.NoConnectionError;
-import com.android.volley.ParseError;
-import com.android.volley.Request;
-import com.android.volley.Response;
-import com.android.volley.Response.ErrorListener;
-import com.android.volley.Response.Listener;
-import com.android.volley.VolleyError;
-import com.android.volley.toolbox.HttpHeaderParser;
-import com.google.gson.Gson;
-
-import java.io.UnsupportedEncodingException;
+import com.example.dllo.homemycar.R;
 
 /**
- * Created by dllo on 16/8/9.
+ * Created by dllo on 16/10/11.
  */
-public class GsonRequest<T> extends Request<T> {
-    private Gson gson;
-    private Class<T> mClass;
-    private final Listener<T> mListener;
-    public GsonRequest(int method, String url, Class<T> mClass, Listener<T> mListener, ErrorListener listener) {
-        super(method, url, listener);
-        this.mClass = mClass;
-        gson = new Gson();
-        this.mListener = mListener;
-    }
-
+public class RecSameActivity  extends FragmentActivity{
+    private WebView webView;
     @Override
-    protected Response<T> parseNetworkResponse(NetworkResponse response) {
-        try {
-            String jsonString  = new String(response.data, HttpHeaderParser.parseCharset(response.headers));
-            return Response.success(gson.fromJson(jsonString,mClass),HttpHeaderParser.parseCacheHeaders(response));
-        } catch (UnsupportedEncodingException e) {
-            e.printStackTrace();
-            return Response.error(new ParseError(e));
-        }
+    protected void onCreate(@Nullable Bundle savedInstanceState) {
+        super.onCreate(savedInstanceState);
+        setContentView(R.layout.rec_same_ac);
+        webView = (WebView) findViewById(R.id.rec_same_web_view);
+        Intent intent = getIntent();
+        String url = intent.getStringExtra("da");
+        WebViewClient client = new WebViewClient();
+        webView.setWebViewClient(client);
+        webView.getSettings().setBuiltInZoomControls(true);
+        webView.getSettings().setJavaScriptEnabled(true);
+        webView.getSettings().setJavaScriptCanOpenWindowsAutomatically(true);
+        webView.loadUrl(url);
 
-    }
 
-    @Override
-    protected void deliverResponse(T response) {
-        mListener.onResponse(response);
-
-    }
-
-    @Override
-    public void deliverError(VolleyError error) {
-        if (error instanceof NoConnectionError) {
-            Cache.Entry entry = this.getCacheEntry();
-            if (entry != null) {
-                Log.d("数据", "这是缓存数据");
-                Response<T> response = parseNetworkResponse(new NetworkResponse(entry.data, entry.responseHeaders));
-                deliverResponse(response.result);
-                return;
-            }
-        }
-        super.deliverError(error);
     }
 }

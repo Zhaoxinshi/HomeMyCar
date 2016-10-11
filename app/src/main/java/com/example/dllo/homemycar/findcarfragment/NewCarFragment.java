@@ -63,7 +63,8 @@ import com.example.dllo.homemycar.base.BaseFragment;
 import com.example.dllo.homemycar.entity.HeadHotNewCarEntity;
 import com.example.dllo.homemycar.entity.NewCarLabelEntity;
 import com.example.dllo.homemycar.entity.Url;
-import com.example.dllo.homemycar.volleydemo.VolleySingleton;
+import com.example.dllo.homemycar.volley.VolleySingleton;
+
 
 import java.util.ArrayList;
 import java.util.Arrays;
@@ -111,34 +112,6 @@ public class NewCarFragment extends BaseFragment {
 
     @Override
     protected void initData() {
-//        View label = LayoutInflater.from(getContext()).inflate(R.layout.head_find_car_label,null);
-//        lv.addHeaderView(label);
-//
-//        labelImaFirst = (TextView) label.findViewById(R.id.head_tv_label_one);
-//        labelImaSecond = (TextView) label.findViewById(R.id.head_tv_label_two);
-//        labelImaThird = (TextView) label.findViewById(R.id.head_tv_label_three);
-//        labelImaFour = (TextView) label.findViewById(R.id.head_tv_label_four);
-//        labelImaFive = (TextView) label.findViewById(R.id.head_tv_label_five);
-//        labelImaSix = (TextView) label.findViewById(R.id.head_tv_label_six);
-//        VolleySingleton.addRequest("http://cars.app.autohome.com.cn/cars_v7.0.0/cars/getmarks-a2-pm2.json",NewCarLabelEntity.class, new Response.Listener<NewCarLabelEntity>() {
-//            @Override
-//            public void onResponse(NewCarLabelEntity response) {
-//                labelImaFirst.setText(response.getResult().getMetalist().get(0).getList().get(0).getName());
-//                labelImaSecond.setText(response.getResult().getMetalist().get(0).getList().get(1).getName());
-//                labelImaThird.setText(response.getResult().getMetalist().get(0).getList().get(2).getName());
-//                labelImaFour.setText(response.getResult().getMetalist().get(0).getList().get(3).getName());
-//                labelImaFive.setText(response.getResult().getMetalist().get(0).getList().get(4).getName());
-//                labelImaSix.setText(response.getResult().getMetalist().get(0).getList().get(5).getName());
-//
-//
-//
-//            }
-//        }, new Response.ErrorListener() {
-//            @Override
-//            public void onErrorResponse(VolleyError error) {
-//
-//            }
-//        });
 
 
         View newCarView = LayoutInflater.from(getContext()).inflate(R.layout.head_new_car_hot,null);

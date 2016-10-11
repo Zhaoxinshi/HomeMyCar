@@ -48,7 +48,7 @@ import com.example.dllo.homemycar.adapter.MarketAdapter;
 import com.example.dllo.homemycar.base.BaseFragment;
 import com.example.dllo.homemycar.entity.MarketEntity;
 import com.example.dllo.homemycar.entity.Url;
-import com.example.dllo.homemycar.volleydemo.VolleySingleton;
+import com.example.dllo.homemycar.volley.VolleySingleton;
 
 /**
  * Created by dllo on 16/10/8.

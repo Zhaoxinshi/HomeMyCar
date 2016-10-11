@@ -65,7 +65,8 @@ import com.android.volley.toolbox.Volley;
 
 import com.example.dllo.homemycar.R;
 import com.example.dllo.homemycar.entity.RecommendEntity;
-import com.example.dllo.homemycar.volleydemo.VolleySingleton;
+import com.example.dllo.homemycar.volley.VolleySingleton;
+
 
 import java.util.ArrayList;
 import java.util.List;

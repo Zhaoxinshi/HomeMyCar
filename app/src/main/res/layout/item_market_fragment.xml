@@ -22,8 +22,7 @@
         <ImageView
             android:id="@+id/item_market_fragment_ima"
             android:layout_width="120dp"
-            android:layout_height="70dp"
-            android:background="@mipmap/ic_launcher"/>
+            android:layout_height="70dp" />
         <TextView
             android:id="@+id/item_market_fragment_tv_date"
             android:layout_width="wrap_content"

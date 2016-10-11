@@ -57,9 +57,11 @@ import com.example.dllo.homemycar.adapter.CenturyFriendAdapter;
 import com.example.dllo.homemycar.adapter.CenturyModelAdapter;
 import com.example.dllo.homemycar.adapter.CenturySisterAdapter;
 import com.example.dllo.homemycar.adapter.CenturySsAdapter;
+import com.example.dllo.homemycar.custom.ThemeChangeUtil;
 import com.example.dllo.homemycar.entity.CenturySisterEntity;
 import com.example.dllo.homemycar.entity.CenturySsEntity;
-import com.example.dllo.homemycar.volleydemo.VolleySingleton;
+
+import com.example.dllo.homemycar.volley.VolleySingleton;
 import com.handmark.pulltorefresh.library.PullToRefreshListView;
 
 /**
@@ -73,6 +75,7 @@ public class CenturySsActivity extends FragmentActivity {
     @Override
     protected void onCreate(@Nullable Bundle savedInstanceState) {
         super.onCreate(savedInstanceState);
+        ThemeChangeUtil.changeTheme(this);
         setContentView(R.layout.century_model_ac);
         initView();
         initData();
@@ -95,11 +98,6 @@ public class CenturySsActivity extends FragmentActivity {
         Intent intent = getIntent();
         String url = intent.getStringExtra("url");
         Log.d("所有", url);
-
-//        String urlFriend = intent.getStringExtra("urlFriend");
-//        String urlHead = intent.getStringExtra("urlHead");
-//        String urlBeautiful = intent.getStringExtra("urlBeautiful");
-//        String urlCat = intent.getStringExtra("intentCat");
 
         if (!"".equals(url)) {
             final CenturyModelAdapter centuryModelAdapter = new CenturyModelAdapter(this);

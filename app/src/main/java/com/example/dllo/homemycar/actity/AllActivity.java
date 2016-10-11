@@ -52,6 +52,7 @@ public class AllActivity extends BaseActivity{
     private ListView listView;
     @Override
     protected int setLayout() {
+
         return R.layout.all_ac;
     }
 

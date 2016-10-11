@@ -94,7 +94,7 @@ public class ItemCenturyAdapter extends BaseAdapter {
         }
 
         holder.tvTitle.setText(entity.getResult().getList().get(i).getTitle());
-        holder.tvTie.setText(entity.getResult().getList().get(i).getReplycounts());
+        holder.tvTie.setText(entity.getResult().getList().get(i).getReplycounts()+""+"回帖");
         holder.tvS.setText(entity.getResult().getList().get(i).getBbsname());
         Picasso.with(context).load(entity.getResult().getList().get(i).getSmallpic()).into(holder.ima);
         return view;

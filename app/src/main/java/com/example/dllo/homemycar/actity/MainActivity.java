@@ -8,6 +8,7 @@ import android.widget.RadioButton;
 
 import com.example.dllo.homemycar.R;
 import com.example.dllo.homemycar.base.BaseActivity;
+import com.example.dllo.homemycar.custom.ThemeChangeUtil;
 import com.example.dllo.homemycar.fragment.FindCarFragment;
 import com.example.dllo.homemycar.fragment.FormFragment;
 import com.example.dllo.homemycar.fragment.MyFragment;
@@ -20,7 +21,6 @@ import com.example.dllo.homemycar.recommendfragment.RecommendFragment;
 public class MainActivity extends BaseActivity implements OnClickListener {
     private RadioButton radioRecommend, radioForum, radioFindCar, radioSale, radioMy;
     private RecommendAllFragment recommendAllFragment;
-    private RecommendFragment recommendFragment;
     private FormFragment formFragment;
     private FindCarFragment findCarFragment;
     private RadioSaleFragment radioSaleFragment;
@@ -29,6 +29,7 @@ public class MainActivity extends BaseActivity implements OnClickListener {
 
     @Override
     protected int setLayout() {
+
         return R.layout.activity_main;
     }
 
@@ -44,6 +45,13 @@ public class MainActivity extends BaseActivity implements OnClickListener {
 
     @Override
     protected void initData() {
+        FragmentManager fragmentManager = getSupportFragmentManager();
+        FragmentTransaction fragmentTransaction = fragmentManager.beginTransaction();
+        recommendAllFragment = new RecommendAllFragment();
+        fragmentTransaction.replace(R.id.frame_replace, recommendAllFragment);
+        fragmentTransaction.commit();
+
+
         radioRecommend.setOnClickListener(this);
         radioForum.setOnClickListener(this);
         radioFindCar.setOnClickListener(this);

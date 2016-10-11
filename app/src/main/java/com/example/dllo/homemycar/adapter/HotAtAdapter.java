@@ -102,7 +102,7 @@ public class HotAtAdapter extends BaseAdapter {
         holder.tvContent.setText(entity.getResult().getList().get(i).getTopicinfo());
         holder.tvDate.setText(entity.getResult().getList().get(i).getPostdate());
         holder.tvForum.setText(entity.getResult().getList().get(i).getBbsname());
-        holder.tvNum.setText(entity.getResult().getList().get(i).getReplycounts());
+        holder.tvNum.setText(entity.getResult().getList().get(i).getReplycounts()+"回帖");
         String path = entity.getResult().getList().get(i).getHeadimg();
         if (path!=""){
             Picasso.with(context).load(entity.getResult().getList().get(i).getHeadimg()).transform(new CircleTransform()).into(holder.ima);

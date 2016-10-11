@@ -52,6 +52,7 @@ import android.widget.ImageView;
 
 import com.example.dllo.homemycar.R;
 import com.example.dllo.homemycar.adapter.CollectPageAdapter;
+import com.example.dllo.homemycar.custom.ThemeChangeUtil;
 import com.example.dllo.homemycar.fragment.MyFragment;
 
 /**
@@ -63,6 +64,7 @@ public class CollectActivity extends FragmentActivity {
     private ImageView imaBack;
     @Override
     protected void onCreate(@Nullable Bundle savedInstanceState) {
+        ThemeChangeUtil.changeTheme(this);
         super.onCreate(savedInstanceState);
         setContentView(R.layout.collect_ac);
         tabLayout = (TabLayout) findViewById(R.id.collect_tab_layout);

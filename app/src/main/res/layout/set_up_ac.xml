@@ -124,7 +124,6 @@
                     android:orientation="horizontal">
                     <TextView
                         android:layout_width="wrap_content"
-
                         android:layout_height="wrap_content"
                         android:layout_marginLeft="10dp"
                         android:text="夜间模式"
@@ -133,6 +132,7 @@
 
                 </LinearLayout>
                 <Switch
+                    android:id="@+id/swich_day"
                     android:layout_width="wrap_content"
                     android:layout_height="wrap_content"
                     android:layout_alignParentRight="true"
@@ -214,6 +214,7 @@
                 android:layout_width="wrap_content"
                 android:layout_height="70dp">
                 <TextView
+                    android:id="@+id/my_fragment_tv_clear"
                     android:layout_width="wrap_content"
                     android:layout_height="wrap_content"
                     android:layout_centerVertical="true"
@@ -222,12 +223,12 @@
                     android:textColor="@android:color/black"
                     android:textSize="20sp"/>
                 <TextView
+                    android:id="@+id/my_fragment_catch"
                     android:layout_width="wrap_content"
                     android:layout_height="wrap_content"
                     android:layout_alignParentRight="true"
                     android:layout_centerVertical="true"
                     android:layout_marginRight="10dp"
-                    android:text="36.92M"
                     android:textSize="18sp"/>
 
             </RelativeLayout>

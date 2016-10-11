@@ -17,6 +17,8 @@
         android:scaleType="fitXY"/>
 
     <TextView
+        android:maxLines="2"
+
         android:id="@+id/item_head_for_like_to_title"
         android:layout_width="match_parent"
         android:layout_height="wrap_content"

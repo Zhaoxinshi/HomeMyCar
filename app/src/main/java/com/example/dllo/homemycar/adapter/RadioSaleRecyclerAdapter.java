@@ -43,6 +43,7 @@ import android.content.Context;
 import android.support.v7.widget.RecyclerView;
 import android.support.v7.widget.RecyclerView.Adapter;
 import android.support.v7.widget.RecyclerView.ViewHolder;
+import android.util.Log;
 import android.view.LayoutInflater;
 import android.view.View;
 import android.view.ViewGroup;
@@ -51,6 +52,8 @@ import android.widget.TextView;
 
 
 import com.example.dllo.homemycar.R;
+import com.example.dllo.homemycar.entity.FindAllEntity;
+import com.example.dllo.homemycar.entity.FindBean;
 import com.example.dllo.homemycar.entity.RadioEntity;
 
 import com.squareup.picasso.Picasso;
@@ -60,9 +63,15 @@ import com.squareup.picasso.Picasso;
  */
 public class RadioSaleRecyclerAdapter extends Adapter<RadioSaleRecyclerAdapter.ViewHolder> {
     private Context context;
-    private RadioEntity entity;
+    private FindBean entity;
 
-    public void setEntity(RadioEntity entity) {
+    public void setListener(onRecyclerViewClickListeners listener) {
+        this.listener = listener;
+    }
+
+    private onRecyclerViewClickListeners listener;
+
+    public void setEntity(FindBean entity) {
         this.entity = entity;
     }
 
@@ -79,15 +88,27 @@ public class RadioSaleRecyclerAdapter extends Adapter<RadioSaleRecyclerAdapter.V
     }
 
     @Override
-    public void onBindViewHolder(ViewHolder holder, int position) {
-        holder.tv.setText(entity.getResult().getFunctionlist().get(position).getTitle());
-        Picasso.with(context).load(entity.getResult().getFunctionlist().get(position).getIconurl()).into(holder.ima);
+    public void onBindViewHolder(final ViewHolder holder, int position) {
+        Log.d("位置", "position:" + position);
+        holder.tv.setText(entity.getResult().getCardlist().get(1).getData().get(position).getTitle());
+        Picasso.with(context).load(entity.getResult().getCardlist().get(1).getData().get(position).getImageurl()).into(holder.ima);
 
+        if (listener != null) {
+            holder.itemView.setOnClickListener(new View.OnClickListener() {
+                @Override
+                public void onClick(View v) {
+                    int clickPosition = holder.getAdapterPosition();
+                    listener.onItemClick(v, holder, clickPosition);
+
+                }
+            });
+
+        }
     }
 
     @Override
     public int getItemCount() {
-        return entity==null?0:entity.getResult().getFunctionlist().size();
+        return entity==null?0:entity.getResult().getCardlist().get(1).getData().size();
     }
 
     public class ViewHolder extends RecyclerView.ViewHolder {
@@ -98,5 +119,9 @@ public class RadioSaleRecyclerAdapter extends Adapter<RadioSaleRecyclerAdapter.V
             ima = (ImageView) itemView.findViewById(R.id.radio_ima);
             tv = (TextView) itemView.findViewById(R.id.radio_tv);
         }
+    }
+    public interface  onRecyclerViewClickListeners{
+        void onItemClick(View view,ViewHolder holder,int position);
+
     }
 }

@@ -53,7 +53,8 @@ import com.android.volley.VolleyError;
 import com.example.dllo.homemycar.R;
 import com.example.dllo.homemycar.adapter.CenturyAdapter;
 import com.example.dllo.homemycar.entity.CenturyEntity;
-import com.example.dllo.homemycar.volleydemo.VolleySingleton;
+import com.example.dllo.homemycar.volley.VolleySingleton;
+
 
 /**
  * Created by dllo on 16/9/28.

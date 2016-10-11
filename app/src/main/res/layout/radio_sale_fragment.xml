@@ -4,7 +4,9 @@
               android:layout_width="match_parent"
               android:layout_height="match_parent"
               android:orientation="vertical">
-
+<RelativeLayout
+    android:layout_width="match_parent"
+    android:layout_height="wrap_content">
     <TextView
         android:layout_width="match_parent"
         android:layout_height="40dp"
@@ -12,6 +14,16 @@
         android:gravity="center"
         android:text="发现"
         android:textSize="20sp"/>
+    <ImageView
+        android:layout_marginRight="15dp"
+        android:layout_centerVertical="true"
+        android:layout_alignParentRight="true"
+        android:src="@mipmap/sousuos"
+        android:layout_width="wrap_content"
+        android:layout_height="wrap_content" />
+</RelativeLayout>
+
+
     <TextView
         android:layout_width="match_parent"
         android:layout_height="1dp"
@@ -44,10 +56,6 @@
                </LinearLayout>
 
            </LinearLayout>
-            <ImageView
-                android:id="@+id/ima_ima"
-                android:layout_width="match_parent"
-                android:layout_height="100dp"/>
             <android.support.v7.widget.RecyclerView
                 android:id="@+id/radio_sale_rv"
                 android:layout_width="match_parent"
@@ -56,7 +64,7 @@
             <ImageView
                 android:background="@android:color/darker_gray"
                 android:layout_width="match_parent"
-                android:layout_height="5dp"/>
+                android:layout_height="2dp"/>
             <!--<ImageView-->
                 <!--android:id="@+id/ima_find_top_top"-->
                 <!--android:layout_width="match_parent"-->
@@ -73,10 +81,7 @@
                 android:id="@+id/rv_service"
                 android:layout_width="match_parent"
                 android:layout_height="wrap_content"/>
-            <ImageView
-                android:layout_width="match_parent"
-                android:id="@+id/question_ima"
-                android:layout_height="80dp"/>
+
 
             <RelativeLayout
                 android:id="@+id/fragment_radio_sale_rl"

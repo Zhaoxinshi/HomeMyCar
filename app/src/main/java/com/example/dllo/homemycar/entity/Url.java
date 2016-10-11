@@ -155,4 +155,20 @@ public class Url {
    }
 
 
+    // 车商城 (webview)
+    public static final String DISCOVER_CAR_MALL = "http://m.mall.autohome.com.cn/?isapp=1";
+    // 分期购车 (webview)
+    public static final String DISCOVER_HIRE_CAR = "http://m.mall.autohome.com.cn/finance/list/3-0-0-0-0-0-0-0-0-1.html?isapp=1";
+    // 养车之家 (webview)
+    public static final String DISCOVER_SUBSIDY_HOME = "http://yc.m.autohome.com.cn/banner/list?serviceCity=210200&isWz=false";
+    // 找二手车 (webview)
+    public static final String DISCOVER_FIND_CAR = "http://m.che168.com/beijing/list/?sourcename=main&pvareaid=101964";
+    // 团购活动 (webview)
+    public static final String DISCOVER_GROUP_BUY = "http://tuan.m.autohome.com.cn/app/h5/home";
+    // 爱车估值 (webview)
+    public static final String DISCOVER_CAR_VALUATION = "http://m.che168.com/pinggu/?buymark=oaha10027&sellmark=oaha10026&appversionbuy=2.08V&appversionsell=2.04V&hideheadfoot=1&hidead=1&pvareaid=101375";
+    // 全部
+    public static final String DISCOVER_ALL_URL = "http://mobile.app.autohome.com.cn/discover_v7.1.0/mobile/entrylist.ashx?pm=1";
+
+
 }

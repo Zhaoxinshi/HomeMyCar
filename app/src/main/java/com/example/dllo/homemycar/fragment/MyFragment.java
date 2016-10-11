@@ -43,6 +43,7 @@ import android.content.Intent;
 import android.util.Log;
 import android.view.View;
 import android.view.View.OnClickListener;
+import android.widget.ImageView;
 import android.widget.RelativeLayout;
 import android.widget.Toast;
 
@@ -54,6 +55,7 @@ import com.example.dllo.homemycar.actity.HistoryActivity;
 import com.example.dllo.homemycar.actity.PreferentialActivity;
 import com.example.dllo.homemycar.actity.SetUpActivity;
 import com.example.dllo.homemycar.base.BaseFragment;
+import com.example.dllo.homemycar.custom.ThemeChangeUtil;
 
 /**
  * Created by dllo on 16/9/19.
@@ -61,6 +63,7 @@ import com.example.dllo.homemycar.base.BaseFragment;
 public class MyFragment extends BaseFragment implements OnClickListener {
     private RelativeLayout rlCollect;
     private RelativeLayout rlPreferential,rlHistory,rlCg,rlSetUp;
+    private ImageView imaDay;
 
 
     @Override
@@ -75,6 +78,7 @@ public class MyFragment extends BaseFragment implements OnClickListener {
         rlHistory = getView(R.id.my_rl_history);
         rlCg = getView(R.id.my_fragment_cao_gao_rl);
         rlSetUp = getView(R.id.my_fragment_set_up_rl);
+        imaDay = getView(R.id.ima_day);
 
 
     }
@@ -86,6 +90,8 @@ public class MyFragment extends BaseFragment implements OnClickListener {
         rlHistory.setOnClickListener(this);
         rlCg.setOnClickListener(this);
         rlSetUp.setOnClickListener(this);
+        imaDay.setOnClickListener(this);
+
 
     }
 
@@ -109,6 +115,7 @@ public class MyFragment extends BaseFragment implements OnClickListener {
             case R.id.my_fragment_set_up_rl:
                 startActivity(new Intent(getContext(),SetUpActivity.class));
                 break;
+
         }
 
     }

@@ -61,7 +61,7 @@ import com.example.dllo.homemycar.adapter.RecommendLunBoAdapter;
 import com.example.dllo.homemycar.base.BaseFragment;
 import com.example.dllo.homemycar.entity.MoreEntity;
 import com.example.dllo.homemycar.entity.RecommendEntity;
-import com.example.dllo.homemycar.volleydemo.VolleySingleton;
+import com.example.dllo.homemycar.volley.VolleySingleton;
 import com.handmark.pulltorefresh.library.PullToRefreshBase;
 import com.handmark.pulltorefresh.library.PullToRefreshScrollView;
 import com.squareup.picasso.Picasso;

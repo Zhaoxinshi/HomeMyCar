@@ -19,13 +19,13 @@
             android:text="9月26日喜迎广7⃣️三菱产欧烂的'打败'回家"
             android:textSize="20sp" />
         <ImageView
+
+       android:layout_marginRight="10dp"
             android:id="@+id/item_century_ima"
             android:layout_marginTop="10dp"
-            android:layout_marginRight="10dp"
-            android:layout_toRightOf="@+id/item_century_title"
-            android:background="@mipmap/ic_launcher"
-            android:layout_width="160dp"
-            android:layout_height="60dp" />
+          android:layout_alignParentRight="true"
+            android:layout_width="wrap_content"
+            android:layout_height="wrap_content" />
 
     </RelativeLayout>
     <TextView

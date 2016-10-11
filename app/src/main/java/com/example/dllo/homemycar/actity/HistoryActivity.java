@@ -47,7 +47,7 @@ import android.support.v4.view.ViewPager;
 
 import com.example.dllo.homemycar.R;
 import com.example.dllo.homemycar.adapter.HistoryPageAdapter;
-
+import com.example.dllo.homemycar.custom.ThemeChangeUtil;
 
 
 /**
@@ -59,6 +59,7 @@ public class HistoryActivity extends FragmentActivity{
     @Override
     protected void onCreate(@Nullable Bundle savedInstanceState) {
         super.onCreate(savedInstanceState);
+        ThemeChangeUtil.changeTheme(this);
         setContentView(R.layout.history_ac);
         tabLayout = (TabLayout) findViewById(R.id.history_tab_layout);
         viewPager = (ViewPager) findViewById(R.id.history_view_pager);

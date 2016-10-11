@@ -50,9 +50,11 @@ import com.android.volley.Response;
 import com.android.volley.VolleyError;
 import com.example.dllo.homemycar.R;
 import com.example.dllo.homemycar.adapter.RecommendAllAdapter;
+import com.example.dllo.homemycar.custom.ThemeChangeUtil;
 import com.example.dllo.homemycar.entity.RecommendAllBean;
 import com.example.dllo.homemycar.entity.RecommendEntity;
-import com.example.dllo.homemycar.volleydemo.VolleySingleton;
+import com.example.dllo.homemycar.volley.VolleySingleton;
+
 
 /**
  * Created by dllo on 16/9/29.
@@ -64,6 +66,7 @@ public class RecommendActivity extends FragmentActivity {
     @Override
     protected void onCreate(@Nullable Bundle savedInstanceState) {
         super.onCreate(savedInstanceState);
+        ThemeChangeUtil.changeTheme(this);
         setContentView(R.layout.recommend_ac);
         initView();
         initData();

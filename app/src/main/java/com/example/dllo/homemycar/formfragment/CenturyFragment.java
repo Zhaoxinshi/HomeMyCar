@@ -62,7 +62,8 @@ import com.example.dllo.homemycar.base.BaseFragment;
 import com.example.dllo.homemycar.entity.CenturyEntity;
 import com.example.dllo.homemycar.entity.CenturySisterEntity;
 import com.example.dllo.homemycar.entity.Url;
-import com.example.dllo.homemycar.volleydemo.VolleySingleton;
+
+import com.example.dllo.homemycar.volley.VolleySingleton;
 import com.handmark.pulltorefresh.library.PullToRefreshBase;
 import com.handmark.pulltorefresh.library.PullToRefreshListView;
 
@@ -126,15 +127,12 @@ public class CenturyFragment extends BaseFragment implements OnClickListener {
             @Override
             public void onPullDownToRefresh(PullToRefreshBase<ListView> refreshView) {
                 Log.d("Sysout", "onRefresh");
-//                final CenturyAdapter adapter = new CenturyAdapter(getContext());
+
                 VolleySingleton.addRequest("http://223.99.255.20/clubnc.app.autohome.com.cn/club_v7.0.5/club/jingxuantopic.ashx?platud=2&categoryid=0&pageindex=1&pagesize=30&devicetype=android.1501_M02&deviceid=860954030358581&userid=0&operation=1&netstate=0&gps=38.889726%2C121.550943", CenturyEntity.class, new Response.Listener<CenturyEntity>() {
                     @Override
                     public void onResponse(CenturyEntity response) {
                         adapter.setEntity(response);
                         Log.d("内容", "response:" + response);
-//                        listView.setAdapter(adapter);
-//                        adapter.setEntity(response);
-                        // listView.setRefreshing(false);
                         listView.onRefreshComplete();
                         Log.d("Sysout", "asdf");
 
@@ -279,7 +277,7 @@ public class CenturyFragment extends BaseFragment implements OnClickListener {
                 String urlSi = Url.AUSLESE_URL;
                 Log.d("精挑细选", urlSi);
                 intentSi.putExtra("url", urlSi);
-                startActivity(new Intent(getContext(), CenturySsActivity.class));
+                startActivity(intentSi);
                 //精挑细选
                 break;
             case R.id.btn_sister:

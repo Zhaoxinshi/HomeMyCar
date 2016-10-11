@@ -49,12 +49,12 @@ public class LimitedBuyAdapter extends BaseAdapter {
 
     @Override
     public Object getItem(int position) {
-        return null;
+        return limitedBuyBean.getResult().getLimitedbuy().getLimitedbuyinfo().get(position);
     }
 
     @Override
     public long getItemId(int position) {
-        return 0;
+        return position;
     }
 
     @Override

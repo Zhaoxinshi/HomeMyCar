@@ -3,6 +3,19 @@
           package="com.example.dllo.homemycar">
     <uses-permission android:name="android.permission.INTERNET"/>
 
+    <uses-permission android:name="android.permission.GET_TASKS" />
+    <uses-permission android:name="android.permission.INTERNET" />
+    <uses-permission android:name="android.permission.ACCESS_WIFI_STATE" />
+    <uses-permission android:name="android.permission.ACCESS_NETWORK_STATE" />
+    <uses-permission android:name="android.permission.CHANGE_WIFI_STATE" />
+    <uses-permission android:name="android.permission.WRITE_EXTERNAL_STORAGE" />
+    <uses-permission android:name="android.permission.READ_PHONE_STATE" />
+    <uses-permission android:name="android.permission.MANAGE_ACCOUNTS"/>
+    <uses-permission android:name="android.permission.GET_ACCOUNTS"/>
+    <!-- 蓝牙分享所需的权限 -->
+    <uses-permission android:name="android.permission.BLUETOOTH" />
+    <uses-permission android:name="android.permission.BLUETOOTH_ADMIN" />
+
     <application
         android:name=".custom.MyApp"
         android:allowBackup="true"
@@ -17,6 +30,9 @@
                 <category android:name="android.intent.category.LAUNCHER"/>
             </intent-filter>
         </activity>
+
+
+
         <activity android:name=".actity.CenturyActivity"/>
         <activity android:name=".actity.AllActivity"/>
         <activity android:name=".actity.CollectActivity"/>
@@ -30,7 +46,13 @@
         <activity android:name=".formfragment.WebCenturyActivity"/>
         <activity android:name=".actity.MoreActivity"/>
         <activity android:name=".actity.RecommendActivity"/>
-        <activity android:name=".fragment.AddActivity"/>
+        <activity android:name=".actity.AddActivity"/>
+        <activity android:name=".actity.SourActivity"/>
+        <activity android:name=".actity.RadioSaleActivity"/>
+        <activity android:name=".recommendfragment.RecSameActivity"/>
+        <activity android:name=".actity.ItemWebViewActivity"/>
+
     </application>
+
 
 </manifest>

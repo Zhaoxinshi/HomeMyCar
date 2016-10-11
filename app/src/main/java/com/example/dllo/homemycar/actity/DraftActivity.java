@@ -44,6 +44,7 @@ import android.support.annotation.Nullable;
 import android.support.v4.app.FragmentActivity;
 
 import com.example.dllo.homemycar.R;
+import com.example.dllo.homemycar.custom.ThemeChangeUtil;
 
 /**
  * Created by dllo on 16/9/27.
@@ -52,6 +53,7 @@ public class DraftActivity extends FragmentActivity{
     @Override
     protected void onCreate(@Nullable Bundle savedInstanceState) {
         super.onCreate(savedInstanceState);
+        ThemeChangeUtil.changeTheme(this);
         setContentView(R.layout.drafr_ac);
     }
 }

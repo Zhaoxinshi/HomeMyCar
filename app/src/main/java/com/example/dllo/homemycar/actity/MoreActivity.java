@@ -39,9 +39,12 @@ package com.example.dllo.homemycar.actity; /*
          
         */
 
+import android.content.Intent;
 import android.os.Bundle;
 import android.support.annotation.Nullable;
 import android.support.v4.app.FragmentActivity;
+import android.support.v4.app.FragmentManager;
+import android.support.v4.app.FragmentTransaction;
 import android.support.v7.widget.GridLayoutManager;
 import android.support.v7.widget.RecyclerView;
 import android.support.v7.widget.helper.ItemTouchHelper;
@@ -53,22 +56,28 @@ import com.android.volley.Response;
 import com.android.volley.VolleyError;
 import com.example.dllo.homemycar.R;
 import com.example.dllo.homemycar.adapter.MoreActivityAdapter;
+import com.example.dllo.homemycar.custom.ThemeChangeUtil;
 import com.example.dllo.homemycar.entity.MoreEntity;
-import com.example.dllo.homemycar.volleydemo.VolleySingleton;
+import com.example.dllo.homemycar.fragment.RecommendAllFragment;
+import com.example.dllo.homemycar.volley.VolleySingleton;
+
 
 /**
  * Created by dllo on 16/9/29.
  */
 public class MoreActivity extends FragmentActivity {
+    public static final String POSITION = "com.example.dllo.homemycar.actity.POSITION";
     private RecyclerView recyclerView;
     private MoreActivityAdapter activityAdapter;
     private ItemTouchHelper mHelper;
     private ImageView imaBack;
+    private RecommendAllFragment recommendAllFragment;
 
 
     @Override
     protected void onCreate(@Nullable Bundle savedInstanceState) {
         super.onCreate(savedInstanceState);
+        ThemeChangeUtil.changeTheme(this);
         setContentView(R.layout.more_ac);
         initView();
         initData();
@@ -82,7 +91,6 @@ public class MoreActivity extends FragmentActivity {
     }
 
 
-
     private void initData() {
         imaBack.setOnClickListener(new View.OnClickListener() {
             @Override
@@ -93,7 +101,6 @@ public class MoreActivity extends FragmentActivity {
         activityAdapter = new MoreActivityAdapter(this);
         GridLayoutManager manager = new GridLayoutManager(this, 3);
         recyclerView.setLayoutManager(manager);
-//        final List<MoreEntity> entities = new ArrayList<>();
         ItemTouchHelper.Callback callback = createCallback();
         mHelper = new ItemTouchHelper(callback);
         mHelper.attachToRecyclerView(recyclerView);
@@ -101,9 +108,29 @@ public class MoreActivity extends FragmentActivity {
             @Override
             public void onItemClick(View view, MoreActivityAdapter.MoreViewHolder holder, int position) {
                 Toast.makeText(MoreActivity.this, "position:" + position, Toast.LENGTH_SHORT).show();
+                FragmentManager fragmentManager = getSupportFragmentManager();
+                FragmentTransaction fragmentTransaction = fragmentManager.beginTransaction();
+                recommendAllFragment = new RecommendAllFragment();
+                fragmentTransaction.replace(R.id.more_ac_fragment, recommendAllFragment);
+                fragmentTransaction.commit();
+                finish();
+                Intent intentPosition = new Intent();
+                intentPosition.setAction(POSITION);
+                intentPosition.putExtra("position", position+1);
+                sendBroadcast(intentPosition);
+
+
+
+
+
+
+
+
+
+
+
             }
         });
-
 
 
         VolleySingleton.addRequest("http://news.app.autohome.com.cn/shouye_v7.0.0/mobile/metadata.ashx?a=2&pm=2&v=7.0.7&types=newstype%7C636002832282225908%2Cvideotype%7C636002832282225908", MoreEntity.class, new Response.Listener<MoreEntity>() {
@@ -111,8 +138,8 @@ public class MoreActivity extends FragmentActivity {
             public void onResponse(MoreEntity response) {
                 activityAdapter.setEntity(response);
                 recyclerView.setAdapter(activityAdapter);
-               // entities.add(response);
-               // activityAdapter.setEntityList(entities);
+                // entities.add(response);
+                // activityAdapter.setEntityList(entities);
 
             }
         }, new Response.ErrorListener() {
@@ -122,8 +149,6 @@ public class MoreActivity extends FragmentActivity {
             }
         });
     }
-
-
 
 
     private ItemTouchHelper.Callback createCallback() {
@@ -175,5 +200,5 @@ public class MoreActivity extends FragmentActivity {
             }
         };
     }
-    }
+}
 

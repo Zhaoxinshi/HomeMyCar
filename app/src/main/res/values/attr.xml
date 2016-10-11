@@ -1,0 +1,9 @@
+<?xml version="1.0" encoding="utf-8"?>
+<resources>
+    <attr name="contentStyle" format="reference" />
+    <attr name="titleStyle" format="reference" />
+    <attr name="buttonBg" format="reference|color" />
+    <attr name="buttonTextColor" format="reference|color" />
+    <attr name="checkTextColor" format="reference|color" />
+    <attr name="switchTextColor" format="reference|color" />
+</resources>

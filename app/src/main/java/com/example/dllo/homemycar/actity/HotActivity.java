@@ -50,8 +50,10 @@ import com.android.volley.Response;
 import com.android.volley.VolleyError;
 import com.example.dllo.homemycar.R;
 import com.example.dllo.homemycar.adapter.HotAtAdapter;
+import com.example.dllo.homemycar.custom.ThemeChangeUtil;
 import com.example.dllo.homemycar.entity.HotEntity;
-import com.example.dllo.homemycar.volleydemo.VolleySingleton;
+import com.example.dllo.homemycar.volley.VolleySingleton;
+
 
 /**
  * Created by dllo on 16/9/27.
@@ -64,6 +66,7 @@ public class HotActivity extends FragmentActivity {
     @Override
     protected void onCreate(@Nullable Bundle savedInstanceState) {
         super.onCreate(savedInstanceState);
+        ThemeChangeUtil.changeTheme(this);
         setContentView(R.layout.hot_ac);
         listView = (ListView) findViewById(R.id.hot_ac_lv);
         imaBack = (ImageView) findViewById(R.id.hot_back);

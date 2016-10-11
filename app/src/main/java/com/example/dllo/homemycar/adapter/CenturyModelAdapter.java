@@ -95,7 +95,7 @@ public class CenturyModelAdapter extends BaseAdapter {
         }
         holder.tvTitle.setText(entity.getResult().getList().get(i).getTitle());
         holder.tvQuarter.setText(entity.getResult().getList().get(i).getBbsname());
-//        holder.tvTie.setText(entity.getResult().getList().get(i).getBbsid());
+        holder.tvTie.setText(entity.getResult().getList().get(i).getBbsid()+""+"回帖");
         Picasso.with(context).load(entity.getResult().getList().get(i).getSmallpic()).into(holder.ima);
         return view;
     }

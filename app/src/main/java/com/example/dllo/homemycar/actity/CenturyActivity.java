@@ -46,10 +46,12 @@ import android.util.Log;
 import android.view.View;
 import android.widget.AdapterView;
 import android.widget.AdapterView.OnItemClickListener;
+import android.widget.ImageView;
 import android.widget.ListView;
 
 import com.example.dllo.homemycar.R;
 import com.example.dllo.homemycar.adapter.CenturyActivityAdapter;
+import com.example.dllo.homemycar.custom.ThemeChangeUtil;
 import com.example.dllo.homemycar.entity.CenturyBean;
 import com.example.dllo.homemycar.entity.Url;
 
@@ -61,23 +63,25 @@ import java.util.ArrayList;
 public class CenturyActivity extends FragmentActivity {
     private ListView listView;
     private ArrayList<CenturyBean> strings;
+    private ImageView imaBack;
 
     @Override
     protected void onCreate(Bundle savedInstanceState) {
         super.onCreate(savedInstanceState);
+        ThemeChangeUtil.changeTheme(this);
         setContentView(R.layout.century_activity);
         listView = (ListView) findViewById(R.id.ac_century_lv);
+        imaBack = (ImageView) findViewById(R.id.ima_backs);
+        imaBack.setOnClickListener(new View.OnClickListener() {
+            @Override
+            public void onClick(View view) {
+                finish();
+            }
+        });
         String[] tv = this.getResources().getStringArray(R.array.alls);
         strings = new ArrayList<>();
         CenturyActivityAdapter adapter = new CenturyActivityAdapter(this);
         listView.setAdapter(adapter);
-//        listView.setOnItemClickListener(new OnItemClickListener() {
-//            @Override
-//            public void onItemClick(AdapterView<?> adapterView, View view, int i, long l) {
-//                Intent intent = new Intent(CenturyActivity.this,AllActivity.class);
-//                startActivity(intent);
-//            }
-//        });
 
         for (int i = 0; i < tv.length; i++) {
             CenturyBean bean = new CenturyBean();
@@ -85,9 +89,6 @@ public class CenturyActivity extends FragmentActivity {
             strings.add(bean);
         }
         adapter.setStrings(strings);
-//        View headView = LayoutInflater.from(this).inflate(R.layout.head_century,null);
-//        listView.addHeaderView(headView);
-//        String [] urlList = {Url.WIFE_MODEL_URL,Url.NOTORIOUS_URL};
 
         final ArrayList<String> list = new ArrayList<>();
         list.add( Url.WIFE_MODEL_URL);
