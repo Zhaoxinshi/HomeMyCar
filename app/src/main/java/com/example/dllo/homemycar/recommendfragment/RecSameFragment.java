@@ -110,7 +110,7 @@ public class RecSameFragment extends BaseFragment {
                         int id = response.getResult().getNewslist().get(i).getId();
                         String url = "http://cont.app.autohome.com.cn/autov4.2.5/content/News/newscontent-a2-pm1-v4.2.5-n"+id+"-lz0-sp0-nt0-sa1-p0-c1-fs0-cw320.html\n";
                         Log.d("公司大牛", url);
-                        Intent intent = new Intent(getContext(),RecSameActivity.class);
+                        Intent intent = new Intent(getContext(), com.example.dllo.homemycar.recommendfragment.RecSameActivity.class);
                         intent.putExtra("da",url);
                         startActivity(intent);
 

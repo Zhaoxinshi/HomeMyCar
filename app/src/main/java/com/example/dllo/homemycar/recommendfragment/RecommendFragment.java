@@ -46,27 +46,22 @@ import android.support.v4.view.ViewPager;
 import android.util.Log;
 import android.view.View;
 import android.widget.AdapterView;
-import android.widget.ImageView;
 import android.widget.ScrollView;
-import android.widget.TextView;
 
 import com.android.volley.Response;
 import com.android.volley.Response.ErrorListener;
 import com.android.volley.Response.Listener;
 import com.android.volley.VolleyError;
 import com.example.dllo.homemycar.R;
-import com.example.dllo.homemycar.actity.MoreActivity;
 import com.example.dllo.homemycar.custom.GridViews;
 
 import com.example.dllo.homemycar.adapter.RecommendAllGridAdapter;
 import com.example.dllo.homemycar.adapter.RecommendLunBoAdapter;
 import com.example.dllo.homemycar.base.BaseFragment;
-import com.example.dllo.homemycar.entity.MoreEntity;
 import com.example.dllo.homemycar.entity.RecommendEntity;
 import com.example.dllo.homemycar.volley.VolleySingleton;
 import com.handmark.pulltorefresh.library.PullToRefreshBase;
 import com.handmark.pulltorefresh.library.PullToRefreshScrollView;
-import com.squareup.picasso.Picasso;
 
 /**
  * Created by dllo on 16/9/19.
@@ -116,7 +111,7 @@ public class RecommendFragment extends BaseFragment {
                                 +"-lz0-sp0-nt0-sa1-p0-c1-fs0-cw320.html\n";
                         Log.d("飞吧", url);
 
-                        Intent intent = new Intent(getContext(),RecommendWebActivity.class);
+                        Intent intent = new Intent(getContext(), com.example.dllo.homemycar.recommendfragment.RecommendWebActivity.class);
                         intent.putExtra("recommend",url);
                         startActivity(intent);
 

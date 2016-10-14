@@ -48,10 +48,10 @@ import android.database.sqlite.SQLiteOpenHelper;
  */
 public class DateBaseHelper extends SQLiteOpenHelper {
     private static final String collect = "create table collect(_id integer primary key autoincrement,"+
-            "name text , phone integer);";
+            " url text );";
 
     public DateBaseHelper(Context context) {
-        super(context, "datebase.db", null, 1);
+        super(context, "databases.db", null, 1);
     }
 
     @Override

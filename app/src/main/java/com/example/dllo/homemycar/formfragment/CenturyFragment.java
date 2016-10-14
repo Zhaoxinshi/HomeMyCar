@@ -55,12 +55,12 @@ import com.android.volley.VolleyError;
 
 import com.example.dllo.homemycar.R;
 import com.example.dllo.homemycar.actity.CenturyActivity;
+import com.example.dllo.homemycar.actity.CenturySsActivity;
 import com.example.dllo.homemycar.actity.HotActivity;
+import com.example.dllo.homemycar.actity.WebCenturyActivity;
 import com.example.dllo.homemycar.adapter.CenturyAdapter;
-import com.example.dllo.homemycar.adapter.CenturySisterAdapter;
 import com.example.dllo.homemycar.base.BaseFragment;
 import com.example.dllo.homemycar.entity.CenturyEntity;
-import com.example.dllo.homemycar.entity.CenturySisterEntity;
 import com.example.dllo.homemycar.entity.Url;
 
 import com.example.dllo.homemycar.volley.VolleySingleton;

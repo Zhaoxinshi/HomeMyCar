@@ -40,7 +40,7 @@
         android:maxLines="2"
         android:text="这台合资小测出了配置高还有啥"
         android:textColor="@android:color/black"
-        android:textSize="23sp" />
+        android:textSize="18sp" />
 
     <ImageView
         android:id="@+id/item_ample_fragment_ima"

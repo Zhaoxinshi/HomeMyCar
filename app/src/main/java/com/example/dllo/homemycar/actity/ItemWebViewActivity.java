@@ -41,6 +41,7 @@ package com.example.dllo.homemycar.actity; /*
 
 import android.app.Activity;
 import android.content.Intent;
+import android.util.Log;
 import android.view.View;
 import android.webkit.WebView;
 import android.webkit.WebViewClient;
@@ -63,7 +64,6 @@ public class ItemWebViewActivity extends BaseActivity {
     private WebView webView;
     private ImageView imageView, imaCollect;
     private String url;
-    private LiteOrm liteOrm;
     private DateBaseTool tool;
 
     @Override
@@ -95,16 +95,16 @@ public class ItemWebViewActivity extends BaseActivity {
                 showShare();
             }
         });
-        liteOrm = liteOrm.newSingleInstance(this, "mDateBase.db");
+
         tool = new DateBaseTool(this);
         imaCollect.setOnClickListener(new View.OnClickListener() {
             @Override
             public void onClick(View view) {
                 CollectEntity entity = new CollectEntity();
                 entity.setUrl(url);
+                Log.d("插入的url", "entity:" + entity);
                 tool.insert(entity);
                 Toast.makeText(ItemWebViewActivity.this, "是", Toast.LENGTH_SHORT).show();
-
 
             }
         });

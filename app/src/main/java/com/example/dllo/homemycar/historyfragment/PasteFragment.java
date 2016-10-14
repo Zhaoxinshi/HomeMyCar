@@ -57,7 +57,7 @@ import java.util.List;
  */
 public class PasteFragment extends BaseFragment {
     private DateBaseTool tool;
-    private List<CollectEntity> entityList;
+
 
     @Override
     protected int setlayout() {
@@ -73,16 +73,15 @@ public class PasteFragment extends BaseFragment {
     @Override
     protected void initData() {
         tool = new DateBaseTool(getContext());
-        entityList = new ArrayList<>();
 
         Cursor cursor = tool.query();
-        if (cursor!=null&&cursor.moveToFirst()) {
+        if (cursor != null && cursor.moveToFirst()) {
             int indexUrl = cursor.getColumnIndex("url");
             do {
                 String url = cursor.getString(indexUrl);
                 Log.d("我操你妈", url);
 
-            }while (cursor.moveToNext());
+            } while (cursor.moveToNext());
             cursor.close();
 
         }

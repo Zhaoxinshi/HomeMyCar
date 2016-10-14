@@ -8,14 +8,11 @@ import android.widget.RadioButton;
 
 import com.example.dllo.homemycar.R;
 import com.example.dllo.homemycar.base.BaseActivity;
-import com.example.dllo.homemycar.custom.ThemeChangeUtil;
 import com.example.dllo.homemycar.fragment.FindCarFragment;
 import com.example.dllo.homemycar.fragment.FormFragment;
 import com.example.dllo.homemycar.fragment.MyFragment;
 import com.example.dllo.homemycar.fragment.RadioSaleFragment;
 import com.example.dllo.homemycar.fragment.RecommendAllFragment;
-import com.example.dllo.homemycar.recommendfragment.RecommendFragment;
-
 
 
 public class MainActivity extends BaseActivity implements OnClickListener {

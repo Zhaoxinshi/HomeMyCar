@@ -46,6 +46,8 @@ import android.support.v4.app.Fragment;
 import java.util.ArrayList;
 import java.util.List;
 
+import cn.jpush.android.api.JPushInterface;
+
 /**
  * Created by dllo on 16/8/2.
  */
@@ -59,6 +61,8 @@ public class MyApp extends Application {
         super.onCreate();
         context = this;
         sFragments = new ArrayList<>();
+        JPushInterface.setDebugMode(true); 	// 设置开启日志,发布时请关闭日志
+        JPushInterface.init(this);     		// 初始化 JPush
     }
     public static Context getContext(){
         return context;

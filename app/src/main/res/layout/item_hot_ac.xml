@@ -11,8 +11,8 @@
 
         <ImageView
             android:id="@+id/item_hot_ima"
-            android:layout_width="wrap_content"
-            android:layout_height="wrap_content"
+            android:layout_width="30dp"
+            android:layout_height="30dp"
             android:layout_margin="10dp"
           />
 
@@ -52,7 +52,7 @@
         android:layout_marginTop="10dp"
         android:maxLines="2"
         android:text="9月26日喜迎广7⃣️三菱产欧烂的'打败'回家"
-        android:textSize="20sp" />
+        android:textSize="18sp" />
     <TextView
         android:textColor="@android:color/darker_gray"
         android:textSize="18sp"

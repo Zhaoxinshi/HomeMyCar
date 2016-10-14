@@ -81,6 +81,7 @@ public class SourActivity extends FragmentActivity {
             @Override
             public void onClick(View view) {
                 editText.getText().clear();
+                listView.setVisibility(View.GONE);
 
             }
         });
@@ -117,8 +118,10 @@ public class SourActivity extends FragmentActivity {
 
                 if (s.length() == 0) {
                     ima.setVisibility(View.GONE);
+                    listView.setVisibility(View.GONE);
                 } else {
                     ima.setVisibility(View.VISIBLE);
+                    listView.setVisibility(View.VISIBLE);
                 }
                 innitRequestInternet(s);
 

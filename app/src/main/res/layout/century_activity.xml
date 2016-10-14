@@ -10,15 +10,15 @@
         <ImageView
             android:id="@+id/ima_backs"
             android:layout_gravity="center"
-            android:layout_width="wrap_content"
-            android:layout_height="wrap_content"
+            android:layout_width="30dp"
+            android:layout_height="30dp"
             android:background="@mipmap/back"/>
         <RelativeLayout android:layout_width="match_parent"
             android:layout_height="match_parent">
             <TextView
                 android:textColor="@android:color/black"
                 android:gravity="center"
-                android:textSize="27sp"
+                android:textSize="20sp"
                 android:layout_width="match_parent"
                 android:layout_height="match_parent"
                 android:text="精选推荐"/>
