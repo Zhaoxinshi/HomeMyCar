@@ -8,9 +8,10 @@
                   android:orientation="horizontal"
                   android:layout_height="60dp">
         <ImageView
+            android:id="@+id/history_ima_back"
             android:layout_marginLeft="10dp"
             android:layout_gravity="center_vertical"
-            android:background="@mipmap/ahlib_arrow_next"
+            android:background="@mipmap/back"
             android:layout_width="30dp"
             android:layout_height="30dp"/>
         <TextView

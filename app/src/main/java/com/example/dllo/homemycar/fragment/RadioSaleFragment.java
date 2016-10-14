@@ -61,6 +61,7 @@ import com.example.dllo.homemycar.actity.AddActivity;
 import com.example.dllo.homemycar.actity.RadioSaleActivity;
 import com.example.dllo.homemycar.adapter.LimitedBuyAdapter;
 import com.example.dllo.homemycar.adapter.RvServiceAdapter;
+import com.example.dllo.homemycar.custom.DividerItemDecoration;
 import com.example.dllo.homemycar.custom.GridViews;
 import com.example.dllo.homemycar.custom.HorizontialListView;
 
@@ -216,6 +217,7 @@ public class RadioSaleFragment extends BaseFragment {
                     public void onResponse(FindEntity response) {
                         adapter.setEntity(response);
                         gridViews.setAdapter(adapter);
+
                     }
                 }, new Response.ErrorListener() {
                     @Override
@@ -257,6 +259,8 @@ public class RadioSaleFragment extends BaseFragment {
     private void initLike() {
         final LikeRecyclerViewAdapter adapter = new LikeRecyclerViewAdapter(getContext());
         recyclerViewLike.setLayoutManager(new GridLayoutManager(getContext(), 2));
+        recyclerViewLike.addItemDecoration(new DividerItemDecoration(getContext(),RecyclerView.VERTICAL));
+        recyclerViewLike.addItemDecoration(new DividerItemDecoration(getContext(),RecyclerView.HORIZONTAL));
         VolleySingleton.addRequest("http://223.99.255.20/mobilenc.app.autohome.com.cn/discover_v5.8.0/mall/intelligentrecommend.ashx?a=2&pm=2&v=5.9.0&uid=0&deviceid=860482030794407&gps=38.889662,121.551011&cityid=210200&pid=210000&pageindex=1&pagesize=20&hid=\"",
                 FindEntity.class, new Response.Listener<FindEntity>() {
                     @Override

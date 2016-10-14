@@ -4,6 +4,7 @@
               android:layout_width="match_parent"
               android:layout_height="match_parent">
     <ImageView
+        android:id="@+id/ima_back_iv"
         android:layout_margin="10dp"
         android:background="@mipmap/back"
         android:layout_width="50dp"

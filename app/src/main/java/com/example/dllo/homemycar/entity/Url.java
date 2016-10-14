@@ -22,6 +22,9 @@ public class Url {
 //    public static final String TRAVEL_URL = "http://app.api.autohome.com.cn/autov4.8.8/news/newslist-pm1-c0-nt100-p1-s30-l0.json";//游记
 //    public static final String ORIGINAL_VIDEO_URL = "http://app.api.autohome.com.cn/autov4.8.8/news/videolist-pm1-vt8-s30-lastid0.json";//原创视频
     public static final String LOBBYISTS_URL = "http://app.api.autohome.com.cn/autov4.8.8/news/shuokelist-pm1-s30-lastid0.json";//说客
+    public static final String YOUCHUANG = "http://news.app.autohome.com.cn/news_v6.1.0/newspf/NPNewsList.ashx?a=2&pm=2&v=6.1.0&au=&type=3&lastid=&lastuid=0&size=30\n";
+
+
 
     //发现页的URL
     public static final String DISCOVERY_PAGE = "http://223.99.255.20/mobile.app.autohome.com.cn/discover_v7.0.0/mobile/getcardlist.ashx?a=2&pm=1&v=7.0.0&uid=&deviceid=021676cd548e5cf2b6149c916a767228fac74da0&pid=0&cid=0&state=1&pageindex=1&pagesize=20&lat=0.000000&lng=0.000000&hid=";

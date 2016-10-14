@@ -1,0 +1,85 @@
+<?xml version="1.0" encoding="utf-8"?>
+<RelativeLayout xmlns:android="http://schemas.android.com/apk/res/android"
+    android:layout_width="match_parent"
+    android:layout_height="match_parent">
+
+    <RelativeLayout
+        android:id="@+id/item_ample_rl"
+        android:layout_width="match_parent"
+        android:layout_height="wrap_content"
+        android:orientation="horizontal"
+        android:padding="10dp">
+
+        <ImageView
+            android:id="@+id/item_ample_fragment_ima_author"
+            android:layout_width="40dp"
+            android:layout_height="40dp"
+            android:layout_centerVertical="true"
+            android:layout_marginLeft="10dp" />
+
+        <TextView
+            android:id="@+id/item_ample_fragment_tv_cicle"
+            android:layout_width="wrap_content"
+            android:layout_height="wrap_content"
+            android:layout_centerVertical="true"
+            android:layout_marginLeft="20dp"
+            android:layout_toRightOf="@+id/item_ample_fragment_ima_author"
+            android:text="汽车洋葱圈"
+            android:textColor="@android:color/holo_blue_dark"
+            android:textSize="15sp" />
+
+    </RelativeLayout>
+
+    <TextView
+        android:id="@+id/item_ample_fragment_tv_title"
+        android:layout_width="wrap_content"
+        android:layout_height="wrap_content"
+        android:layout_below="@id/item_ample_rl"
+        android:layout_marginLeft="80dp"
+        android:maxLength="13"
+        android:maxLines="2"
+        android:text="这台合资小测出了配置高还有啥"
+        android:textColor="@android:color/black"
+        android:textSize="23sp" />
+
+    <ImageView
+        android:id="@+id/item_ample_fragment_ima"
+        android:layout_width="wrap_content"
+        android:layout_height="wrap_content"
+        android:layout_below="@+id/item_ample_fragment_tv_title"
+        android:layout_marginLeft="80dp"
+        android:layout_marginTop="10dp" />
+
+    <RelativeLayout
+        android:layout_width="match_parent"
+        android:layout_height="40dp"
+        android:layout_below="@+id/item_ample_fragment_ima">
+
+        <TextView
+            android:id="@+id/item_ample_fragment_tv_date"
+            android:layout_width="wrap_content"
+            android:layout_height="wrap_content"
+            android:layout_centerVertical="true"
+            android:layout_marginLeft="80dp" />
+
+        <TextView
+            android:id="@+id/item_ample_fragment_tv_rey"
+            android:layout_width="wrap_content"
+            android:layout_height="wrap_content"
+            android:layout_alignParentRight="true"
+            android:layout_centerVertical="true"
+            android:layout_marginRight="65dp" />
+
+        <TextView
+            android:id="@+id/item_ample_fragment_tv_zan"
+            android:layout_width="wrap_content"
+            android:layout_height="wrap_content"
+            android:layout_alignParentRight="true"
+            android:layout_centerVertical="true"
+            android:layout_marginRight="20dp" />
+
+
+    </RelativeLayout>
+
+
+</RelativeLayout>

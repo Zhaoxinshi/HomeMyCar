@@ -43,7 +43,9 @@ import android.content.Intent;
 import android.os.Handler.Callback;
 import android.os.Message;
 import android.support.v4.view.ViewPager;
+import android.util.Log;
 import android.view.View;
+import android.widget.AdapterView;
 import android.widget.ImageView;
 import android.widget.ScrollView;
 import android.widget.TextView;
@@ -80,6 +82,7 @@ public class RecommendFragment extends BaseFragment {
     private boolean mm = true;
 
     private GridViews gridViews;
+    private String url;
 
 
     @Override
@@ -101,6 +104,32 @@ public class RecommendFragment extends BaseFragment {
 
     @Override
     protected void initData() {
+        gridViews.setOnItemClickListener(new AdapterView.OnItemClickListener() {
+            @Override
+            public void onItemClick(AdapterView<?> adapterView, View view, final int i, long l) {
+
+                VolleySingleton.addRequest("http://app.api.autohome.com.cn/autov4.8.8/news/newslist-pm1-c0-nt0-p1-s30-l0.json\n",RecommendEntity.class, new Listener<RecommendEntity>() {
+                    @Override
+                    public void onResponse(RecommendEntity response) {
+                        int u = response.getResult().getNewslist().get(i).getId();
+                        url = "http://cont.app.autohome.com.cn/autov4.2.5/content/News/newscontent-a2-pm1-v4.2.5-n"+u
+                                +"-lz0-sp0-nt0-sa1-p0-c1-fs0-cw320.html\n";
+                        Log.d("飞吧", url);
+
+                        Intent intent = new Intent(getContext(),RecommendWebActivity.class);
+                        intent.putExtra("recommend",url);
+                        startActivity(intent);
+
+                    }
+                }, new ErrorListener() {
+                    @Override
+                    public void onErrorResponse(VolleyError error) {
+                        error.getMessage();
+                    }
+                });
+
+            }
+        });
         scrollView.setOnRefreshListener(new PullToRefreshBase.OnRefreshListener2<ScrollView>() {
             @Override
             public void onPullDownToRefresh(PullToRefreshBase<ScrollView> refreshView) {

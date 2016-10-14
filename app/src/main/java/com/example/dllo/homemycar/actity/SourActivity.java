@@ -45,6 +45,7 @@ import android.support.v4.app.FragmentActivity;
 import android.text.Editable;
 import android.text.TextWatcher;
 import android.view.View;
+import android.widget.AdapterView;
 import android.widget.EditText;
 import android.widget.ImageView;
 import android.widget.ListView;
@@ -66,6 +67,7 @@ public class SourActivity extends FragmentActivity {
     private ListView listView;
     private SearchAdapter adapter;
     private TextView tvBack;
+    private ImageView imaDelete;
     @Override
     protected void onCreate(@Nullable Bundle savedInstanceState) {
         super.onCreate(savedInstanceState);
@@ -74,11 +76,26 @@ public class SourActivity extends FragmentActivity {
         ima = (ImageView) findViewById(R.id.recommed_search_activity_img);
         listView = (ListView) findViewById(R.id.searchactivity_lisrview);
         tvBack = (TextView) findViewById(R.id.tv_back);
+        imaDelete = (ImageView) findViewById(R.id.recommed_search_activity_img);
+        imaDelete.setOnClickListener(new View.OnClickListener() {
+            @Override
+            public void onClick(View view) {
+                editText.getText().clear();
+
+            }
+        });
         initEdtext();
         tvBack.setOnClickListener(new View.OnClickListener() {
             @Override
             public void onClick(View view) {
                 finish();
+            }
+        });
+        listView.setOnItemClickListener(new AdapterView.OnItemClickListener() {
+            @Override
+            public void onItemClick(AdapterView<?> adapterView, View view, int i, long l) {
+
+
             }
         });
     }
@@ -135,6 +152,7 @@ public class SourActivity extends FragmentActivity {
                 }
             });
         }
+
     }
 
 

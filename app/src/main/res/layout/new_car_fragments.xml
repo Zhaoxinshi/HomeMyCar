@@ -23,7 +23,7 @@
         android:textColor="#000000"
         android:textSize="30sp" />
     <LinearLayout
-        android:layout_marginRight="15dp"
+        android:layout_marginRight="5dp"
         android:layout_alignParentRight="true"
         android:id="@+id/ll_new_car"
         android:layout_width="wrap_content"

@@ -29,4 +29,6 @@ dependencies {
     compile 'com.google.code.gson:gson:2.2.4'
     compile 'eu.the4thfloor.volley:com.android.volley:2015.05.28'
     compile project(':library')
+    compile files('libs/lite-orm-1.9.2.jar')
+    compile files('libs/ShareSDK-Core-2.7.7.jar')
 }

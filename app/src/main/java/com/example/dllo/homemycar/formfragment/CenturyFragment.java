@@ -80,6 +80,7 @@ public class CenturyFragment extends BaseFragment implements OnClickListener {
     private View headHotView;
     private LinearLayout headLl;
     private CenturyAdapter adapter;
+    private int number;
 
     @Override
     protected int setlayout() {
@@ -90,6 +91,7 @@ public class CenturyFragment extends BaseFragment implements OnClickListener {
     protected void initView() {
         listView = getView(R.id.century_list_view);
 //        tvAll.setOnClickListener(this);
+        listView.setMode(PullToRefreshBase.Mode.BOTH);
 
 
     }
@@ -97,6 +99,7 @@ public class CenturyFragment extends BaseFragment implements OnClickListener {
 
     @Override
     protected void initData() {
+
 
         VolleySingleton.addRequest("http://223.99.255.20/clubnc.app.autohome.com.cn/club_v7.0.5/club/jingxuantopic.ashx?platud=2&categoryid=0&pageindex=1&pagesize=30&devicetype=android.1501_M02&deviceid=860954030358581&userid=0&operation=1&netstate=0&gps=38.889726%2C121.550943", CenturyEntity.class, new Response.Listener<CenturyEntity>() {
             @Override
@@ -146,12 +149,30 @@ public class CenturyFragment extends BaseFragment implements OnClickListener {
                 });
 //                listView.onRefreshComplete();
                 //   listView.setRefreshing(false);
+
             }
 
             @Override
             public void onPullUpToRefresh(PullToRefreshBase<ListView> refreshView) {
 
+                number = number +1;
+                String url = "http://223.99.255.20/clubnc.app.autohome.com.cn/club_v7.0.5/club/jingxuantopic.ashx?platud="+number+"&categoryid=0&pageindex=1&pagesize=30&devicetype=android.1501_M02&deviceid=860954030358581&userid=0&operation=1&netstate=0&gps=38.889726%2C121.550943";
+                VolleySingleton.addRequest(url,CenturyEntity.class, new Response.Listener<CenturyEntity>() {
+                    @Override
+                    public void onResponse(CenturyEntity response) {
+                        adapter.setEntitys(response);
+                        listView.onRefreshComplete();
+
+                    }
+                }, new Response.ErrorListener() {
+                    @Override
+                    public void onErrorResponse(VolleyError error) {
+                        error.getMessage();
+                        listView.onRefreshComplete();
+                    }
+                });
             }
+
         });
 
 
@@ -214,22 +235,6 @@ public class CenturyFragment extends BaseFragment implements OnClickListener {
 
     }
 
-    private void request(String url) {
-        final CenturySisterAdapter adapter = new CenturySisterAdapter(getContext());
-        VolleySingleton.addRequest(url, CenturySisterEntity.class, new Response.Listener<CenturySisterEntity>() {
-            @Override
-            public void onResponse(CenturySisterEntity response) {
-
-                adapter.setEntity(response);
-
-            }
-        }, new Response.ErrorListener() {
-            @Override
-            public void onErrorResponse(VolleyError error) {
-
-            }
-        });
-    }
 
 
     @Override

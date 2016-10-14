@@ -7,12 +7,12 @@
     <ImageView
         android:layout_centerVertical="true"
         android:id="@+id/item_radio_sale_ima"
-        android:layout_width="wrap_content"
-        android:layout_height="wrap_content"
-        android:background="@mipmap/ic_launcher"/>
+        android:layout_width="90dp"
+        android:layout_height="90dp" />
 
     <RelativeLayout
        android:gravity="center"
+        android:background="@android:color/white"
       android:layout_marginRight="20dp"
        android:layout_marginTop="10dp"
         android:layout_width="match_parent"
@@ -25,12 +25,13 @@
             android:maxLines="2"
             android:text="东风标志"
             android:textColor="@android:color/black"
-            android:textSize="20sp"/>
+            android:textSize="17sp"/>
         <RelativeLayout
             android:layout_below="@+id/item_radio_sale_tv_title"
             android:layout_width="wrap_content"
             android:layout_height="wrap_content">
             <TextView
+                android:layout_marginTop="10dp"
                 android:maxLines="1"
                 android:id="@+id/item_radio_sale_tv_preferential"
                 android:layout_width="wrap_content"
@@ -42,11 +43,14 @@
                 android:layout_height="wrap_content"
                 android:orientation="horizontal">
                 <TextView
+                    android:layout_marginTop="10dp"
                     android:id="@+id/item_radio_sale_tv_low_price"
                     android:layout_width="wrap_content"
                     android:layout_height="wrap_content"
                     android:text="dasdasdasd"/>
                 <TextView
+                    android:layout_marginLeft="5dp"
+                    android:layout_marginTop="10dp"
                     android:id="@+id/item_radio_sale_tv_up_price"
                     android:layout_width="wrap_content"
                     android:layout_height="wrap_content"

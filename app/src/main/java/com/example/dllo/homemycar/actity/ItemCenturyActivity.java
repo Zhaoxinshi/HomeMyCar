@@ -106,9 +106,6 @@ public class ItemCenturyActivity extends BaseActivity {
             public void onItemClick(AdapterView<?> adapterView, View view, final int i, long l) {
 
 
-
-
-
                 VolleySingleton.addRequest(url,CenturySisterEntity.class, new Response.Listener<CenturySisterEntity>() {
                     @Override
                     public void onResponse(CenturySisterEntity response) {

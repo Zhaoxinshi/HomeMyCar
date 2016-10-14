@@ -1,8 +1,9 @@
 <?xml version="1.0" encoding="utf-8"?>
 <LinearLayout xmlns:android="http://schemas.android.com/apk/res/android"
+    android:layout_marginTop="10dp"
     android:layout_width="match_parent"
     android:layout_marginBottom="6dp"
-    android:layout_height="match_parent"
+    android:layout_height="wrap_content"
     android:orientation="vertical">
 
     <TextView
@@ -15,17 +16,20 @@
         android:layout_height="wrap_content" />
 
     <ImageView
+        android:scaleType="fitXY"
         android:layout_marginTop="5dp"
         android:id="@+id/item_letter_ima"
         android:layout_width="match_parent"
-        android:layout_height="wrap_content" />
+        android:layout_height="180dp" />
 
     <RelativeLayout
+        android:layout_marginBottom="10dp"
         android:layout_width="match_parent"
         android:layout_height="wrap_content"
         android:layout_marginTop="5dp">
 
         <TextView
+            android:layout_marginLeft="20dp"
             android:id="@+id/item_letter_tv"
             android:layout_width="wrap_content"
             android:layout_height="wrap_content"

@@ -40,6 +40,7 @@ package com.example.dllo.homemycar.actity; /*
         */
 
 import android.content.Intent;
+import android.graphics.Color;
 import android.os.Bundle;
 import android.support.annotation.Nullable;
 import android.support.v4.app.FragmentActivity;
@@ -48,6 +49,7 @@ import android.support.v4.app.FragmentTransaction;
 import android.support.v7.widget.GridLayoutManager;
 import android.support.v7.widget.RecyclerView;
 import android.support.v7.widget.helper.ItemTouchHelper;
+import android.util.Log;
 import android.view.View;
 import android.widget.ImageView;
 import android.widget.Toast;
@@ -56,10 +58,14 @@ import com.android.volley.Response;
 import com.android.volley.VolleyError;
 import com.example.dllo.homemycar.R;
 import com.example.dllo.homemycar.adapter.MoreActivityAdapter;
+import com.example.dllo.homemycar.custom.DividerItemDecoration;
 import com.example.dllo.homemycar.custom.ThemeChangeUtil;
 import com.example.dllo.homemycar.entity.MoreEntity;
 import com.example.dllo.homemycar.fragment.RecommendAllFragment;
 import com.example.dllo.homemycar.volley.VolleySingleton;
+
+import java.util.ArrayList;
+import java.util.List;
 
 
 /**
@@ -108,25 +114,10 @@ public class MoreActivity extends FragmentActivity {
             @Override
             public void onItemClick(View view, MoreActivityAdapter.MoreViewHolder holder, int position) {
                 Toast.makeText(MoreActivity.this, "position:" + position, Toast.LENGTH_SHORT).show();
-                FragmentManager fragmentManager = getSupportFragmentManager();
-                FragmentTransaction fragmentTransaction = fragmentManager.beginTransaction();
-                recommendAllFragment = new RecommendAllFragment();
-                fragmentTransaction.replace(R.id.more_ac_fragment, recommendAllFragment);
-                fragmentTransaction.commit();
+                Intent intent = new Intent();
+                intent.putExtra("popopo",position+1);
+                setResult(100,intent);
                 finish();
-                Intent intentPosition = new Intent();
-                intentPosition.setAction(POSITION);
-                intentPosition.putExtra("position", position+1);
-                sendBroadcast(intentPosition);
-
-
-
-
-
-
-
-
-
 
 
             }
@@ -148,11 +139,28 @@ public class MoreActivity extends FragmentActivity {
 
             }
         });
+        recyclerView.addItemDecoration(new DividerItemDecoration(this,RecyclerView.VERTICAL));
+        recyclerView.addItemDecoration(new DividerItemDecoration(this,RecyclerView.HORIZONTAL));
     }
 
 
     private ItemTouchHelper.Callback createCallback() {
         return new ItemTouchHelper.Callback() {
+            // 当长按选中item的时候(拖动开始的时候)调用
+            @Override
+            public void onSelectedChanged(RecyclerView.ViewHolder viewHolder, int actionState) {
+                if (actionState != ItemTouchHelper.ACTION_STATE_IDLE){
+                    viewHolder.itemView.setBackgroundColor(Color.LTGRAY);
+                }
+                super.onSelectedChanged(viewHolder, actionState);
+            }
+
+            // 当手指松开的时候(拖动完成的时候调用
+            @Override
+            public void clearView(RecyclerView recyclerView, RecyclerView.ViewHolder viewHolder) {
+                super.clearView(recyclerView, viewHolder);
+                viewHolder.itemView.setBackgroundColor(0);
+            }
             //决定RecyclerView的行布局支持哪种手势
             @Override
             public int getMovementFlags(RecyclerView recyclerView, RecyclerView.ViewHolder viewHolder) {

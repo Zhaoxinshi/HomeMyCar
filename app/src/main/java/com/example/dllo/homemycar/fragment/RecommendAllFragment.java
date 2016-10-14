@@ -44,6 +44,7 @@ import android.content.Context;
 import android.content.Intent;
 import android.content.IntentFilter;
 import android.graphics.Color;
+import android.os.Bundle;
 import android.support.design.widget.TabLayout;
 import android.support.v4.view.ViewPager;
 import android.support.v4.widget.DrawerLayout;
@@ -57,6 +58,7 @@ import com.example.dllo.homemycar.adapter.RecommendPageAdapter;
 import com.example.dllo.homemycar.base.BaseFragment;
 import com.example.dllo.homemycar.entity.MoreEntity;
 
+import java.lang.reflect.Field;
 import java.util.ArrayList;
 
 /**
@@ -67,9 +69,8 @@ public class RecommendAllFragment extends BaseFragment {
     private ViewPager viewPager;
     private RecommendPageAdapter adapter;
     private ImageView ima;
-    private RecommendAllFragment allFragment;
-    private int pos;
-    private BroadcastReceiver positionReceiver;
+    private int p;
+
 
     @Override
     protected int setlayout() {
@@ -90,7 +91,6 @@ public class RecommendAllFragment extends BaseFragment {
     @Override
     protected void initData() {
 
-        allFragment = new RecommendAllFragment();
         adapter = new RecommendPageAdapter(getChildFragmentManager());
         viewPager.setAdapter(adapter);
         tabLayout.setupWithViewPager(viewPager);
@@ -100,42 +100,21 @@ public class RecommendAllFragment extends BaseFragment {
         ima.setOnClickListener(new View.OnClickListener() {
             @Override
             public void onClick(View view) {
-                startActivity(new Intent(getContext(), MoreActivity.class));
+                Intent intent = new Intent(getActivity(),MoreActivity.class);
+                startActivityForResult(intent,101);
             }
         });
 
 
-        positionReceiver = new BroadcastReceiver() {
-
-            @Override
-            public void onReceive(Context context, Intent intent) {
-                String action = intent.getAction();
-                switch (action) {
-                    case MoreActivity.POSITION:
-                        pos = intent.getIntExtra("position", 0);
-                        Log.d("什么位置", "pos:" + pos);
-                        break;
-                }
-            }
-        };
-
-
     }
 
     @Override
-    public void onResume() {
-
-        IntentFilter intentFilter = new IntentFilter();
-        intentFilter.addAction(MoreActivity.POSITION);
-        getActivity().registerReceiver(positionReceiver, intentFilter);
-        super.onResume();
-
-    }
-
-    @Override
-    public void onPause() {
-        super.onPause();
-        getActivity().unregisterReceiver(positionReceiver);
+    public void onActivityResult(int requestCode, int resultCode, Intent data) {
+        super.onActivityResult(requestCode, resultCode, data);
+        if (requestCode == 101 && resultCode == 100) {
+            int position = data.getIntExtra("popopo",0);
+            viewPager.setCurrentItem(position);
+        }
 
     }
 }

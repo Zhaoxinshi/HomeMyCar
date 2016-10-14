@@ -41,7 +41,6 @@ package com.example.dllo.homemycar.entity; /*
 
 import android.support.v4.app.Fragment;
 
-import com.example.dllo.homemycar.mycolect.AmpleFragment;
 import com.example.dllo.homemycar.mycolect.CarModelFragment;
 import com.example.dllo.homemycar.mycolect.CarReputationFragment;
 import com.example.dllo.homemycar.mycolect.CarUpFragment;
@@ -83,7 +82,7 @@ public class CollectTabInfo {
         tabInfos.add(new CollectTabInfo("车型",new CarModelFragment()));
         tabInfos.add(new CollectTabInfo("口碑",new CarReputationFragment()));
         tabInfos.add(new CollectTabInfo("文章",new TitleFragment()));
-        tabInfos.add(new CollectTabInfo("优创+",new AmpleFragment()));
+        tabInfos.add(new CollectTabInfo("优创+",new AmplesFragment()));
         return tabInfos;
 
     }

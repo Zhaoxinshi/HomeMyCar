@@ -43,6 +43,7 @@ import android.os.Bundle;
 import android.support.annotation.Nullable;
 import android.support.v4.app.FragmentActivity;
 import android.view.View;
+import android.widget.ImageView;
 import android.widget.Switch;
 import android.widget.TextView;
 import android.widget.Toast;
@@ -59,6 +60,7 @@ public class SetUpActivity extends FragmentActivity {
     private TextView tvClear, tvCatch;
     private String file;
     private Switch aSwitch;
+    private ImageView imaBack;
 
     @Override
     protected void onCreate(@Nullable Bundle savedInstanceState) {
@@ -68,6 +70,13 @@ public class SetUpActivity extends FragmentActivity {
         tvClear = (TextView) findViewById(R.id.my_fragment_tv_clear);
         tvCatch = (TextView) findViewById(R.id.my_fragment_catch);
         aSwitch = (Switch) findViewById(R.id.swich_day);
+        imaBack = (ImageView) findViewById(R.id.set_up_ima_back);
+        imaBack.setOnClickListener(new View.OnClickListener() {
+            @Override
+            public void onClick(View view) {
+                finish();
+            }
+        });
         file = null;
         try {
             file = DataCleanManager.getTotalCacheSize(this);

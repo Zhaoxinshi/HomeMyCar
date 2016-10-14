@@ -1,86 +1,100 @@
 <?xml version="1.0" encoding="utf-8"?>
 <LinearLayout xmlns:android="http://schemas.android.com/apk/res/android"
-              android:layout_margin="10dp"
-              android:layout_width="match_parent"
-              android:layout_height="match_parent"
-              android:orientation="vertical">
-<RelativeLayout
     android:layout_width="match_parent"
-    android:layout_height="wrap_content">
-    <TextView
+    android:layout_height="match_parent"
+    android:layout_margin="10dp"
+    android:background="@android:color/white"
+    android:orientation="vertical">
+
+    <RelativeLayout
         android:layout_width="match_parent"
-        android:layout_height="40dp"
-        android:background="#50dfdfdf"
-        android:gravity="center"
-        android:text="发现"
-        android:textSize="20sp"/>
-    <ImageView
-        android:layout_marginRight="15dp"
-        android:layout_centerVertical="true"
-        android:layout_alignParentRight="true"
-        android:src="@mipmap/sousuos"
-        android:layout_width="wrap_content"
-        android:layout_height="wrap_content" />
-</RelativeLayout>
+        android:layout_height="wrap_content">
+
+        <TextView
+            android:layout_width="match_parent"
+            android:layout_height="40dp"
+            android:background="#50dfdfdf"
+            android:gravity="center"
+            android:text="发现"
+            android:textSize="20sp" />
+
+        <ImageView
+            android:layout_width="wrap_content"
+            android:layout_height="wrap_content"
+            android:layout_alignParentRight="true"
+            android:layout_centerVertical="true"
+            android:layout_marginRight="15dp"
+            android:src="@mipmap/sousuos" />
+    </RelativeLayout>
 
 
     <TextView
         android:layout_width="match_parent"
         android:layout_height="1dp"
-        android:background="#70c7c6c6"/>
+        android:background="#70c7c6c6" />
+
     <ScrollView
         android:layout_width="match_parent"
         android:layout_height="match_parent"
         android:background="#10d1d1d1">
-        <LinearLayout android:layout_width="match_parent"
-                      android:layout_height="match_parent"
-                      android:orientation="vertical">
-           <LinearLayout
-               android:orientation="vertical"
-               android:layout_width="match_parent"
-               android:layout_height="wrap_content">
-               <LinearLayout xmlns:android="http://schemas.android.com/apk/res/android"
-                             android:orientation="vertical"
-                             android:layout_width="match_parent"
-                             android:layout_height="wrap_content">
-                   <android.support.v4.view.ViewPager
-                       android:id="@+id/radio_sale_view_pager"
-                       android:layout_width="match_parent"
-                       android:layout_height="150dp"/>
-                   <LinearLayout android:id="@+id/library_recommend_ll"
-                                 android:layout_width="match_parent"
-                                 android:layout_height="wrap_content"
-                                 android:layout_marginTop="-25dp"
-                                 android:gravity="center"
-                                 android:orientation="horizontal"/>
-               </LinearLayout>
 
-           </LinearLayout>
+        <LinearLayout
+            android:layout_width="match_parent"
+            android:layout_height="match_parent"
+            android:orientation="vertical">
+
+            <LinearLayout
+                android:layout_width="match_parent"
+                android:layout_height="wrap_content"
+                android:orientation="vertical">
+
+                <LinearLayout xmlns:android="http://schemas.android.com/apk/res/android"
+                    android:layout_width="match_parent"
+                    android:layout_height="wrap_content"
+                    android:orientation="vertical">
+
+                    <android.support.v4.view.ViewPager
+                        android:id="@+id/radio_sale_view_pager"
+                        android:layout_width="match_parent"
+                        android:layout_height="150dp" />
+
+                    <LinearLayout
+                        android:id="@+id/library_recommend_ll"
+                        android:layout_width="match_parent"
+                        android:layout_height="wrap_content"
+                        android:layout_marginTop="-25dp"
+                        android:gravity="center"
+                        android:orientation="horizontal" />
+                </LinearLayout>
+
+            </LinearLayout>
+
             <android.support.v7.widget.RecyclerView
                 android:id="@+id/radio_sale_rv"
                 android:layout_width="match_parent"
-                android:layout_height="wrap_content"/>
+                android:layout_height="wrap_content" />
 
             <ImageView
-                android:background="@android:color/darker_gray"
                 android:layout_width="match_parent"
-                android:layout_height="2dp"/>
+                android:layout_height="2dp"
+                android:background="@android:color/darker_gray" />
             <!--<ImageView-->
-                <!--android:id="@+id/ima_find_top_top"-->
-                <!--android:layout_width="match_parent"-->
-                <!--android:layout_height="70dp"/>-->
+            <!--android:id="@+id/ima_find_top_top"-->
+            <!--android:layout_width="match_parent"-->
+            <!--android:layout_height="70dp"/>-->
             <TextView
-                android:layout_marginTop="5dp"
-                android:layout_gravity="center_horizontal"
-                android:textSize="20sp"
-                android:layout_marginLeft="5dp"
-                android:text="服务专区"
                 android:layout_width="match_parent"
-                android:layout_height="40dp"/>
+                android:layout_height="40dp"
+                android:layout_gravity="center_horizontal"
+                android:layout_marginLeft="5dp"
+                android:layout_marginTop="5dp"
+                android:text="服务专区"
+                android:textSize="20sp" />
+
             <android.support.v7.widget.RecyclerView
                 android:id="@+id/rv_service"
                 android:layout_width="match_parent"
-                android:layout_height="wrap_content"/>
+                android:layout_height="wrap_content" />
 
 
             <RelativeLayout
@@ -99,7 +113,7 @@
                     android:layout_marginTop="10dp"
                     android:text="限时抢购"
                     android:textColor="#414348"
-                    android:textSize="20sp"/>
+                    android:textSize="20sp" />
 
                 <LinearLayout
                     android:id="@+id/tv_limited_buy_timer"
@@ -108,8 +122,7 @@
                     android:layout_alignParentRight="true"
                     android:layout_marginRight="10dp"
                     android:layout_marginTop="10dp"
-                    android:orientation="horizontal">
-                </LinearLayout>
+                    android:orientation="horizontal"></LinearLayout>
 
             </RelativeLayout>
 
@@ -136,7 +149,7 @@
                     android:layout_marginTop="10dp"
                     android:text="活动专区"
                     android:textColor="#414348"
-                    android:textSize="20sp"/>
+                    android:textSize="20sp" />
 
                 <LinearLayout
                     android:id="@+id/find_more_activity"
@@ -151,60 +164,62 @@
                         android:layout_width="wrap_content"
                         android:layout_height="wrap_content"
                         android:text="更多活动"
-                        android:textSize="15sp"/>
+                        android:textSize="15sp" />
 
                     <ImageView
                         android:layout_width="20dp"
                         android:layout_height="15dp"
                         android:layout_marginTop="3dp"
-                        android:src="@mipmap/right_arrow_noout"/>
+                        android:src="@mipmap/right_arrow_noout" />
                 </LinearLayout>
 
                 <LinearLayout
-                android:id="@+id/find_more_activity_ll"
-                android:layout_width="match_parent"
-                android:layout_height="100dp"
-                android:layout_below="@+id/find_more_activity"
-                android:layout_marginBottom="10dp"
-                android:layout_marginTop="10dp"
-                android:orientation="horizontal">
+                    android:id="@+id/find_more_activity_ll"
+                    android:layout_width="match_parent"
+                    android:layout_height="100dp"
+                    android:layout_below="@+id/find_more_activity"
+                    android:layout_marginBottom="10dp"
+                    android:layout_marginTop="10dp"
+                    android:orientation="horizontal">
 
-                <ImageView
-                android:id="@+id/find_activity_first"
-                android:layout_width="wrap_content"
-                android:layout_height="wrap_content"/>
+                    <ImageView
+                        android:id="@+id/find_activity_first"
+                        android:layout_width="150dp"
+                        android:layout_height="wrap_content" />
 
-                <TextView
-                android:layout_width="1dp"
-                android:layout_height="match_parent"
-                android:background="#d1d1d1"/>
+                    <TextView
+                        android:layout_width="1dp"
+                        android:layout_height="match_parent"
+                        android:background="#d1d1d1" />
 
-                <ImageView
-                android:id="@+id/find_activity_second"
-                android:layout_width="wrap_content"
-                android:layout_height="wrap_content"/>
+                    <ImageView
+                        android:id="@+id/find_activity_second"
+                        android:layout_width="150dp"
+                        android:layout_height="wrap_content" />
 
-                <TextView
-                android:layout_width="1dp"
-                android:layout_height="match_parent"
-                android:background="#d1d1d1"/>
+                    <TextView
+                        android:layout_width="1dp"
+                        android:layout_height="match_parent"
+                        android:background="#d1d1d1" />
 
-                <ImageView
-                android:id="@+id/find_activity_third"
-                android:layout_width="wrap_content"
-                android:layout_height="wrap_content"/>
+                    <ImageView
+                        android:id="@+id/find_activity_third"
+                        android:layout_width="150dp"
+                        android:layout_height="wrap_content" />
 
                 </LinearLayout>
             </RelativeLayout>
+
             <ImageView
                 android:id="@+id/ima_monery"
                 android:layout_width="match_parent"
-                android:layout_height="60dp"/>
+                android:layout_height="60dp" />
+
             <TextView
                 android:id="@+id/find_two_activities_xian"
                 android:layout_width="match_parent"
                 android:layout_height="1dp"
-                android:background="#d1d1d1"/>
+                android:background="#d1d1d1" />
 
             <TextView
                 android:layout_width="match_parent"
@@ -215,12 +230,12 @@
                 android:paddingTop="5dp"
                 android:text="猜你喜欢"
                 android:textColor="#414348"
-                android:textSize="20sp"/>
+                android:textSize="20sp" />
+
             <android.support.v7.widget.RecyclerView
                 android:id="@+id/find_like_rv"
                 android:layout_width="match_parent"
-                android:layout_height="wrap_content">
-            </android.support.v7.widget.RecyclerView>
+                android:layout_height="wrap_content"></android.support.v7.widget.RecyclerView>
 
             <TextView
                 android:layout_width="match_parent"
@@ -231,15 +246,13 @@
                 android:paddingTop="5dp"
                 android:text="为我推荐"
                 android:textColor="#414348"
-                android:textSize="20sp"/>
+                android:textSize="20sp" />
 
-                <com.example.dllo.homemycar.custom.GridViews
-                    android:numColumns="2"
-                    android:id="@+id/find_for_me_like_ry"
-                    android:layout_width="match_parent"
-                    android:layout_height="wrap_content">
-                </com.example.dllo.homemycar.custom.GridViews>
-
+            <com.example.dllo.homemycar.custom.GridViews
+                android:id="@+id/find_for_me_like_ry"
+                android:layout_width="match_parent"
+                android:layout_height="wrap_content"
+                android:numColumns="2"></com.example.dllo.homemycar.custom.GridViews>
 
 
             <TextView
@@ -250,17 +263,15 @@
                 android:paddingTop="15dp"
                 android:text="商品推荐"
                 android:textColor="#414348"
-                android:textSize="20sp"/>
+                android:textSize="20sp" />
 
 
             <com.example.dllo.homemycar.custom.GridViews
                 android:id="@+id/radio_sale_list_view"
                 android:layout_width="match_parent"
-                android:layout_height="match_parent">
-            </com.example.dllo.homemycar.custom.GridViews>
+                android:layout_height="match_parent"></com.example.dllo.homemycar.custom.GridViews>
 
         </LinearLayout>
-
 
 
     </ScrollView>
