@@ -24,7 +24,7 @@
         <TextView
             android:layout_marginLeft="15dp"
             android:layout_centerVertical="true"
-            android:textSize="20sp"
+            android:textSize="18sp"
             android:textColor="@android:color/black"
             android:text="dasdasd"
             android:layout_toRightOf="@+id/item_all_car_ima"
